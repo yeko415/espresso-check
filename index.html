@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Espresso Check</title>
+<style>
+:root{
+  --bg:#f2e8d6;
+  --ink:#2c180f;
+  --green:#087a52;
+  --soft:rgba(44,24,15,.22);
+  --white:#fffaf2;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+body{font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+
+.nav{
+  height:84px;
+  padding:17px 4.5vw 12px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:30px;
+  position:relative;
+  z-index:50;
+}
+.nav-brand{display:flex;align-items:center}
+.logo{width:105px;height:auto;object-fit:contain}
+.est{margin-left:20px;font-size:10px;letter-spacing:.08em}
+.links{display:flex;gap:32px;font-size:12px}
+.actions{display:flex;justify-content:flex-end;align-items:center;gap:20px}
+.order{
+  border:1px solid var(--ink);padding:12px 20px;border-radius:999px;font-size:12px;
+}
+.menu{
+  width:27px;height:27px;background:none;border:0;padding:4px;display:grid;gap:6px;align-content:center;cursor:pointer;
+}
+.menu i{height:1.5px;background:var(--ink);display:block}
+
+.hero{
+  position:relative;
+  min-height:840px;
+  padding:0 4.5vw;
+  overflow:hidden;
+}
+.note-left{
+  position:absolute;left:5vw;top:36px;width:150px;
+  font-size:10px;line-height:1.45;letter-spacing:.18em;text-transform:uppercase;
+}
+.note-left:after{content:"";display:block;width:29px;height:4px;background:var(--green);margin-top:13px}
+.hand-right{
+  position:absolute;right:5.7vw;top:122px;width:135px;
+  font-family:"Brush Script MT","Segoe Script",cursive;
+  font-size:30px;line-height:.98;transform:rotate(-7deg);
+}
+.title{
+  margin:0;
+  padding-top:5px;
+  font-family:Impact,"Arial Black",sans-serif;
+  font-size:clamp(94px,13.25vw,228px);
+  line-height:.82;
+  letter-spacing:-.065em;
+  text-transform:uppercase;
+  position:relative;
+  z-index:3;
+}
+.title .a{display:block}
+.title .b{display:block;margin-left:18vw}
+
+.hero-latte{
+  position:absolute;
+  left:14%;
+  bottom:-2px;
+  width:min(71vw,960px);
+  z-index:8;
+}
+.hero-coffee{
+  position:absolute;
+  right:1vw;top:205px;width:min(20vw,265px);
+  z-index:7;
+  clip-path:polygon(5% 4%,94% 0,100% 90%,16% 100%,0 29%);
+}
+
+.latte-note{
+  position:absolute;
+  right:27vw;
+  bottom:215px;
+  font-family:"Brush Script MT","Segoe Script",cursive;
+  font-size:28px;line-height:.98;
+  transform:rotate(-6deg);
+  z-index:11;
+}
+.latte-note:before{
+  content:"";
+  position:absolute;width:70px;height:1px;background:var(--ink);
+  left:-58px;top:44px;transform:rotate(-27deg);
+}
+.latte-note:after{
+  content:"";
+  position:absolute;left:-64px;top:37px;width:7px;height:7px;
+  border-left:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  transform:rotate(15deg);
+}
+
+.copy{
+  position:absolute;
+  left:6vw;bottom:225px;width:190px;
+  z-index:20;font-size:13px;line-height:1.45;
+}
+.cta{
+  margin-top:16px;display:inline-flex;align-items:center;gap:23px;
+  padding:14px 18px;border-radius:999px;background:var(--green);color:white;font-size:12px;
+}
+
+.scroll{
+  position:absolute;right:5vw;bottom:207px;width:84px;
+  text-align:center;font-size:9px;line-height:1.3;z-index:20;
+}
+.scroll-ring{
+  width:56px;height:56px;border:1px solid var(--soft);border-radius:50%;
+  display:grid;place-items:center;margin:11px auto 0;font-size:24px;
+}
+
+.metrics{
+  position:absolute;left:4.5vw;right:4.5vw;bottom:18px;z-index:20;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--soft);padding-top:11px;
+}
+.metric{display:flex;align-items:center;gap:9px;font-size:9px;letter-spacing:.04em}
+.metric:not(:last-child):after{content:"";height:1px;background:var(--soft);flex:1;margin:0 20px 0 18px}
+
+.more{
+  padding:54px 4.5vw 105px;min-height:790px;overflow:hidden;
+}
+.more-head{
+  font-family:Impact,"Arial Black",sans-serif;font-size:clamp(68px,8.6vw,148px);
+  line-height:.85;letter-spacing:-.06em;margin:0;text-transform:uppercase;
+}
+.more-grid{display:grid;grid-template-columns:40% 60%;gap:2vw}
+.more-copy{max-width:310px;margin-top:125px;font-size:14px;line-height:1.55}
+.visuals{position:relative;min-height:600px;margin-top:8px}
+.mask{
+  position:absolute;overflow:hidden;
+}
+.mask img{width:100%;height:100%;object-fit:cover}
+.mask.bowl{left:1%;top:0;width:min(29vw,410px);height:410px;clip-path:polygon(9% 3%,88% 0,100% 21%,94% 97%,12% 100%,0 20%)}
+.mask.cake{right:2%;top:2px;width:min(26vw,370px);height:275px;clip-path:polygon(2% 14%,89% 0,100% 78%,15% 100%)}
+.mask.table{right:4%;top:255px;width:min(44vw,620px);height:310px;clip-path:polygon(4% 0,97% 7%,100% 93%,2% 100%)}
+.visual-note{position:absolute;right:3%;top:438px;font-family:"Brush Script MT","Segoe Script",cursive;font-size:29px;line-height:.97;transform:rotate(-7deg)}
+
+.stay{
+  min-height:290px;background:var(--ink);color:var(--white);
+  padding:42px 6vw;display:flex;justify-content:space-between;align-items:flex-start
+}
+.stay h2{margin:0;font-family:"Brush Script MT","Segoe Script",cursive;font-weight:400;font-size:clamp(74px,8.8vw,145px);line-height:.86;text-decoration:underline;text-underline-offset:12px}
+.stay p{font-size:10px;line-height:1.7;letter-spacing:.08em;padding-top:30px}
+
+@media (max-width:900px){
+  .nav{height:68px;padding:13px 5vw;grid-template-columns:1fr auto}
+  .logo{width:79px}.est,.links,.order{display:none}.actions{gap:2px}
+  .hero{min-height:680px;padding:0 5vw}
+  .note-left{left:5vw;top:37px;width:92px;font-size:7px}
+  .hand-right{right:4vw;top:96px;font-size:22px;width:90px}
+  .title{padding-top:24px;font-size:20vw;line-height:.86}
+  .title .b{margin-left:11vw}
+  .hero-coffee{width:122px;right:-7px;top:185px}
+  .hero-latte{left:-3vw;bottom:69px;width:119vw;max-width:none}
+  .latte-note{right:7vw;bottom:172px;font-size:21px}
+  .latte-note:before{left:-42px;top:34px;width:47px}
+  .latte-note:after{left:-46px;top:29px;width:6px;height:6px}
+  .copy{left:5vw;bottom:126px;width:135px;font-size:10px}
+  .cta{padding:11px 13px;gap:13px;font-size:10px}
+  .scroll{right:1.5vw;bottom:123px;transform:scale(.78);transform-origin:right bottom}
+  .metrics{left:5vw;right:5vw;bottom:11px}
+  .metric{font-size:6px;gap:4px}
+  .metric:not(:last-child):after{margin:0 6px}
+  .more{padding:44px 5vw 72px;min-height:auto}
+  .more-grid{grid-template-columns:1fr;gap:27px}
+  .more-head{font-size:18.5vw}
+  .more-copy{margin-top:0;font-size:12px;max-width:245px}
+  .visuals{min-height:565px}
+  .mask.bowl{left:0;width:61vw;height:345px}
+  .mask.cake{right:0;width:42vw;height:238px}
+  .mask.table{right:0;top:210px;width:92vw;height:310px}
+  .visual-note{right:2%;top:449px;font-size:21px}
+  .stay{min-height:235px;padding:36px 5vw}
+  .stay h2{font-size:20vw}.stay p{font-size:8px}
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-brand">
+    <img class="logo" src="assets/logo.svg" alt="Espresso Check">
+    <span class="est">EST. 2024</span>
+  </div>
+  <nav class="links">
+    <a href="#more">Menu</a><a href="#more">Our Story</a><a href="#more">Visit</a><a href="#more">Journal</a>
+  </nav>
+  <div class="actions">
+    <a class="order" href="#more">Order Online</a>
+    <button class="menu" aria-label="Menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="note-left">GOOD COFFEE<br>GOOD PEOPLE<br>BRIGHTER DAYS</div>
+  <div class="hand-right">Better<br>Coffee<br>Happier<br>People ♡</div>
+
+  <h1 class="title"><span class="a">ESPRESSO</span><span class="b">CHECK</span></h1>
+
+  <img class="hero-latte" src="assets/latte-hero.png" alt="Latte">
+  <img class="hero-coffee" src="assets/coffee-cup.png" alt="Coffee">
+
+  <div class="latte-note">This is<br>Latte ♡</div>
+
+  <div class="copy">
+    Specialty coffee,<br>comfort food and a<br>fluffy friend.
+    <a class="cta" href="#more">See Menu <span>→</span></a>
+  </div>
+
+  <div class="scroll">SCROLL<br>FOR A HAPPIER<br>DAY<div class="scroll-ring">↓</div></div>
+
+  <div class="metrics">
+    <div class="metric"><b>01</b> GREAT COFFEE</div>
+    <div class="metric"><b>02</b> BETTER FOOD</div>
+    <div class="metric"><b>03</b> HAPPIER PEOPLE</div>
+    <div class="metric"><b>04</b> LATTE APPROVED</div>
+  </div>
+</section>
+
+<section class="more" id="more">
+  <div class="more-grid">
+    <div>
+      <h2 class="more-head">MORE<br>THAN<br>COFFEE</h2>
+      <div class="more-copy">İyi kahve, güzel yemekler ve biraz da burada kalma isteği. Espresso Check'e gel, acele etme.</div>
+    </div>
+    <div class="visuals">
+      <div class="mask bowl"><img src="assets/bowl.png" alt="Bowl"></div>
+      <div class="mask cake"><img src="assets/cake.png" alt="Tatlı"></div>
+      <div class="mask table"><img src="assets/latte-table.png" alt="Latte"></div>
+      <div class="visual-note">Coffee<br>Food<br>People<br>Latte ♡</div>
+    </div>
+  </div>
+</section>
+
+<section class="stay">
+  <h2>Stay A While</h2>
+  <p>GOOD FOOD<br>GOOD MOOD<br>SAME SPOT</p>
+</section>
+</body>
+</html>
