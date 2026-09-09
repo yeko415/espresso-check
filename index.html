@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Espresso Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#f4e9d8;--ink:#2f170f;--green:#0b6b48;--line:rgba(47,23,15,.22);}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--cream);color:var(--ink);font-family:Archivo,Arial,sans-serif;overflow-x:hidden}
+img{display:block;max-width:100%}.page{min-height:100vh}
+.nav{height:88px;display:grid;grid-template-columns:180px 1fr auto;align-items:center;gap:22px;padding:18px 5.9vw;position:relative;z-index:20}
+.logo{width:101px;height:auto}.est{font-size:10px;font-weight:700;letter-spacing:.06em}.navlinks{display:flex;justify-content:center;gap:38px;font-size:14px}.navlinks a{color:inherit;text-decoration:none}.actions{display:flex;align-items:center;gap:23px}.order{border:0;border-radius:999px;background:#203f31;color:#fff;padding:13px 24px;font:600 13px Archivo;cursor:pointer}.burger{width:27px;height:18px;position:relative}.burger:before,.burger:after{content:"";position:absolute;left:0;width:100%;height:1.5px;background:var(--ink)}.burger:before{top:5px}.burger:after{top:13px}
+.hero{position:relative;padding:0 5.9vw 30px;min-height:780px}.hero-top{position:relative}.hero-title{margin:0;font-family:Archivo,Arial,sans-serif;font-weight:900;letter-spacing:-.07em;line-height:.78;text-transform:uppercase;font-size:clamp(90px,15.4vw,226px)}.hero-title .line1,.hero-title .line2{display:block}.hero-title .line2{margin-left:17vw}
+.tag-left{position:absolute;left:-.8vw;top:195px;width:120px;font-family:Caveat,cursive;font-size:34px;line-height:.93;transform:rotate(-5deg)}.tag-left span{display:block}.heart{font-size:40px;margin-left:47px;margin-top:6px}
+.hero-copy{position:absolute;left:0;top:512px;width:220px;font-size:16px;line-height:1.38}.menu-btn{display:inline-flex;align-items:center;gap:24px;margin-top:20px;background:#0d4d35;color:white;text-decoration:none;border-radius:999px;padding:17px 24px;font-size:15px}.menu-btn .arrow{font-size:23px;line-height:0}
+.tag-right{position:absolute;right:18%;top:468px;font-family:Caveat,cursive;font-size:36px;line-height:.92;transform:rotate(-4deg);z-index:10}.tag-right .arrow-line{display:block;width:105px;border-top:2px solid var(--ink);transform:rotate(-26deg);position:absolute;left:-84px;top:33px}.tag-right .arrow-head{position:absolute;left:-89px;top:19px;font-size:23px;transform:rotate(-17deg)}
+.coffee-wrap{position:absolute;right:-.6vw;top:235px;width:175px;height:205px;z-index:3;transform:rotate(2deg)}.coffee-cup{position:absolute;right:22px;top:0;width:132px;height:154px;border-radius:32px 32px 38px 38px;background:#efe7d7;border:1px solid rgba(47,23,15,.24);box-shadow:inset 0 -8px 0 rgba(47,23,15,.04)}.coffee-rim{position:absolute;left:11px;right:11px;top:-7px;height:34px;border-radius:50%;background:#efe7d7;border:1px solid rgba(47,23,15,.24);overflow:hidden}.coffee-rim:after{content:"";position:absolute;left:7px;right:7px;top:6px;height:20px;border-radius:50%;background:radial-gradient(circle at 47% 44%,#fbf1de 0 6%,#b96e44 8%,#7b341e 24%,#b66a42 44%,#7b341e 64%,#4c2418 100%)}.coffee-handle{position:absolute;right:-27px;top:52px;width:44px;height:59px;border:8px solid #d4ccbd;border-left:0;border-radius:0 28px 28px 0}.coffee-text{position:absolute;left:15px;right:15px;bottom:28px;text-align:center;font-weight:700;font-size:15px;line-height:1.23}.beans{position:absolute;left:-8px;bottom:10px;width:24px;height:14px;border-radius:50%;background:#3a1e16;transform:rotate(25deg);box-shadow:25px 14px 0 #3a1e16,48px -2px 0 #3a1e16}.beans:after{content:"";position:absolute;left:11px;top:2px;width:2px;height:10px;border-radius:50%;background:#b07a56;transform:rotate(-15deg)}
+.hero-latte{position:absolute;left:12.3%;right:0;top:355px;display:flex;justify-content:center;z-index:5;pointer-events:none}.hero-latte img{width:min(67vw,740px);filter:drop-shadow(0 14px 8px rgba(47,23,15,.10));transform:translateX(2vw)}
+.scroll-note{position:absolute;right:1vw;top:552px;width:90px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.04em;line-height:1.12}.scroll-dot{margin:18px auto 0;width:72px;height:72px;border:1px solid rgba(47,23,15,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:400}
+.metric-bar{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0 17px;margin-top:8px;font-size:11px;font-weight:700}.metric{display:flex;align-items:center;gap:15px}.metric:after{content:"";height:1px;background:var(--line);flex:1}.metric:last-child:after{display:none}
+.more{padding:52px 5.9vw 66px;display:grid;grid-template-columns:44% 56%;gap:20px;min-height:500px;position:relative}.more-title{font-size:clamp(62px,7.4vw,108px);font-weight:900;letter-spacing:-.065em;line-height:.87;text-transform:uppercase;margin:0}.more-left{position:relative}.more-note{font-family:Caveat,cursive;font-size:34px;line-height:.95;position:absolute;right:-25px;top:82px;transform:rotate(-4deg)}.more-note .arrowline{width:80px;border-top:2px solid var(--ink);position:absolute;left:-63px;top:26px;transform:rotate(22deg)}.more-right{position:relative;min-height:390px}.blob{position:absolute;right:0;top:10px;width:84%;height:340px;background:#23412f;border-radius:52% 48% 41% 58%/42% 56% 44% 58%;opacity:.98}.lower-scene{position:absolute;right:2%;top:47px;width:76%;max-width:660px;z-index:2}.more-caption{position:absolute;right:4%;bottom:0;width:220px;font-family:Caveat,cursive;font-size:34px;line-height:.95;transform:rotate(-3deg)}.more-copy{position:absolute;left:0;bottom:2px;width:360px;font-size:17px;line-height:1.35}.more-copy em{display:block;font-family:Caveat,cursive;font-size:32px;margin-top:25px}
+.stay{background:#2e140c;color:#f7ebdc;padding:64px 5.9vw 76px;display:flex;justify-content:space-between;align-items:flex-end;min-height:225px}.stay-title{font-family:Caveat,cursive;font-size:92px;line-height:.8;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:10px}.stay-right{font-size:13px;line-height:1.4;font-weight:600;letter-spacing:.08em}
+@media (max-width:900px){
+.nav{height:72px;padding:12px 5.8vw;grid-template-columns:90px 1fr auto;gap:9px}.logo{width:78px}.est{font-size:8px}.navlinks{gap:16px;font-size:10px}.order{padding:10px 15px;font-size:9px}.burger{width:23px;height:16px}.hero{padding:0 5.8vw 24px;min-height:655px}.hero-title{font-size:clamp(58px,15.6vw,115px);line-height:.84;margin-top:7px}.hero-title .line2{margin-left:11vw}.tag-left{left:0;top:86px;width:67px;font-size:18px}.heart{font-size:25px;margin-left:27px}.coffee-wrap{right:-1vw;top:206px;transform:scale(.7) rotate(2deg);transform-origin:top right}.hero-latte{left:2%;right:0;top:278px}.hero-latte img{width:93vw;max-width:none;transform:none}.hero-copy{top:452px;left:0;width:150px;font-size:11px}.menu-btn{padding:12px 15px;gap:17px;font-size:10px;margin-top:13px}.tag-right{right:5%;top:366px;font-size:20px}.tag-right .arrow-line{width:62px;left:-49px;top:24px}.tag-right .arrow-head{left:-54px;top:15px;font-size:15px}.scroll-note{right:-1px;top:478px;width:70px;font-size:8px}.scroll-dot{width:52px;height:52px;font-size:22px;margin-top:10px}.metric-bar{gap:14px;font-size:8px;padding:14px 0 13px;margin-top:0}.metric{gap:7px}.more{padding:35px 5.8vw 44px;grid-template-columns:42% 58%;gap:5px;min-height:415px}.more-title{font-size:clamp(44px,10.5vw,75px)}.more-note{font-size:22px;right:-12px;top:46px}.more-right{min-height:320px}.blob{width:100%;height:205px;top:8px}.lower-scene{top:25px;width:104%;right:-4%;}.more-caption{right:0;bottom:37px;font-size:22px;width:126px}.more-copy{bottom:0;width:185px;font-size:11px}.more-copy em{font-size:21px;margin-top:18px}.stay{min-height:168px;padding:43px 5.8vw}.stay-title{font-size:54px}.stay-right{font-size:8px}.actions{gap:13px}.navlinks a:nth-child(n+3){display:none}
+}
+@media (max-width:560px){.nav{grid-template-columns:76px 1fr auto}.navlinks{justify-content:flex-end;gap:11px}.navlinks a:nth-child(2),.navlinks a:nth-child(4){display:none}.order{display:none}.hero{min-height:630px}.hero-title{font-size:18vw}.coffee-wrap{top:198px;right:-13px;transform:scale(.55) rotate(2deg)}.hero-latte{top:280px}.hero-latte img{width:112vw;max-width:none;transform:translateX(-4vw)}.hero-copy{top:444px}.tag-right{top:382px}.scroll-note{top:494px}.metric-bar{grid-template-columns:1fr 1fr;row-gap:13px}.metric:nth-child(2):after,.metric:nth-child(4):after{display:none}.more{grid-template-columns:1fr;min-height:670px;padding-top:34px}.more-left{min-height:185px}.more-note{top:92px;right:7%}.more-right{min-height:360px}.blob{height:245px;right:0}.lower-scene{width:115%;right:-12%;top:13px}.more-copy{left:0;bottom:17px;width:65%}.more-caption{bottom:31px}.stay{min-height:145px}.stay-title{font-size:48px}.stay-right{display:none}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="nav">
+    <img class="logo" src="assets/logo.png" alt="Espresso Check logo">
+    <div class="est">EST. 2024</div>
+    <nav class="navlinks"><a href="#menu">Menu</a><a href="#story">Our Story</a><a href="#visit">Visit</a><a href="#journal">Journal</a></nav>
+    <div class="actions"><button class="order">Order Online</button><div class="burger" aria-hidden="true"></div></div>
+  </header>
+
+  <main>
+    <section class="hero" id="menu">
+      <div class="hero-top">
+        <h1 class="hero-title"><span class="line1">Espresso</span><span class="line2">Check</span></h1>
+        <div class="tag-left">Good<br>coffee<br>Brighter<br>Days<div class="heart">♡</div></div>
+        <div class="coffee-wrap" aria-hidden="true"><div class="coffee-cup"><div class="coffee-rim"></div><div class="coffee-handle"></div><div class="coffee-text">GOOD<br>PEOPLE<br>GOOD<br>COFFEE</div></div><div class="beans"></div></div>
+        <div class="hero-latte"><img src="assets/latte-hero.png" alt="Latte"></div>
+        <div class="tag-right"><div>This is<br>Latte</div><div>♡</div><span class="arrow-line"></span><span class="arrow-head">↘</span></div>
+        <div class="hero-copy">Specialty coffee,<br>comfort food and a<br>fluffy friend.<br><a class="menu-btn" href="#menu-grid">See Menu <span class="arrow">→</span></a></div>
+        <div class="scroll-note">SCROLL<br>FOR A HAPPIER<br>DAY<div class="scroll-dot">↓</div></div>
+      </div>
+      <div class="metric-bar"><div class="metric">01&nbsp; GREAT COFFEE</div><div class="metric">02&nbsp; BETTER FOOD</div><div class="metric">03&nbsp; HAPPIER PEOPLE</div><div class="metric">04&nbsp; LATTE APPROVED&nbsp; •</div></div>
+    </section>
+
+    <section class="more" id="story">
+      <div class="more-left"><h2 class="more-title">More<br>Than<br>Coffee</h2><div class="more-note">Good<br>Things<br>Here<span class="arrowline"></span></div><div class="more-copy">A cozy spot for good coffee,<br>great food and even better company.<em>See you at Espresso Check!</em></div></div>
+      <div class="more-right"><div class="blob"></div><img class="lower-scene" src="assets/latte-table-direct.png" alt="Latte at a table with a laptop and coffee"><div class="more-caption">Coffee<br>Food<br>People<br>Latte<br>♡</div></div>
+    </section>
+
+    <section class="stay" id="visit"><div class="stay-title">Stay A While</div><div class="stay-right">GOOD FOOD<br>GOOD MOOD<br>SAME SPOT</div></section>
+  </main>
+</div>
+</body>
+</html>
