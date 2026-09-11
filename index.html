@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Motion Engine — Brand Starter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#hero">IMPOSSIBLE<span>STYLE</span></a>
+  <nav>
+    <a href="#products">PRODUCTS <small>⌄</small></a>
+    <a href="#mission">MISSION <small>⌄</small></a>
+    <a href="#recipes">RECIPES</a>
+  </nav>
+  <div class="right-nav">
+    <button class="nav-chip">FOODSERVICE <span>⌄</span></button>
+    <a class="nav-chip solid" href="#finder">FIND US</a>
+  </div>
+  <button class="menu-toggle" aria-label="Open menu">MENU</button>
+</header>
+
+<main>
+<section id="hero" class="hero">
+  <div class="hero-note">Impossible Foods</div>
+  <div class="hero-kicker">↯ IT'S GIVING ↯</div>
+  <h1>STEAK<br><span>(FROM PLANTS)</span></h1>
+  <div class="hero-buttons">
+    <a href="#products" class="cta">↯ LEARN MORE ↯</a>
+    <a href="#finder" class="cta">↯ FIND NEAR ME ↯</a>
+  </div>
+  <div class="hero-photo p1" data-speed="0.16"><img src="https://images.unsplash.com/photo-1543352634-a1c51b4f79c6?auto=format&fit=crop&w=800&q=85" alt="Food"></div>
+  <div class="hero-photo p2" data-speed="-0.13"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=85" alt="Salad"></div>
+  <div class="hero-photo p3" data-speed="0.10"><img src="https://images.unsplash.com/photo-1550317138-10000687a72b?auto=format&fit=crop&w=800&q=85" alt="Burger"></div>
+  <div class="hero-photo p4" data-speed="-0.08"><img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=800&q=85" alt="Vegetables"></div>
+</section>
+
+<section class="lead-in" data-reveal>
+  <div class="eyebrow">Speaking of meat from plants...</div>
+  <h2>PRODUCTS</h2>
+</section>
+
+<section id="products" class="products-scene">
+  <div class="products-sticky">
+    <div class="product-heading">
+      <div class="product-tabs" role="tablist">
+        <button class="prod-tab active" data-filter="beef">BEEF <sup>8</sup></button>
+        <button class="prod-tab" data-filter="sausage">SAUSAGE <sup>6</sup></button>
+        <button class="prod-tab" data-filter="chicken">CHICKEN <sup>5</sup></button>
+      </div>
+    </div>
+    <div class="product-viewport">
+      <div class="product-rail" id="productRail">
+        <article class="product-card" data-type="beef">
+          <div class="product-pack"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=900&q=85" alt="Beef product"></div>
+          <h3>PLANT-BASED<br>BEEF</h3><div class="product-actions"><a class="mini-cta">LEARN MORE</a><a class="mini-link">FIND IT ⌖</a></div>
+        </article>
+        <article class="product-card" data-type="beef">
+          <div class="product-pack"><img src="https://images.unsplash.com/photo-1550317138-10000687a72b?auto=format&fit=crop&w=900&q=85" alt="Lite beef product"></div>
+          <h3>LITE GROUND<br>BEEF</h3><div class="product-actions"><a class="mini-cta">LEARN MORE</a><a class="mini-link">FIND IT ⌖</a></div>
+        </article>
+        <article class="product-card" data-type="beef">
+          <div class="product-pack"><img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=900&q=85" alt="Beef hot dog"></div>
+          <h3>BEEF HOT<br>DOGS</h3><div class="product-actions"><a class="mini-cta">LEARN MORE</a><a class="mini-link">FIND IT ⌖</a></div>
+        </article>
+        <article class="product-card" data-type="beef">
+          <div class="product-pack"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85" alt="Burger patties"></div>
+          <h3>BURGER<br>PATTIES</h3><div class="product-actions"><a class="mini-cta">LEARN MORE</a><a class="mini-link">FIND IT ⌖</a></div>
+        </article>
+        <article class="product-card" data-type="sausage">
+          <div class="product-pack"><img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=900&q=85" alt="Sausage product"></div>
+          <h3>SAUSAGE<br>LINKS</h3><div class="product-actions"><a class="mini-cta">LEARN MORE</a><a class="mini-link">FIND IT ⌖</a></div>
+        </article>
+        <article class="product-card" data-type="chicken">
+          <div class="product-pack"><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85" alt="Chicken product"></div>
+          <h3>CHICKEN<br>TENDERS</h3><div class="product-actions"><a class="mini-cta">LEARN MORE</a><a class="mini-link">FIND IT ⌖</a></div>
+        </article>
+      </div>
+    </div>
+    <div class="product-nav">
+      <button id="prevProduct">‹</button>
+      <div id="productDots"></div>
+      <button id="nextProduct">›</button>
+    </div>
+  </div>
+</section>
+
+<section id="recipes" class="recipes" data-reveal>
+  <div class="eyebrow">↯ WANT RECIPE INSPO? WE GOT YOU. ↯</div>
+  <div class="recipe-tabs"><button class="active">FAN FAVES</button><button>BURGERS</button><button>QUICK</button></div>
+  <h2>THE POTLUCK</h2>
+  <div class="recipe-grid">
+    <article><div class="recipe-img r1"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=85" alt="Recipe"></div><span>AN EASY MEAL</span><h3>BIG TABLE<br>PLATE</h3><div class="recipe-meta">4 Servings &nbsp;&nbsp; 13 Ingredients &nbsp;&nbsp; Super Easy</div><a class="mini-cta">VIEW RECIPE</a></article>
+    <article><div class="recipe-img r2"><img src="https://images.unsplash.com/photo-1508737027454-e6454ef45afd?auto=format&fit=crop&w=1200&q=85" alt="Recipe"></div><span>GRILLING</span><h3>SAUSAGE LINKS<br>WITH CHIMICHURRI</h3><div class="recipe-meta">4 Servings &nbsp;&nbsp; 11 Ingredients &nbsp;&nbsp; Super Easy</div><a class="mini-cta">VIEW RECIPE</a></article>
+  </div>
+  <div class="see-all"><span></span><a class="cta">↯ SEE ALL RECIPES ↯</a><span></span></div>
+</section>
+
+<section id="mission" class="mission" data-reveal>
+  <div class="eyebrow">↯ OUR MISSION ↯</div>
+  <h2>BETTER<br><span>FOR ALL.</span></h2>
+  <p>We are building a brand system where movement, scale, overflow and bold imagery carry as much weight as the copy.</p>
+  <strong>— MOTION SYSTEM DEMO</strong>
+  <div class="feature-panel">
+    <div class="feature-nav"><button class="selected">NUTRIENT-PACKED <b>›</b></button><button>BETTER FOR THE PLANET <b>›</b></button><button>WAY BETTER FOR ANIMALS <b>›</b></button><button>QUALITY INGREDIENTS <b>›</b></button></div>
+    <div class="feature-copy"><h3>Make incredibly tasty food that feels equally at home on a weeknight plate or the center of the table.</h3><p>This panel is another reusable component from the motion system: dark inner surface, tabbed navigation, oversized type and content that stays visually centered while the surrounding page moves.</p></div>
+    <div class="feature-art">✦<br>✦<br>✦</div>
+  </div>
+</section>
+
+<section id="finder" class="faq" data-reveal>
+  <div class="eyebrow">↯ STILL CURIOUS? ↯</div>
+  <h2>BROWSE OUR<br>FAQ'S</h2>
+  <p>Use this as the lower-page component layer for locations, support, FAQs or other client-specific modules.</p>
+  <div class="faq-list">
+    <button><span>How do we make the page move?</span><b>+</b></button><div>Vertical scroll can drive horizontal transforms, parallax layers and section-specific timelines.</div>
+    <button><span>Can this be reused for other brands?</span><b>+</b></button><div>Yes. Replace tokens, images, copy and component configuration while keeping the motion engine intact.</div>
+    <button><span>Does it work on mobile?</span><b>+</b></button><div>Yes. The large scenes collapse into simpler touch-friendly rails and the motion is reduced.</div>
+  </div>
+</section>
+</main>
+<footer><div class="brand">IMPOSSIBLE<span>STYLE</span></div><span>Reusable Motion Starter</span><a href="#hero">↑ TOP</a></footer>
+<script src="app.js"></script>
+</body>
+</html>
