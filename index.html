@@ -899,9 +899,8 @@ cupStage.addEventListener('touchend',e=>{
   const next = document.getElementById('menuNext');
   const cats = Array.from(section.querySelectorAll('[data-menu-cat]'));
 
-  let cat = 'bowl';
-  let item = 2;
-  let cardActivated = false;
+  let cat = 'kahve';
+  let item = 0;
 
   function render(){
     const items = menuData[cat];
@@ -916,7 +915,7 @@ cupStage.addEventListener('touchend',e=>{
     product.classList.add('is-changing');
     product.alt = data.title;
     window.setTimeout(function(){
-      product.src = (data.thumb && !cardActivated) ? data.thumb : data.img;
+      product.src = data.img;
       product.classList.remove('is-changing');
     }, 90);
 
@@ -933,7 +932,6 @@ cupStage.addEventListener('touchend',e=>{
     list.querySelectorAll('[data-menu-item]').forEach(function(card){
       card.addEventListener('click',function(){
         item = Number(card.getAttribute('data-menu-item'));
-        cardActivated = true;
         render();
       });
     });
@@ -942,8 +940,7 @@ cupStage.addEventListener('touchend',e=>{
   cats.forEach(function(button){
     button.addEventListener('click',function(){
       cat = button.getAttribute('data-menu-cat');
-      item = (cat === 'bowl') ? 2 : 0;
-      cardActivated = false;
+      item = 0;
       cats.forEach(function(b){ b.classList.toggle('is-active', b===button); });
       render();
     });
@@ -951,12 +948,10 @@ cupStage.addEventListener('touchend',e=>{
 
   prev.addEventListener('click',function(){
     item = (item - 1 + menuData[cat].length) % menuData[cat].length;
-    cardActivated = false;
     render();
   });
   next.addEventListener('click',function(){
     item = (item + 1) % menuData[cat].length;
-    cardActivated = false;
     render();
   });
 
