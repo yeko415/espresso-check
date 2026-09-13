@@ -29,22 +29,7 @@
   .cup-showcase h2{font-size:clamp(44px,12vw,64px);white-space:normal}
   .cup-showcase-right{width:100%}
   .cup-stage{min-height:460px;height:460px;overflow:visible}
-  .cup-float{
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  animation:cupIdleFloat 3.8s ease-in-out infinite;
-  will-change:transform;
-}
-@keyframes cupIdleFloat{
-  0%,100%{transform:translate3d(0,0,0) rotateZ(0deg)}
-  25%{transform:translate3d(1px,-5px,0) rotateZ(.45deg)}
-  50%{transform:translate3d(0,-8px,0) rotateZ(0deg)}
-  75%{transform:translate3d(-1px,-4px,0) rotateZ(-.45deg)}
-}
-.cup-model-wrap{height:430px;width:320px;max-width:86%;transform:scale(.70) rotate(0deg) translateZ(0)}
+  .cup-model-wrap{height:430px;width:320px;max-width:86%;transform:scale(.70) rotate(0deg) translateZ(0)}
   .cup-arrow{display:none}
   .cup-progress{margin-top:0;gap:7px}
   .cup-progress span{width:24px;height:3px}
@@ -162,6 +147,10 @@
   transform:translate3d(0,0,0) rotateZ(0deg) scale(.90);
   transform-origin:center center;
 }
+@keyframes cupIdleFloatSafe{
+  0%,100%{transform:translate3d(0,0,0) rotateZ(0deg)}
+  50%{transform:translate3d(0,-5px,0) rotateZ(.28deg)}
+}
 model-viewer#cupModel{
   width:100%;
   height:100%;
@@ -174,6 +163,8 @@ model-viewer#cupModel{
   -webkit-tap-highlight-color:transparent;
   touch-action:none;
   user-select:none;
+  animation:cupIdleFloatSafe 3.8s ease-in-out infinite;
+  will-change:transform;
 }
 .cup-arrow{
   position:absolute;
@@ -268,7 +259,7 @@ model-viewer#cupModel{
 @media(prefers-reduced-motion:reduce){
   .cup-title-animated{transition:none}
   .cup-model-wrap{transition:none!important}
-  .cup-float{animation:none!important}
+  model-viewer#cupModel{animation:none!important}
 }
 
 </style>
@@ -289,23 +280,21 @@ model-viewer#cupModel{
       <div class="cup-stage" id="cupStage" aria-live="polite">
         <button class="cup-arrow cup-prev" id="cupPrev" type="button" aria-label="Önceki bardak görünümü">←</button>
         <div class="cup-model-wrap" id="cupModelWrap">
-          <div class="cup-float" id="cupFloat">
-            <model-viewer
-              id="cupModel"
-              src="assets/espresso-check-coffee-cup-v10.glb"
-              disable-pan
-              interaction-prompt="none"
-              touch-action="none"
-              shadow-intensity="1"
-              exposure="1"
-              environment-image="neutral"
-              camera-target="0m 4.25m 0m"
-              camera-orbit="330deg 72deg 25.5m"
-              field-of-view="40deg"
-              min-camera-orbit="auto auto 21m"
-              max-camera-orbit="auto auto 32m"
-              alt="Espresso Check 3D kahve bardağı"></model-viewer>
-          </div>
+          <model-viewer
+            id="cupModel"
+            src="assets/espresso-check-coffee-cup-v10.glb"
+            disable-pan
+            interaction-prompt="none"
+            touch-action="none"
+            shadow-intensity="1"
+            exposure="1"
+            environment-image="neutral"
+            camera-target="0m 4.25m 0m"
+            camera-orbit="330deg 72deg 25.5m"
+            field-of-view="40deg"
+            min-camera-orbit="auto auto 21m"
+            max-camera-orbit="auto auto 32m"
+            alt="Espresso Check 3D kahve bardağı"></model-viewer>
         </div>
         <button class="cup-arrow cup-next" id="cupNext" type="button" aria-label="Sonraki bardak görünümü">→</button>
       </div>
