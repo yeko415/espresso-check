@@ -258,6 +258,13 @@ model-viewer#cupModel{
   .cup-model-wrap{height:520px;width:min(470px,100%);transform:scale(.86)}
 }
 @media(max-width:650px){
+  html,body{overflow-x:hidden}
+  .cup-showcase:before{
+    width:430px;
+    height:430px;
+    left:-230px;
+    bottom:-250px;
+  }
   .cup-showcase{padding:70px 0 34px}
   .cup-showcase .intro-grid{grid-template-columns:1fr;gap:10px}
   .intro-copy-left{text-align:center}
