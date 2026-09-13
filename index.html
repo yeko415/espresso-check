@@ -333,7 +333,7 @@ if(latteHit&&latteBubble){
 }
 
 
-// 3D cup showcase interaction — swipe/arrow stability fix only
+// 3D cup showcase interaction — performance-only optimization
 const cupStage = document.getElementById('cupStage');
 const cupModel = document.getElementById('cupModel');
 const cupWrap = document.getElementById('cupModelWrap');
@@ -344,204 +344,150 @@ const cupCopyTitle = document.getElementById('cupCopyTitle');
 const cupCopyText = document.getElementById('cupCopyText');
 
 const cupSlides = [
-  {
-    angle:295, polar:72, radius:25.5, fov:40, targetY:4.25,
-    title:'Kahveyle başla.',
-    text:"Latte'nin onayından geçen küçük bir kahve ritüeli."
-  },
-  {
-    angle:39, polar:66, radius:23.6, fov:43, targetY:4.18,
-    title:"Bowl'la devam et.",
-    text:'Günün ortasında kısa bir durak, fincanın içinde biraz iyi his.'
-  },
-  {
-    angle:155, polar:80, radius:26.6, fov:38, targetY:4.30,
-    title:'Tatlıyla tamamla.',
-    text:'Espresso Check sadece kahve değil; molanın da küçük bir işareti.'
-  },
-  {
-    angle:247, polar:63, radius:23.0, fov:44, targetY:4.12,
-    title:'Gününü güzelleştir.',
-    text:'Bazen en iyi başlangıç sadece iyi bir kahve kokusudur.'
-  }
+  {angle:295,polar:72,radius:25.5,fov:40,targetY:4.25,title:'Kahveyle başla.',text:"Latte'nin onayından geçen küçük bir kahve ritüeli."},
+  {angle:39,polar:66,radius:23.6,fov:43,targetY:4.18,title:"Bowl'la devam et.",text:'Günün ortasında kısa bir durak, fincanın içinde biraz iyi his.'},
+  {angle:155,polar:80,radius:26.6,fov:38,targetY:4.30,title:'Tatlıyla tamamla.',text:'Espresso Check sadece kahve değil; molanın da küçük bir işareti.'},
+  {angle:247,polar:63,radius:23.0,fov:44,targetY:4.12,title:'Gününü güzelleştir.',text:'Bazen en iyi başlangıç sadece iyi bir kahve kokusudur.'}
 ];
 
-let cupIndex = 0;
-let cupAnimating = false;
-let cupAngle = cupSlides[0].angle;
-let cupPolar = cupSlides[0].polar;
-let cupRadius = cupSlides[0].radius;
-let cupTargetY = cupSlides[0].targetY;
-let cupFov = cupSlides[0].fov;
+let cupIndex=0,cupAnimating=false;
+let cupAngle=cupSlides[0].angle,cupPolar=cupSlides[0].polar,cupRadius=cupSlides[0].radius,cupTargetY=cupSlides[0].targetY,cupFov=cupSlides[0].fov;
 
 function renderCupProgress(){
-  if(!cupProgress) return;
-  cupProgress.innerHTML = cupSlides
-    .map((_,i)=>`<span class="${i===cupIndex?'active':''}" aria-hidden="true"></span>`)
-    .join('');
+  if(!cupProgress)return;
+  cupProgress.innerHTML=cupSlides.map((_,i)=>`<span class="${i===cupIndex?'active':''}" aria-hidden="true"></span>`).join('');
 }
-
-function normalizeDeg(a){ return ((a%360)+360)%360; }
-
+function normalizeDeg(a){return ((a%360)+360)%360;}
 function directedDelta(from,to,direction){
-  let d = normalizeDeg(to) - normalizeDeg(from);
-  if(direction > 0){
-    while(d < 104) d += 360;
-    while(d > 160) d -= 360;
-  }else{
-    while(d > -104) d -= 360;
-    while(d < -160) d += 360;
-  }
+  let d=normalizeDeg(to)-normalizeDeg(from);
+  if(direction>0){while(d<104)d+=360;while(d>160)d-=360;}
+  else{while(d>-104)d-=360;while(d<-160)d+=360;}
   return d;
 }
-
 function easeCinematic(t){
-  if(t<=0) return 0;
-  if(t>=1) return 1;
-  const s = t*t*(3-2*t);
-  const momentum = Math.sin(Math.PI*t)*0.025;
-  return Math.min(1, Math.max(0, s+momentum));
+  if(t<=0)return 0;if(t>=1)return 1;
+  const s=t*t*(3-2*t);
+  return Math.min(1,Math.max(0,s+Math.sin(Math.PI*t)*0.025));
+}
+function mix(a,b,t){return a+(b-a)*t;}
+
+function writeCamera(){
+  cupModel.cameraTarget=`0m ${cupTargetY.toFixed(3)}m 0m`;
+  cupModel.cameraOrbit=`${cupAngle.toFixed(2)}deg ${cupPolar.toFixed(2)}deg ${cupRadius.toFixed(2)}m`;
+  cupModel.fieldOfView=`${cupFov.toFixed(2)}deg`;
 }
 
-function mix(a,b,t){ return a+(b-a)*t; }
-
-function updateCupPose(){
-  cupModel.cameraTarget = `0m ${cupTargetY.toFixed(3)}m 0m`;
-  cupModel.cameraOrbit =
-    `${cupAngle.toFixed(3)}deg ${cupPolar.toFixed(3)}deg ${cupRadius.toFixed(3)}m`;
-  cupModel.fieldOfView = `${cupFov.toFixed(2)}deg`;
-}
-
-function setTitleForSlide(slide){
-  if(cupCopyTitle){
-    cupCopyTitle.innerHTML = slide.title;
-    cupCopyTitle.classList.remove('is-changing');
-  }
-  if(cupCopyText) cupCopyText.textContent = slide.text;
+function setTitle(slide){
+  if(cupCopyTitle) cupCopyTitle.innerHTML=slide.title;
+  if(cupCopyText) cupCopyText.textContent=slide.text;
 }
 
 function animateCupTo(slide,direction){
-  if(cupAnimating || !slide || !cupModel || !cupWrap) return;
-  cupAnimating = true;
+  if(cupAnimating||!slide||!cupModel||!cupWrap)return;
+  cupAnimating=true;
 
-  const start = performance.now();
-  const duration = 1750;
+  const start=performance.now();
+  const duration=1800;
 
-  const startAngle = cupAngle;
-  const startPolar = cupPolar;
-  const startRadius = cupRadius;
-  const startTargetY = cupTargetY;
-  const startFov = cupFov;
-  const deltaAngle = directedDelta(startAngle,slide.angle,direction);
-  const endAngle = startAngle + deltaAngle;
+  const startAngle=cupAngle,startPolar=cupPolar,startRadius=cupRadius,startTargetY=cupTargetY,startFov=cupFov;
+  const deltaAngle=directedDelta(startAngle,slide.angle,direction);
+  const endAngle=startAngle+deltaAngle;
 
-  cupIndex = cupSlides.indexOf(slide);
-  if(cupIndex < 0) cupIndex = 0;
+  cupIndex=cupSlides.indexOf(slide);
+  if(cupIndex<0)cupIndex=0;
   renderCupProgress();
 
+  // Text is not animated per frame; it changes once.
   if(cupCopyTitle) cupCopyTitle.classList.add('is-changing');
-  window.setTimeout(()=>setTitleForSlide(slide), 180);
+  window.setTimeout(()=>{
+    setTitle(slide);
+    if(cupCopyTitle) cupCopyTitle.classList.remove('is-changing');
+  },180);
+
+  let lastCameraWrite=0;
 
   function frame(now){
-    const raw = Math.min(1,(now-start)/duration);
-    const t = easeCinematic(raw);
-    const arc = Math.sin(Math.PI*t);
-    const push = Math.sin(Math.PI*t);
+    const raw=Math.min(1,(now-start)/duration);
+    const t=easeCinematic(raw);
+    const arc=Math.sin(Math.PI*t);
+    const push=arc;
 
-    cupAngle = startAngle + deltaAngle*t;
-    cupPolar = mix(startPolar,slide.polar,t) + arc*4.3*(direction>0?1:-1);
-    cupRadius = mix(startRadius,slide.radius,t) - push*2.1;
-    cupTargetY = mix(startTargetY,slide.targetY,t)
-      + Math.sin(Math.PI*t*1.12)*0.16*(direction>0?1:-1);
-    cupFov = mix(startFov,slide.fov,t) - push*3.6;
+    cupAngle=startAngle+deltaAngle*t;
+    cupPolar=mix(startPolar,slide.polar,t)+arc*4.3*(direction>0?1:-1);
+    cupRadius=mix(startRadius,slide.radius,t)-push*2.1;
+    cupTargetY=mix(startTargetY,slide.targetY,t)+Math.sin(Math.PI*t*1.12)*0.16*(direction>0?1:-1);
+    cupFov=mix(startFov,slide.fov,t)-push*3.6;
 
-    const tilt = Math.sin(Math.PI*t)*4.0*(direction>0?-1:1);
-    const drift = Math.sin(Math.PI*t)*6.5*(direction>0?1:-1);
-    const lift = -Math.sin(Math.PI*t)*6.5;
-    const scale = .90 + push*.04;
+    // Keep the visual wrapper motion smooth and cheap.
+    const tilt=Math.sin(Math.PI*t)*4.0*(direction>0?-1:1);
+    const drift=Math.sin(Math.PI*t)*6.5*(direction>0?1:-1);
+    const lift=-Math.sin(Math.PI*t)*6.5;
+    const scale=.90+push*.04;
+    cupWrap.style.transform=
+      `translate3d(${drift.toFixed(1)}px,${lift.toFixed(1)}px,0) rotateZ(${tilt.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
 
-    cupWrap.style.transform =
-      `translate3d(${drift.toFixed(2)}px,${lift.toFixed(2)}px,0)`+
-      ` rotateZ(${tilt.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
+    // model-viewer is the expensive part: cap property writes to ~30fps.
+    // The browser renders the visual wrapper at full rAF rate.
+    if(now-lastCameraWrite>=32 || raw>=1){
+      lastCameraWrite=now;
+      writeCamera();
+    }
 
-    updateCupPose();
-
-    if(raw < 1){
+    if(raw<1){
       requestAnimationFrame(frame);
       return;
     }
 
-    const settleStart = performance.now();
+    const settleStart=performance.now();
     function settle(now2){
-      const p = Math.min(1,(now2-settleStart)/280);
-      const e = 1-Math.pow(1-p,3);
-      const overshoot = Math.sin(Math.PI*e)*0.45;
+      const p=Math.min(1,(now2-settleStart)/280);
+      const e=1-Math.pow(1-p,3);
+      const overshoot=Math.sin(Math.PI*e)*0.45;
 
-      cupWrap.style.transform =
-        `translate3d(0,${(-overshoot*1.2).toFixed(2)}px,0)`+
-        ` rotateZ(${(Math.sin(Math.PI*e)*0.42*(direction>0?-1:1)).toFixed(2)}deg)`+
-        ` scale(.90)`;
+      cupWrap.style.transform=
+        `translate3d(0,${(-overshoot*1.2).toFixed(1)}px,0) rotateZ(${(Math.sin(Math.PI*e)*0.42*(direction>0?-1:1)).toFixed(1)}deg) scale(.90)`;
 
-      if(p < 1){
+      if(p<1){
         requestAnimationFrame(settle);
       }else{
         cupWrap.style.transform='translate3d(0,0,0) rotateZ(0deg) scale(.90)';
-        cupAngle = endAngle;
-        cupPolar = slide.polar;
-        cupRadius = slide.radius;
-        cupTargetY = slide.targetY;
-        cupFov = slide.fov;
-        updateCupPose();
-        cupAnimating = false;
+        cupAngle=endAngle;cupPolar=slide.polar;cupRadius=slide.radius;cupTargetY=slide.targetY;cupFov=slide.fov;
+        writeCamera();
+        cupAnimating=false;
       }
     }
     requestAnimationFrame(settle);
   }
-
   requestAnimationFrame(frame);
 }
 
 function setCupSlide(next,direction){
-  if(cupAnimating) return;
-  const idx = (next+cupSlides.length)%cupSlides.length;
+  if(cupAnimating)return;
+  const idx=(next+cupSlides.length)%cupSlides.length;
   animateCupTo(cupSlides[idx],direction);
 }
 
-// Initial state remains V14's logo-forward camera.
-updateCupPose();
+// Initial state and controls unchanged.
+writeCamera();
 renderCupProgress();
 
-// Desktop arrow controls.
-if(cupPrev) cupPrev.onclick = ()=>setCupSlide(cupIndex-1,-1);
-if(cupNext) cupNext.onclick = ()=>setCupSlide(cupIndex+1,1);
+if(cupPrev) cupPrev.onclick=()=>setCupSlide(cupIndex-1,-1);
+if(cupNext) cupNext.onclick=()=>setCupSlide(cupIndex+1,1);
 
-// Mobile swipe only on the stage. We block accidental vertical-drag triggers.
-let cupTouchX = 0;
-let cupTouchY = 0;
-let cupTouching = false;
-
+let cupTouchX=0,cupTouchY=0,cupTouching=false;
 if(cupStage){
-  cupStage.addEventListener('touchstart',(e)=>{
-    if(!e.touches || e.touches.length!==1) return;
-    cupTouching = true;
-    cupTouchX = e.touches[0].clientX;
-    cupTouchY = e.touches[0].clientY;
+  cupStage.addEventListener('touchstart',e=>{
+    if(!e.touches||e.touches.length!==1)return;
+    cupTouching=true;cupTouchX=e.touches[0].clientX;cupTouchY=e.touches[0].clientY;
   },{passive:true});
 
-  cupStage.addEventListener('touchend',(e)=>{
-    if(!cupTouching || !e.changedTouches || !e.changedTouches.length) return;
-    cupTouching = false;
-
-    const dx = e.changedTouches[0].clientX-cupTouchX;
-    const dy = e.changedTouches[0].clientY-cupTouchY;
-
-    if(Math.abs(dx)<55 || Math.abs(dx)<=Math.abs(dy)*1.25) return;
-
-    if(dx<0){
-      setCupSlide(cupIndex+1,1);
-    }else{
-      setCupSlide(cupIndex-1,-1);
-    }
+  cupStage.addEventListener('touchend',e=>{
+    if(!cupTouching||!e.changedTouches||!e.changedTouches.length)return;
+    cupTouching=false;
+    const dx=e.changedTouches[0].clientX-cupTouchX;
+    const dy=e.changedTouches[0].clientY-cupTouchY;
+    if(Math.abs(dx)<55||Math.abs(dx)<=Math.abs(dy)*1.25)return;
+    setCupSlide(cupIndex+(dx<0?1:-1),dx<0?1:-1);
   },{passive:true});
 }
 
