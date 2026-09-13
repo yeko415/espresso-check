@@ -287,6 +287,198 @@ model-viewer#cupModel{
   model-viewer#cupModel{animation:none!important}
 }
 
+
+/* ===== Espresso Check Menu — isolated add-on ===== */
+.menu-section{
+  position:relative;
+  background:#fffdf7;
+  padding:110px 0 120px;
+  overflow:hidden;
+}
+.menu-section:before{
+  content:"";
+  position:absolute;
+  width:520px;height:520px;
+  border-radius:50%;
+  background:rgba(200,155,60,.16);
+  right:-250px;top:-210px;
+  pointer-events:none;
+}
+.menu-section:after{
+  content:"";
+  position:absolute;
+  width:420px;height:420px;
+  border-radius:50%;
+  background:rgba(14,121,89,.08);
+  left:-220px;bottom:-220px;
+  pointer-events:none;
+}
+.menu-section .container{position:relative;z-index:1}
+.menu-kicker{
+  font-size:12px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:#0E7959;margin-bottom:15px;
+}
+.menu-heading{
+  font-family:Fraunces,serif;
+  font-size:clamp(58px,8vw,108px);
+  line-height:.84;letter-spacing:-.07em;
+  color:#2B160D;margin:0 0 32px;max-width:800px;
+}
+.menu-heading em{
+  font-family:"Comic Sans MS","Segoe Print","Bradley Hand",cursive;
+  color:#0E7959;font-style:normal;
+}
+.menu-intro{
+  max-width:620px;font-size:16px;line-height:1.65;margin:0 0 36px;
+  color:#3f4b46;
+}
+.menu-cats{
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:48px;
+}
+.menu-cat{
+  min-height:44px;padding:0 19px;border-radius:999px;
+  background:#F5F0E6;color:#2B160D;
+  font-size:13px;font-weight:700;
+  transition:transform .22s var(--ease),background .22s,color .22s;
+}
+.menu-cat:hover{transform:translateY(-2px)}
+.menu-cat.is-active{background:#0E7959;color:#F5F0E6}
+.menu-feature{
+  display:grid;
+  grid-template-columns:.78fr 1.22fr;
+  min-height:540px;
+  gap:56px;
+  align-items:center;
+}
+.menu-copy{
+  order:1;
+}
+.menu-index{
+  font-family:Fraunces,serif;
+  color:rgba(14,121,89,.55);
+  font-size:18px;
+  margin-bottom:12px;
+}
+.menu-title{
+  font-family:Fraunces,serif;
+  font-size:clamp(50px,6vw,82px);
+  line-height:.88;letter-spacing:-.06em;
+  color:#2B160D;margin:0 0 20px;
+}
+.menu-description{
+  max-width:430px;
+  font-size:16px;line-height:1.7;
+  margin:0;color:#42504a;
+}
+.menu-note{
+  display:inline-flex;align-items:center;gap:9px;
+  margin-top:22px;
+  font-size:12px;font-weight:700;
+  letter-spacing:.07em;text-transform:uppercase;
+  color:#0E7959;
+}
+.menu-note:before{
+  content:"✓";display:grid;place-items:center;
+  width:24px;height:24px;border-radius:50%;
+  background:#C89B3C;color:#2B160D;
+  font-size:13px;
+}
+.menu-visual{
+  min-height:540px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  background:#F5F0E6;
+  border-radius:34px;
+  overflow:hidden;
+}
+.menu-visual:before{
+  content:"";
+  position:absolute;
+  width:520px;height:520px;border-radius:50%;
+  background:rgba(255,255,255,.58);
+}
+.menu-product{
+  position:relative;z-index:1;
+  width:min(430px,72%);
+  height:430px;
+  object-fit:cover;
+  border-radius:220px 220px 32px 32px;
+  box-shadow:18px 18px 0 rgba(43,22,13,.10);
+  transform:rotate(-3deg);
+  transition:opacity .22s ease,transform .55s var(--ease);
+}
+.menu-product.is-changing{
+  opacity:.55;transform:rotate(2deg) scale(.985);
+}
+.menu-arrows{
+  position:absolute;z-index:3;inset:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 18px;pointer-events:none;
+}
+.menu-arrow{
+  width:48px;height:48px;border-radius:50%;
+  display:grid;place-items:center;
+  background:#C89B3C;color:#F5F0E6;
+  font-size:23px;font-weight:700;
+  pointer-events:auto;
+  transition:transform .22s var(--ease),background .22s;
+  -webkit-tap-highlight-color:transparent;
+}
+.menu-arrow:hover{transform:scale(1.07);background:#9B741D}
+.menu-list{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:14px;margin-top:22px;
+}
+.menu-mini{
+  background:#F5F0E6;border-radius:20px;overflow:hidden;
+  cursor:pointer;border:1px solid rgba(22,77,67,.06);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+}
+.menu-mini:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(43,22,13,.08)}
+.menu-mini.is-active{box-shadow:inset 0 0 0 2px #0E7959}
+.menu-mini img{
+  width:100%;height:145px;object-fit:cover;
+}
+.menu-mini-body{padding:15px 15px 17px}
+.menu-mini h4{
+  font-family:Fraunces,serif;font-size:23px;
+  line-height:1;margin:0 0 6px;color:#2B160D;
+}
+.menu-mini p{font-size:12px;line-height:1.45;margin:0;color:#59625e}
+.menu-label{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:10px;font-weight:700;letter-spacing:.07em;
+  text-transform:uppercase;color:#0E7959;margin-top:12px;
+}
+@media(max-width:900px){
+  .menu-section{padding:86px 0 95px}
+  .menu-feature{grid-template-columns:1fr;gap:28px}
+  .menu-copy{order:0}
+  .menu-visual{min-height:490px}
+  .menu-product{height:400px}
+  .menu-list{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+  .menu-section{padding:72px 0 78px}
+  .menu-heading{font-size:clamp(48px,13vw,68px)}
+  .menu-cats{
+    flex-wrap:nowrap;overflow-x:auto;padding-bottom:5px;
+    scrollbar-width:none;
+  }
+  .menu-cats::-webkit-scrollbar{display:none}
+  .menu-cat{flex:0 0 auto}
+  .menu-feature{gap:18px}
+  .menu-visual{min-height:390px;border-radius:26px}
+  .menu-visual:before{width:370px;height:370px}
+  .menu-product{width:72%;height:330px}
+  .menu-arrow{width:42px;height:42px;font-size:20px}
+  .menu-list{
+    display:flex;overflow-x:auto;gap:12px;
+    padding-bottom:8px;scroll-snap-type:x mandatory;
+  }
+  .menu-mini{min-width:73vw;scroll-snap-align:start}
+  .menu-mini img{height:165px}
+}
+
 </style>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </head>
@@ -334,6 +526,44 @@ model-viewer#cupModel{
 <section class="story" id="story"><div class="container story-grid"><img class="story-photo" src="https://images.pexels.com/photos/15373271/pexels-photo-15373271.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Kahve ve masa üstü ürün fotoğrafı"><div class="story-copy"><div class="eyebrow">Made for real life</div><h2>Good ingredients. Great little moments.</h2><p>We don't think “better for you” should mean boring. FIZZORA is designed around bright flavors, simple choices and a little joy in the everyday.</p><a class="btn" href="#footer">Our story</a><div class="benefits"><div class="benefit"><strong>01</strong><span>Plant-powered</span></div><div class="benefit"><strong>02</strong><span>No artificial colors</span></div><div class="benefit"><strong>03</strong><span>Big on flavor</span></div></div></div></div></section>
 <section class="quote"><div class="container"><h2>Soda should feel like a little celebration.</h2><p>Grab a cold one, share it with someone, or keep it all to yourself. We won't judge.</p><a class="btn" href="#shop">Find your flavor</a></div></section>
 </main>
+
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="menu-kicker">Espresso Check · Menü</div>
+    <h2 class="menu-heading">Ne yiyeceğine,<br><em>ne içeceğine</em><br>Check Et.</h2>
+    <p class="menu-intro">Kahveden bowl'a, tatlıdan soğuk içeceklere kadar günün hangi modundaysan ona göre bir şeyler var.</p>
+
+    <div class="menu-cats" role="tablist" aria-label="Menü kategorileri">
+      <button class="menu-cat is-active" type="button" data-menu-cat="kahve" role="tab">KAHVE</button>
+      <button class="menu-cat" type="button" data-menu-cat="bowl" role="tab">BOWL</button>
+      <button class="menu-cat" type="button" data-menu-cat="tatli" role="tab">TATLI</button>
+      <button class="menu-cat" type="button" data-menu-cat="soguk" role="tab">SOĞUK</button>
+      <button class="menu-cat" type="button" data-menu-cat="atistirmalik" role="tab">ATIŞTIRMALIK</button>
+    </div>
+
+    <div class="menu-feature">
+      <div class="menu-copy">
+        <div class="menu-index" id="menuIndex">01 / 04</div>
+        <h3 class="menu-title" id="menuTitle">Latte</h3>
+        <p class="menu-description" id="menuDescription">Yumuşak içimi ve dengeli aromasıyla günün her anına eşlik eden, sade ama karakterli bir kahve molası.</p>
+        <div class="menu-note" id="menuNote">Latte'nin seçtiklerinden</div>
+      </div>
+
+      <div class="menu-visual">
+        <img class="menu-product" id="menuProduct"
+             src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1000"
+             alt="Latte">
+        <div class="menu-arrows">
+          <button class="menu-arrow" id="menuPrev" type="button" aria-label="Önceki ürün">←</button>
+          <button class="menu-arrow" id="menuNext" type="button" aria-label="Sonraki ürün">→</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-list" id="menuList"></div>
+  </div>
+</section>
+
 <footer class="footer" id="footer"><div class="container"><div class="footer-top"><div class="footer-logo">FIZZORA</div><div class="footer-links"><div><strong>Explore</strong><a href="#shop">Shop</a><a href="#story">Our story</a><a href="#benefits">Why FIZZORA</a></div><div><strong>Help</strong><a href="#footer">FAQ</a><a href="#footer">Contact</a><a href="#footer">Shipping</a></div><div><strong>Follow</strong><a href="#footer">Instagram</a><a href="#footer">TikTok</a><a href="#footer">Pinterest</a></div></div></div><div class="copyright"><span>© 2026 FIZZORA. Demo brand.</span><span>Made as a reusable site-system concept.</span></div></div></footer>
 <script>
 const nav=document.getElementById('nav');
@@ -549,5 +779,122 @@ cupStage.addEventListener('touchend',e=>{
 },{passive:true});
 
 </script>
+
+<script>
+/* Espresso Check Menu — isolated interaction */
+(function(){
+  const menuData = {
+    kahve:[
+      {title:"Latte",desc:"Yumuşak içimi ve dengeli aromasıyla günün her anına eşlik eden, sade ama karakterli bir kahve molası.",img:"https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Espresso",desc:"Kısa, yoğun ve net. Kahve molasının en sade hali.",img:"https://images.pexels.com/photos/2615323/pexels-photo-2615323.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Americano",desc:"Daha uzun, daha sakin; günün temposuna ayak uyduran klasik.",img:"https://images.pexels.com/photos/434213/pexels-photo-434213.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Cappuccino",desc:"Yoğun espresso, kadifemsi süt ve dengeli köpük.",img:"https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=1000"}
+    ],
+    bowl:[
+      {title:"Granola Bowl",desc:"Yoğurt, meyve ve çıtır dokularla hafif ama dolu dolu bir başlangıç.",img:"https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Fruit Bowl",desc:"Renkli, ferah ve güne iyi gelen meyveli bir mola.",img:"https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Chicken Bowl",desc:"Daha doyurucu, daha dengeli; gün ortasına yakışan seçenek.",img:"https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Good Morning",desc:"Güne hafif ve enerjik başlamak isteyenlere.",img:"https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1000"}
+    ],
+    tatli:[
+      {title:"San Sebastian",desc:"Kremamsı dokusu ve kızarmış yüzeyiyle kahvenin yanına tam oturur.",img:"https://images.pexels.com/photos/3185509/pexels-photo-3185509.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Brownie",desc:"Yoğun çikolata, yumuşak iç ve tam kararında bir tatlı molası.",img:"https://images.pexels.com/photos/45202/chocolate-brownie-cake-sweet-45202.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Cookie",desc:"Dışı hafif kıtır, içi yumuşak; kahveyle buluşmak için hazır.",img:"https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Cheesecake",desc:"Kremamsı ve dengeli; günün son dokunuşu.",img:"https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=1000"}
+    ],
+    soguk:[
+      {title:"Iced Latte",desc:"Soğuk, yumuşak ve kahve molasını ferahlatan klasik.",img:"https://images.pexels.com/photos/2619490/pexels-photo-2619490.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Matcha",desc:"Ferah, yeşil ve sakin bir alternatif.",img:"https://images.pexels.com/photos/5946976/pexels-photo-5946976.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Limonata",desc:"Ekşi, serin ve günün sıcak anlarına iyi gelen seçim.",img:"https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Cold Brew",desc:"Uzun demlenmiş, pürüzsüz ve serin bir kahve deneyimi.",img:"https://images.pexels.com/photos/2615323/pexels-photo-2615323.jpeg?auto=compress&cs=tinysrgb&w=1000"}
+    ],
+    atistirmalik:[
+      {title:"Kızartma Sepeti",desc:"Ortaya söylemelik, paylaşmalık ve kahve molasına eşlik edecek çıtır seçenekler.",img:"https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Tost",desc:"Sıcak, pratik ve günün ortasında iyi bir eşlikçi.",img:"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Sandviç",desc:"Daha doyurucu bir mola isteyenlere.",img:"https://images.pexels.com/photos/1647163/pexels-photo-1647163.jpeg?auto=compress&cs=tinysrgb&w=1000"},
+      {title:"Croissant",desc:"Kıtır katlar, tereyağı ve kahveyle doğal bir eşleşme.",img:"https://images.pexels.com/photos/2135/food-france-morning-breakfast.jpg?auto=compress&cs=tinysrgb&w=1000"}
+    ]
+  };
+
+  const labels = {
+    kahve:"Latte'nin seçtiklerinden",
+    bowl:"Günün bowl seçimi",
+    tatli:"Tatlı molası",
+    soguk:"Serinletici seçim",
+    atistirmalik:"Paylaşmalık favori"
+  };
+
+  const section = document.querySelector('.menu-section');
+  if(!section) return;
+
+  const title = document.getElementById('menuTitle');
+  const desc = document.getElementById('menuDescription');
+  const note = document.getElementById('menuNote');
+  const product = document.getElementById('menuProduct');
+  const index = document.getElementById('menuIndex');
+  const list = document.getElementById('menuList');
+  const prev = document.getElementById('menuPrev');
+  const next = document.getElementById('menuNext');
+  const cats = Array.from(section.querySelectorAll('[data-menu-cat]'));
+
+  let cat = 'kahve';
+  let item = 0;
+
+  function render(){
+    const items = menuData[cat];
+    const data = items[item];
+
+    index.textContent = String(item+1).padStart(2,'0') + ' / ' + String(items.length).padStart(2,'0');
+    title.textContent = data.title;
+    desc.textContent = data.desc;
+    note.textContent = labels[cat];
+
+    product.classList.add('is-changing');
+    product.alt = data.title;
+    window.setTimeout(function(){
+      product.src = data.img;
+      product.classList.remove('is-changing');
+    }, 90);
+
+    list.innerHTML = items.map(function(x,i){
+      return '<article class="menu-mini ' + (i===item?'is-active':'') + '" data-menu-item="' + i + '">' +
+        '<img src="' + x.img + '" alt="' + x.title + '">' +
+        '<div class="menu-mini-body">' +
+        '<h4>' + x.title + '</h4>' +
+        '<p>' + x.desc + '</p>' +
+        '<div class="menu-label"><span>Detayına bak</span><span>→</span></div>' +
+        '</div></article>';
+    }).join('');
+
+    list.querySelectorAll('[data-menu-item]').forEach(function(card){
+      card.addEventListener('click',function(){
+        item = Number(card.getAttribute('data-menu-item'));
+        render();
+      });
+    });
+  }
+
+  cats.forEach(function(button){
+    button.addEventListener('click',function(){
+      cat = button.getAttribute('data-menu-cat');
+      item = 0;
+      cats.forEach(function(b){ b.classList.toggle('is-active', b===button); });
+      render();
+    });
+  });
+
+  prev.addEventListener('click',function(){
+    item = (item - 1 + menuData[cat].length) % menuData[cat].length;
+    render();
+  });
+  next.addEventListener('click',function(){
+    item = (item + 1) % menuData[cat].length;
+    render();
+  });
+
+  render();
+})();
+</script>
+
 </body>
 </html>
