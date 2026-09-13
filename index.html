@@ -274,7 +274,7 @@ model-viewer#cupModel{
 <section class="intro cup-showcase" id="benefits">
   <div class="container intro-grid">
     <div class="intro-copy-left">
-      <h2 id="cupCopyTitle" class="cup-title-animated">İyi kahve,<br>iyi günler.</h2>
+      <h2 id="cupCopyTitle" class="cup-title-animated">Kahveyle başla.</h2>
     </div>
     <div class="cup-showcase-right">
       <div class="cup-stage" id="cupStage" aria-live="polite">
@@ -339,22 +339,22 @@ const cupCopyText = document.getElementById('cupCopyText');
 const cupSlides = [
   {
     angle:295, polar:72, radius:25.5, fov:40, targetY:4.25,
-    title:'İyi kahve,<br>iyi günler.',
+    title:'Kahveyle başla.',
     text:"Latte'nin onayından geçen küçük bir kahve ritüeli."
   },
   {
     angle:39, polar:66, radius:23.6, fov:43, targetY:4.18,
-    title:'Bir yudum,<br>bir mola.',
+    title:'Bowl'la devam et.',
     text:'Günün ortasında kısa bir durak, fincanın içinde biraz iyi his.'
   },
   {
     angle:155, polar:80, radius:26.6, fov:38, targetY:4.30,
-    title:'Kahve hazır.<br>Check?',
+    title:'Tatlıyla tamamla.',
     text:'Espresso Check sadece kahve değil; molanın da küçük bir işareti.'
   },
   {
     angle:247, polar:63, radius:23.0, fov:44, targetY:4.12,
-    title:'Latte gördü,<br>onayladı.',
+    title:'Gününü güzelleştir.',
     text:'Bazen en iyi başlangıç sadece iyi bir kahve kokusudur.'
   }
 ];
@@ -398,11 +398,11 @@ function cinematicEase(t){
 function mix(a,b,t){ return a + (b-a)*t; }
 
 function animateCupTo(slide,direction){
-  if(cupAnimating) return;
-  cupAnimating = true;
+  if(cupAnimating)return;
+  cupAnimating=true;
 
   const start = performance.now();
-  const duration = 1650;
+  const duration = 1850;
 
   const startAngle = cupAngle;
   const startPolar = cupPolar;
@@ -413,78 +413,118 @@ function animateCupTo(slide,direction){
   const deltaAngle = directedDelta(startAngle,slide.angle,direction);
   const endAngle = startAngle + deltaAngle;
 
-  // Visual tilt of the transparent viewer canvas, so the object reads as a
-  // physical 3D product rather than a flat image. Small and restrained.
-  const baseZ = direction > 0 ? 0 : 0;
-  const targetTilt = direction > 0 ? -4.6 : 4.6;
-  const startTilt = 0;
-
-  // Subtle title transition — secondary to the cup motion.
+  // Secondary title motion: restrained, while the cup remains the hero.
   cupCopyTitle.classList.add('is-changing');
-  requestAnimationFrame(()=> {
+  setTimeout(()=>{
     cupCopyTitle.innerHTML = slide.title;
     cupCopyText.textContent = slide.text;
     cupCopyTitle.classList.remove('is-changing');
-  });
+  },260);
+
   cupIndex = (cupSlides.indexOf(slide)+cupSlides.length)%cupSlides.length;
   renderCupProgress();
 
   function frame(now){
     const raw = Math.min(1,(now-start)/duration);
-    const t = cinematicEase(raw);
 
-    // Strongest camera action around the middle: push in, widen perspective,
-    // then recover to the hero pose.
-    const push = Math.sin(Math.PI*t);
-    const latePush = Math.sin(Math.PI*t) * (1-t);
-    const arc = Math.sin(Math.PI*t);
+    // Premium ease: stronger launch, floating middle, gentle braking.
+    const e1 = raw<0.5
+      ? 4*raw*raw*raw
+      : 1-Math.pow(-2*raw+2,3)/2;
 
-    cupAngle = startAngle + deltaAngle*t;
-    cupPolar = mix(startPolar,slide.polar,t) + Math.sin(Math.PI*t)*4.0*(direction>0?1:-1);
-    cupRadius = mix(startRadius,slide.radius,t) - push*2.5;
-    cupTargetY = mix(startTargetY,slide.targetY,t) + Math.sin(Math.PI*t*1.15)*0.20*(direction>0?1:-1);
-    cupFov = mix(startFov,slide.fov,t) - latePush*4.0;
+    // Secondary “camera language” curves.
+    const arc = Math.sin(Math.PI*raw);
+    const push = Math.sin(Math.PI*raw);
+    const settle = Math.sin(Math.PI*raw*0.92);
 
-    // Slight physical tilt / lateral drift of the rendered 3D stage.
-    const tilt = mix(startTilt,targetTilt, t) + Math.sin(Math.PI*t)*1.2*(direction>0?-1:1);
-    const lift = Math.sin(Math.PI*t) * -8;
-    const drift = Math.sin(Math.PI*t) * 7 * (direction>0?1:-1);
-    const scale = .90 + Math.sin(Math.PI*t)*.045;
+    // Slightly different depth rhythm per transition direction.
+    const directionBias = direction > 0 ? 1 : -1;
+
+    cupAngle = startAngle + deltaAngle*e1;
+
+    // Camera climbs/falls subtly while orbiting, then returns.
+    cupPolar = mix(startPolar,slide.polar,e1)
+      + arc*5.2*directionBias;
+
+    // Controlled dolly-in, then a longer, smoother retreat.
+    const cinematicDolly =
+      (raw < 0.58)
+        ? (raw/0.58)*2.35
+        : (1-(raw-0.58)/0.42)*2.35;
+
+    cupRadius =
+      mix(startRadius,slide.radius,e1)
+      - cinematicDolly;
+
+    // Subtle vertical parallax in the camera target.
+    cupTargetY =
+      mix(startTargetY,slide.targetY,e1)
+      + Math.sin(Math.PI*raw*1.15)*0.23*directionBias;
+
+    // Wider perspective during the middle of the move for depth.
+    cupFov =
+      mix(startFov,slide.fov,e1)
+      - push*4.5;
+
+    // The model wrapper adds a very small “physical” diagonal lean and
+    // lateral drift. It never becomes a flat image-like crossfade.
+    const tilt =
+      Math.sin(Math.PI*e1)*4.8*directionBias
+      + Math.sin(Math.PI*e1*1.55)*0.9;
+    const drift =
+      Math.sin(Math.PI*e1)*9*directionBias;
+    const lift =
+      -Math.sin(Math.PI*e1)*10;
 
     cupWrap.style.transform =
-      `translate3d(${drift.toFixed(2)}px,${lift.toFixed(2)}px,0) rotateZ(${tilt.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
+      `translate3d(${drift.toFixed(2)}px,${lift.toFixed(2)}px,0) ` +
+      `rotateZ(${tilt.toFixed(2)}deg) scale(${(0.90+push*0.055).toFixed(4)})`;
 
-    cupModel.cameraTarget = `0m ${cupTargetY.toFixed(3)}m 0m`;
-    cupModel.cameraOrbit = `${cupAngle.toFixed(3)}deg ${cupPolar.toFixed(3)}deg ${cupRadius.toFixed(3)}m`;
-    cupModel.fieldOfView = `${cupFov.toFixed(2)}deg`;
+    cupModel.cameraTarget =
+      `0m ${cupTargetY.toFixed(3)}m 0m`;
+    cupModel.cameraOrbit =
+      `${cupAngle.toFixed(3)}deg ${cupPolar.toFixed(3)}deg ${cupRadius.toFixed(3)}m`;
+    cupModel.fieldOfView =
+      `${cupFov.toFixed(2)}deg`;
 
-    if(raw < 1){
+    if(raw<1){
       requestAnimationFrame(frame);
       return;
     }
 
-    cupAngle = endAngle;
-    cupPolar = slide.polar;
-    cupRadius = slide.radius;
-    cupTargetY = slide.targetY;
-    cupFov = slide.fov;
-
-    // Natural micro-overshoot on the rendered stage, then settle.
+    // Small commercial-style overshoot before the final rest.
     const settleStart = performance.now();
     function settle(now2){
-      const p = Math.min(1,(now2-settleStart)/320);
+      const p = Math.min(1,(now2-settleStart)/380);
       const e = 1-Math.pow(1-p,3);
-      const overshoot = Math.sin(Math.PI*e) * 0.7;
+      const overshoot = Math.sin(Math.PI*e)*0.9;
+      const finalTilt =
+        Math.sin(Math.PI*e)*0.75*directionBias;
+
       cupWrap.style.transform =
-        `translate3d(0,${(overshoot*-2).toFixed(2)}px,0) rotateZ(${(targetTilt*(1-e)+Math.sin(Math.PI*e)*.8*(direction>0?-1:1)).toFixed(2)}deg) scale(.90)`;
+        `translate3d(0,${(-overshoot*2.2).toFixed(2)}px,0) ` +
+        `rotateZ(${finalTilt.toFixed(2)}deg) scale(.90)`;
+
       if(p<1){
         requestAnimationFrame(settle);
       }else{
-        cupWrap.style.transform='translate3d(0,0,0) rotateZ(0deg) scale(.90)';
-        cupModel.cameraTarget = `0m ${cupTargetY.toFixed(3)}m 0m`;
-        cupModel.cameraOrbit = `${cupAngle.toFixed(3)}deg ${cupPolar.toFixed(3)}deg ${cupRadius.toFixed(3)}m`;
-        cupModel.fieldOfView = `${cupFov.toFixed(2)}deg`;
-        cupAnimating = false;
+        cupWrap.style.transform =
+          'translate3d(0,0,0) rotateZ(0deg) scale(.90)';
+
+        cupAngle=endAngle;
+        cupPolar=slide.polar;
+        cupRadius=slide.radius;
+        cupTargetY=slide.targetY;
+        cupFov=slide.fov;
+
+        cupModel.cameraTarget =
+          `0m ${cupTargetY.toFixed(3)}m 0m`;
+        cupModel.cameraOrbit =
+          `${cupAngle.toFixed(3)}deg ${cupPolar.toFixed(3)}deg ${cupRadius.toFixed(3)}m`;
+        cupModel.fieldOfView =
+          `${cupFov.toFixed(2)}deg`;
+
+        cupAnimating=false;
       }
     }
     requestAnimationFrame(settle);
