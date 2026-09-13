@@ -28,8 +28,8 @@
   .intro-copy-left{text-align:center}
   .cup-showcase h2{font-size:clamp(44px,12vw,64px);white-space:normal}
   .cup-showcase-right{width:100%}
-  .cup-stage{min-height:420px;height:420px;overflow:visible}
-  .cup-model-wrap{height:380px;width:300px;max-width:82%;transform:scale(.78) rotate(0deg) translateZ(0)}
+  .cup-stage{min-height:460px;height:460px;overflow:visible}
+  .cup-model-wrap{height:430px;width:320px;max-width:86%;transform:scale(.70) rotate(0deg) translateZ(0)}
   .cup-arrow{display:none}
   .cup-progress{margin-top:0;gap:7px}
   .cup-progress span{width:24px;height:3px}
@@ -90,8 +90,8 @@
   .intro-copy-left{text-align:center}
   .cup-showcase h2{font-size:clamp(44px,12vw,64px);white-space:normal}
   .cup-showcase-right{width:100%}
-  .cup-stage{min-height:420px;height:420px;overflow:visible}
-  .cup-model-wrap{height:380px;width:300px;max-width:82%;transform:scale(.78) rotate(0deg) translateZ(0)}
+  .cup-stage{min-height:460px;height:460px;overflow:visible}
+  .cup-model-wrap{height:430px;width:320px;max-width:86%;transform:scale(.70) rotate(0deg) translateZ(0)}
   .cup-arrow{display:none}
   .cup-progress{margin-top:0;gap:7px}
   .cup-progress span{width:24px;height:3px}
@@ -111,10 +111,10 @@
 .intro-copy-left{padding-left:2px}
 .cup-showcase h2{font-family:Fraunces,serif;font-size:clamp(48px,6vw,82px);line-height:.92;letter-spacing:-.06em;margin:0;white-space:nowrap}
 .cup-showcase-right{min-width:0;position:relative}
-.cup-stage{position:relative;min-height:500px;display:flex;align-items:center;justify-content:center;overflow:visible}
-.cup-model-wrap{width:min(430px,100%);height:470px;display:flex;align-items:center;justify-content:center;transform:scale(.82) rotate(0deg) translateZ(0);will-change:transform;overflow:visible}
+.cup-stage{position:relative;min-height:560px;display:flex;align-items:center;justify-content:center;overflow:visible}
+.cup-model-wrap{width:min(500px,100%);height:540px;display:flex;align-items:center;justify-content:center;transform:scale(.76) rotate(0deg) translateZ(0);will-change:transform;overflow:visible}
 .cup-model-wrap.cup-animating{animation:cupPhysicalIn .8s cubic-bezier(.18,.9,.25,1) both}
-@keyframes cupPhysicalIn{0%{transform:scale(.70) rotate(-8deg) translateY(18px)}45%{transform:scale(.90) rotate(4deg) translateY(-8px)}100%{transform:scale(.82) rotate(0) translateY(0)}}
+@keyframes cupPhysicalIn{0%{transform:scale(.62) rotate(-8deg) translateY(18px)}45%{transform:scale(.80) rotate(4deg) translateY(-8px)}100%{transform:scale(.76) rotate(0) translateY(0)}}
 model-viewer#cupModel{width:100%;height:100%;background:transparent;--poster-color:transparent;--progress-bar-color:transparent;--progress-mask:transparent;outline:none;-webkit-tap-highlight-color:transparent}
 .cup-arrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:var(--green);color:var(--cream);display:grid;place-items:center;font-size:24px;font-weight:700;z-index:3;box-shadow:0 10px 26px rgba(22,77,67,.16);transition:transform .25s var(--ease),background .25s;-webkit-tap-highlight-color:transparent;outline:none;-webkit-appearance:none;appearance:none;user-select:none}
 .cup-arrow:hover{transform:translateY(-50%) scale(1.08);background:#0e3a32}.cup-arrow:focus,.cup-arrow:focus-visible,.cup-arrow:active{outline:none;box-shadow:0 10px 26px rgba(22,77,67,.16)}
@@ -136,13 +136,13 @@ model-viewer#cupModel{width:100%;height:100%;background:transparent;--poster-col
 <section class="intro cup-showcase" id="benefits">
   <div class="container intro-grid">
     <div class="intro-copy-left">
-      <h2 id="cupCopyTitle">Healthy meets delicious.</h2>
+      <h2 id="cupCopyTitle">İyi kahve,<br>iyi günler.</h2>
     </div>
     <div class="cup-showcase-right">
       <div class="cup-stage" id="cupStage" aria-live="polite">
         <button class="cup-arrow cup-prev" id="cupPrev" type="button" aria-label="Önceki bardak görünümü">←</button>
         <div class="cup-model-wrap" id="cupModelWrap">
-          <model-viewer id="cupModel" src="assets/espresso-check-coffee-cup-v10.glb" camera-controls disable-pan touch-action="pan-y" shadow-intensity="1" exposure="1" environment-image="neutral" camera-target="0m 4.25m 0m" camera-orbit="0deg 74deg 15m" field-of-view="50deg" alt="Espresso Check 3D kahve bardağı"></model-viewer>
+          <model-viewer id="cupModel" src="assets/espresso-check-coffee-cup-v10.glb" disable-pan touch-action="none" shadow-intensity="1" exposure="1" environment-image="neutral" camera-target="0m 4.27m 0m" camera-orbit="0deg 74deg 18m" field-of-view="50deg" min-camera-orbit="auto auto 18m" max-camera-orbit="auto auto 18m" alt="Espresso Check 3D kahve bardağı"></model-viewer>
         </div>
         <button class="cup-arrow cup-next" id="cupNext" type="button" aria-label="Sonraki bardak görünümü">→</button>
       </div>
@@ -189,21 +189,21 @@ const cupCopyText = document.getElementById('cupCopyText');
 const cupCopyTextMobile = document.getElementById('cupCopyTextMobile');
 
 const cupSlides = [
-  { orbit:'0deg 74deg 15m', fov:'50deg', title:'İyi kahve,<br>iyi günler.', text:"Latte'nin onayından geçen küçük bir kahve ritüeli." },
-  { orbit:'118deg 69deg 14.5m', fov:'50deg', title:'Bir yudum,<br>bir mola.', text:'Günün ortasında kısa bir durak, fincanın içinde biraz iyi his.' },
-  { orbit:'208deg 77deg 15.5m', fov:'50deg', title:'Kahve hazır.<br>Check?', text:'Espresso Check sadece kahve değil; molanın da küçük bir işareti.' },
-  { orbit:'302deg 67deg 14.5m', fov:'50deg', title:'Latte gördü,<br>onayladı.', text:'Bazen en iyi başlangıç sadece iyi bir kahve kokusudur.' }
+  { orbit:'0deg 74deg 18m', fov:'50deg', title:'İyi kahve,<br>iyi günler.', text:"Latte'nin onayından geçen küçük bir kahve ritüeli." },
+  { orbit:'118deg 69deg 18m', fov:'50deg', title:'Bir yudum,<br>bir mola.', text:'Günün ortasında kısa bir durak, fincanın içinde biraz iyi his.' },
+  { orbit:'208deg 77deg 18m', fov:'50deg', title:'Kahve hazır.<br>Check?', text:'Espresso Check sadece kahve değil; molanın da küçük bir işareti.' },
+  { orbit:'302deg 67deg 18m', fov:'50deg', title:'Latte gördü,<br>onayladı.', text:'Bazen en iyi başlangıç sadece iyi bir kahve kokusudur.' }
 ];
 let cupIndex=0;
 let cupAnimating=false;
 let cupAngle=0;
 let cupPolar=74;
-let cupRadius=15;
+let cupRadius=18;
 let cupFov=50;
 
 function parseOrbit(orbit){
   const m=orbit.match(/(-?[\d.]+)deg\s+(-?[\d.]+)deg\s+([\d.]+)m/);
-  return m ? {angle:parseFloat(m[1]),polar:parseFloat(m[2]),radius:parseFloat(m[3])} : {angle:0,polar:74,radius:4};
+  return m ? {angle:parseFloat(m[1]),polar:parseFloat(m[2]),radius:parseFloat(m[3])} : {angle:0,polar:74,radius:18};
 }
 function renderCupProgress(){
   cupProgress.innerHTML=cupSlides.map((_,i)=>`<span class="${i===cupIndex?'active':''}"></span>`).join('');
@@ -223,7 +223,7 @@ function animateCupTo(slide,direction){
   const target=parseOrbit(slide.orbit);
   const startAngle=cupAngle, startPolar=cupPolar, startRadius=cupRadius, startFov=cupFov;
   const targetAngle=getDirectedTarget(startAngle,target.angle,direction);
-  const start=performance.now(), duration=920;
+  const start=performance.now(), duration=1250;
   cupWrap.classList.remove('cup-animating');
   void cupWrap.offsetWidth;
   cupWrap.classList.add('cup-animating');
@@ -239,7 +239,7 @@ function animateCupTo(slide,direction){
     cupPolar=startPolar+(target.polar-startPolar)*t;
     cupRadius=startRadius+(target.radius-startRadius)*t;
     cupFov=startFov+(parseFloat(slide.fov)-startFov)*t;
-    cupModel.cameraTarget='0m 4.25m 0m'; cupModel.cameraOrbit=`${cupAngle}deg ${cupPolar}deg ${cupRadius}m`;
+    cupModel.cameraTarget='0m 4.27m 0m'; cupModel.cameraOrbit=`${cupAngle}deg ${cupPolar}deg ${cupRadius}m`;
     cupModel.fieldOfView=`${cupFov}deg`;
     if(raw<1) requestAnimationFrame(frame);
     else {
