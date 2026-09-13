@@ -29,14 +29,7 @@
   .cup-showcase h2{font-size:clamp(44px,12vw,64px);white-space:normal}
   .cup-showcase-right{width:100%}
   .cup-stage{min-height:460px;height:460px;overflow:visible}
-  
-@keyframes cupIdleShake{
-  0%,100%{transform:translate3d(0,0,0) rotateZ(0deg) scale(.90)}
-  25%{transform:translate3d(0,-3px,0) rotateZ(.18deg) scale(.90)}
-  50%{transform:translate3d(0,-5px,0) rotateZ(0deg) scale(.90)}
-  75%{transform:translate3d(0,-3px,0) rotateZ(-.18deg) scale(.90)}
-}
-.cup-model-wrap{height:430px;width:320px;max-width:86%;transform:scale(.70) rotate(0deg) translateZ(0) animation:cupIdleShake 4.2s ease-in-out infinite;}
+  .cup-model-wrap{height:430px;width:320px;max-width:86%;transform:scale(.70) rotate(0deg) translateZ(0)}
   .cup-arrow{display:none}
   .cup-progress{margin-top:0;gap:7px}
   .cup-progress span{width:24px;height:3px}
@@ -44,7 +37,7 @@
   .cup-mobile-copy{display:none}
   .cup-copy-mobile{display:block;text-align:center;max-width:330px;margin:-8px auto 14px;font-size:15px;line-height:1.5}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto .cup-model-wrap{animation:none!important}}.ticker-track{animation:none}.hero:hover .can-photo,.flavor:hover img{transform:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker-track{animation:none}.hero:hover .can-photo,.flavor:hover img{transform:none}}
 .hero h1 .handwritten-green{font-family:"Comic Sans MS","Segoe Print","Bradley Hand",cursive;color:#0E7959;font-weight:800}
 /* Latte interaction — only for the hero bubbles */
 .hero-art .bubble{overflow:visible}
@@ -151,7 +144,7 @@
   justify-content:center;
   overflow:visible;
   will-change:transform;
-  transform:translate3d(0,0,0) rotateZ(0deg) scale(.90);animation:cupIdleShake 4.2s ease-in-out infinite;will-change:transform;
+  transform:translate3d(0,0,0) rotateZ(0deg) scale(.90);
   transform-origin:center center;
 }
 @keyframes cupIdleFloatSafe{
@@ -298,7 +291,7 @@ model-viewer#cupModel{
             environment-image="neutral"
             camera-target="0m 4.25m 0m"
             camera-orbit="295deg 72deg 25.5m"
-            field-of-view="40deg" interpolation-decay="700"
+            field-of-view="40deg"
             min-camera-orbit="auto auto 21m"
             max-camera-orbit="auto auto 32m"
             alt="Espresso Check 3D kahve bardağı"></model-viewer>
@@ -333,7 +326,7 @@ if(latteHit&&latteBubble){
 }
 
 
-// 3D cup showcase interaction — smooth native camera interpolation
+// 3D cup showcase interaction — isolated
 const cupStage = document.getElementById('cupStage');
 const cupModel = document.getElementById('cupModel');
 const cupWrap = document.getElementById('cupModelWrap');
@@ -344,134 +337,191 @@ const cupCopyTitle = document.getElementById('cupCopyTitle');
 const cupCopyText = document.getElementById('cupCopyText');
 
 const cupSlides = [
-  {angle:295,polar:72,radius:25.5,fov:40,targetY:4.25,title:'Kahveyle başla.',text:"Latte'nin onayından geçen küçük bir kahve ritüeli."},
-  {angle:39,polar:66,radius:23.6,fov:43,targetY:4.18,title:"Bowl'la devam et.",text:'Günün ortasında kısa bir durak, fincanın içinde biraz iyi his.'},
-  {angle:155,polar:80,radius:26.6,fov:38,targetY:4.30,title:'Tatlıyla tamamla.',text:'Espresso Check sadece kahve değil; molanın da küçük bir işareti.'},
-  {angle:247,polar:63,radius:23.0,fov:44,targetY:4.12,title:'Gününü güzelleştir.',text:'Bazen en iyi başlangıç sadece iyi bir kahve kokusudur.'}
+  {
+    angle:295, polar:72, radius:25.5, fov:40, targetY:4.25,
+    title:'Kahveyle başla.',
+    text:"Latte'nin onayından geçen küçük bir kahve ritüeli."
+  },
+  {
+    angle:39, polar:66, radius:23.6, fov:43, targetY:4.18,
+    title:'Bowl'la devam et.',
+    text:'Günün ortasında kısa bir durak, fincanın içinde biraz iyi his.'
+  },
+  {
+    angle:155, polar:80, radius:26.6, fov:38, targetY:4.30,
+    title:'Tatlıyla tamamla.',
+    text:'Espresso Check sadece kahve değil; molanın da küçük bir işareti.'
+  },
+  {
+    angle:247, polar:63, radius:23.0, fov:44, targetY:4.12,
+    title:'Gününü güzelleştir.',
+    text:'Bazen en iyi başlangıç sadece iyi bir kahve kokusudur.'
+  }
 ];
 
-let cupIndex=0;
-let cupAnimating=false;
+let cupIndex = 0;
+let cupAnimating = false;
+let cupAngle = cupSlides[0].angle;
+let cupPolar = cupSlides[0].polar;
+let cupRadius = cupSlides[0].radius;
+let cupTargetY = cupSlides[0].targetY;
+let cupFov = cupSlides[0].fov;
 
 function renderCupProgress(){
-  if(!cupProgress)return;
-  cupProgress.innerHTML=cupSlides.map((_,i)=>
-    `<span class="${i===cupIndex?'active':''}" aria-hidden="true"></span>`
-  ).join('');
+  cupProgress.innerHTML = cupSlides.map((_,i)=>`<span class="${i===cupIndex?'active':''}"></span>`).join('');
 }
 
-function setTitle(slide){
-  if(cupCopyTitle) cupCopyTitle.textContent=slide.title;
-  if(cupCopyText) cupCopyText.textContent=slide.text;
-}
+function clamp(v,a,b){ return Math.min(b,Math.max(a,v)); }
+function normalizeDeg(a){ return ((a%360)+360)%360; }
 
-function setCamera(slide){
-  // model-viewer interpolates camera-orbit/target/FOV internally.
-  // We set each target once instead of fighting its renderer every frame.
-  cupModel.cameraOrbit=`${slide.angle}deg ${slide.polar}deg ${slide.radius}m`;
-  cupModel.cameraTarget=`0m ${slide.targetY}m 0m`;
-  cupModel.fieldOfView=`${slide.fov}deg`;
-}
-
-function animateWrapper(direction,done){
-  const start=performance.now();
-  const duration=1200;
-
-  function ease(t){
-    if(t<=0)return 0;
-    if(t>=1)return 1;
-    return t*t*(3-2*t);
+function directedDelta(from,to,direction){
+  let d = normalizeDeg(to) - normalizeDeg(from);
+  if(direction > 0){
+    while(d < 104) d += 360;
+    while(d > 160) d -= 360;
+  }else{
+    while(d > -104) d -= 360;
+    while(d < -160) d += 360;
   }
+  return d;
+}
+
+// Premium ease: a little momentum in the middle, soft settle at the end.
+function cinematicEase(t){
+  if(t <= 0) return 0;
+  if(t >= 1) return 1;
+  const s = t*t*(3-2*t);
+  const momentum = Math.sin(Math.PI*t) * 0.035;
+  return clamp(s + momentum,0,1);
+}
+
+function mix(a,b,t){ return a + (b-a)*t; }
+
+function animateCupTo(slide,direction){
+  if(cupAnimating) return;
+  cupAnimating = true;
+
+  const start = performance.now();
+  const duration = 1650;
+
+  const startAngle = cupAngle;
+  const startPolar = cupPolar;
+  const startRadius = cupRadius;
+  const startTargetY = cupTargetY;
+  const startFov = cupFov;
+
+  const deltaAngle = directedDelta(startAngle,slide.angle,direction);
+  const endAngle = startAngle + deltaAngle;
+
+  // Visual tilt of the transparent viewer canvas, so the object reads as a
+  // physical 3D product rather than a flat image. Small and restrained.
+  const baseZ = direction > 0 ? 0 : 0;
+  const targetTilt = direction > 0 ? -4.6 : 4.6;
+  const startTilt = 0;
+
+  // Subtle title transition — secondary to the cup motion.
+  cupCopyTitle.classList.add('is-changing');
+  requestAnimationFrame(()=> {
+    cupCopyTitle.innerHTML = slide.title;
+    cupCopyText.textContent = slide.text;
+    cupCopyTitle.classList.remove('is-changing');
+  });
+  cupIndex = (cupSlides.indexOf(slide)+cupSlides.length)%cupSlides.length;
+  renderCupProgress();
 
   function frame(now){
-    const p=Math.min(1,(now-start)/duration);
-    const e=ease(p);
-    const arc=Math.sin(Math.PI*e);
+    const raw = Math.min(1,(now-start)/duration);
+    const t = cinematicEase(raw);
 
-    const tilt=arc*4*(direction>0?-1:1);
-    const drift=arc*6.5*(direction>0?1:-1);
-    const lift=-arc*6.5;
-    const scale=.90+arc*.04;
+    // Strongest camera action around the middle: push in, widen perspective,
+    // then recover to the hero pose.
+    const push = Math.sin(Math.PI*t);
+    const latePush = Math.sin(Math.PI*t) * (1-t);
+    const arc = Math.sin(Math.PI*t);
 
-    cupWrap.style.transform=
-      `translate3d(${drift.toFixed(1)}px,${lift.toFixed(1)}px,0) rotateZ(${tilt.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
+    cupAngle = startAngle + deltaAngle*t;
+    cupPolar = mix(startPolar,slide.polar,t) + Math.sin(Math.PI*t)*4.0*(direction>0?1:-1);
+    cupRadius = mix(startRadius,slide.radius,t) - push*2.5;
+    cupTargetY = mix(startTargetY,slide.targetY,t) + Math.sin(Math.PI*t*1.15)*0.20*(direction>0?1:-1);
+    cupFov = mix(startFov,slide.fov,t) - latePush*4.0;
 
-    if(p<1){
+    // Slight physical tilt / lateral drift of the rendered 3D stage.
+    const tilt = mix(startTilt,targetTilt, t) + Math.sin(Math.PI*t)*1.2*(direction>0?-1:1);
+    const lift = Math.sin(Math.PI*t) * -8;
+    const drift = Math.sin(Math.PI*t) * 7 * (direction>0?1:-1);
+    const scale = .90 + Math.sin(Math.PI*t)*.045;
+
+    cupWrap.style.transform =
+      `translate3d(${drift.toFixed(2)}px,${lift.toFixed(2)}px,0) rotateZ(${tilt.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
+
+    cupModel.cameraTarget = `0m ${cupTargetY.toFixed(3)}m 0m`;
+    cupModel.cameraOrbit = `${cupAngle.toFixed(3)}deg ${cupPolar.toFixed(3)}deg ${cupRadius.toFixed(3)}m`;
+    cupModel.fieldOfView = `${cupFov.toFixed(2)}deg`;
+
+    if(raw < 1){
       requestAnimationFrame(frame);
       return;
     }
 
-    const settleStart=performance.now();
+    cupAngle = endAngle;
+    cupPolar = slide.polar;
+    cupRadius = slide.radius;
+    cupTargetY = slide.targetY;
+    cupFov = slide.fov;
+
+    // Natural micro-overshoot on the rendered stage, then settle.
+    const settleStart = performance.now();
     function settle(now2){
-      const q=Math.min(1,(now2-settleStart)/220);
-      const eq=1-Math.pow(1-q,3);
-      const overshoot=Math.sin(Math.PI*eq)*.35;
-
-      cupWrap.style.transform=
-        `translate3d(0,${(-overshoot).toFixed(1)}px,0) rotateZ(${(Math.sin(Math.PI*eq)*.3*(direction>0?-1:1)).toFixed(1)}deg) scale(.90)`;
-
-      if(q<1){
+      const p = Math.min(1,(now2-settleStart)/320);
+      const e = 1-Math.pow(1-p,3);
+      const overshoot = Math.sin(Math.PI*e) * 0.7;
+      cupWrap.style.transform =
+        `translate3d(0,${(overshoot*-2).toFixed(2)}px,0) rotateZ(${(targetTilt*(1-e)+Math.sin(Math.PI*e)*.8*(direction>0?-1:1)).toFixed(2)}deg) scale(.90)`;
+      if(p<1){
         requestAnimationFrame(settle);
       }else{
         cupWrap.style.transform='translate3d(0,0,0) rotateZ(0deg) scale(.90)';
-        cupAnimating=false;
-        if(done)done();
+        cupModel.cameraTarget = `0m ${cupTargetY.toFixed(3)}m 0m`;
+        cupModel.cameraOrbit = `${cupAngle.toFixed(3)}deg ${cupPolar.toFixed(3)}deg ${cupRadius.toFixed(3)}m`;
+        cupModel.fieldOfView = `${cupFov.toFixed(2)}deg`;
+        cupAnimating = false;
       }
     }
     requestAnimationFrame(settle);
   }
+
   requestAnimationFrame(frame);
 }
 
-function goToSlide(next,direction){
-  if(cupAnimating)return;
-
-  const idx=(next+cupSlides.length)%cupSlides.length;
-  const slide=cupSlides[idx];
-
-  cupAnimating=true;
-  cupIndex=idx;
-  renderCupProgress();
-
-  setCamera(slide);
-
-  if(cupCopyTitle) cupCopyTitle.classList.add('is-changing');
-  window.setTimeout(()=>{
-    setTitle(slide);
-    if(cupCopyTitle) cupCopyTitle.classList.remove('is-changing');
-  },120);
-
-  animateWrapper(direction);
+function setCupSlide(next,direction){
+  if(cupAnimating) return;
+  const idx = (next+cupSlides.length)%cupSlides.length;
+  animateCupTo(cupSlides[idx],direction);
 }
 
-// Preserve initial state.
-setCamera(cupSlides[0]);
 renderCupProgress();
 
-if(cupPrev) cupPrev.onclick=()=>goToSlide(cupIndex-1,-1);
-if(cupNext) cupNext.onclick=()=>goToSlide(cupIndex+1,1);
+if(cupPrev) cupPrev.addEventListener('click',()=>setCupSlide(cupIndex-1,-1));
+if(cupNext) cupNext.addEventListener('click',()=>setCupSlide(cupIndex+1,1));
 
-let cupTouchX=0,cupTouchY=0,cupTouching=false;
+// Mobile horizontal swipe. Vertical page scrolling is preserved.
+let cupTouchX=0, cupTouchY=0, cupTouching=false;
+cupStage.addEventListener('touchstart',e=>{
+  if(!e.touches.length) return;
+  cupTouching=true;
+  cupTouchX=e.touches[0].clientX;
+  cupTouchY=e.touches[0].clientY;
+},{passive:true});
 
-if(cupStage){
-  cupStage.addEventListener('touchstart',e=>{
-    if(!e.touches||e.touches.length!==1)return;
-    cupTouching=true;
-    cupTouchX=e.touches[0].clientX;
-    cupTouchY=e.touches[0].clientY;
-  },{passive:true});
-
-  cupStage.addEventListener('touchend',e=>{
-    if(!cupTouching||!e.changedTouches||!e.changedTouches.length)return;
-    cupTouching=false;
-
-    const dx=e.changedTouches[0].clientX-cupTouchX;
-    const dy=e.changedTouches[0].clientY-cupTouchY;
-
-    if(Math.abs(dx)<55||Math.abs(dx)<=Math.abs(dy)*1.25)return;
-    goToSlide(cupIndex+(dx<0?1:-1),dx<0?1:-1);
-  },{passive:true});
-}
+cupStage.addEventListener('touchend',e=>{
+  if(!cupTouching || !e.changedTouches.length) return;
+  cupTouching=false;
+  const dx=e.changedTouches[0].clientX-cupTouchX;
+  const dy=e.changedTouches[0].clientY-cupTouchY;
+  if(Math.abs(dx)>52 && Math.abs(dx)>Math.abs(dy)*1.20){
+    setCupSlide(cupIndex+(dx<0?1:-1),dx<0?1:-1);
+  }
+},{passive:true});
 
 </script>
 </body>
