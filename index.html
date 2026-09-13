@@ -31,189 +31,22 @@
   .cup-stage{min-height:460px;height:460px;overflow:visible}
   .cup-model-wrap{height:430px;width:320px;max-width:86%;transform:scale(.70) rotate(0deg) translateZ(0)}
   .cup-arrow{display:none}
-  .cup-progress{margin-top:0;gap:7px}
-  .cup-progress span{width:24px;height:3px}
-  .cup-progress span.active{width:42px}
-  .cup-mobile-copy{display:none}
-  .cup-copy-mobile{display:block;text-align:center;max-width:330px;margin:-8px auto 14px;font-size:15px;line-height:1.5}
-}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker-track{animation:none}.hero:hover .can-photo,.flavor:hover img{transform:none}}
-.hero h1 .handwritten-green{font-family:"Comic Sans MS","Segoe Print","Bradley Hand",cursive;color:#0E7959;font-weight:800}
-/* Latte interaction — only for the hero bubbles */
-.hero-art .bubble{overflow:visible}
-.hero-art .bubble.one{border-radius:50%}
-.hero-art .check-frame{
-  width:46px;height:46px;border:3px solid currentColor;border-radius:12px;
-  display:block;box-sizing:border-box;transform:rotate(-4deg);
-}
-.hero-art .tick{
-  position:absolute;width:76px;height:76px;object-fit:contain;
-  left:50%;top:50%;transform:translate(-50%,-50%) scale(.2) rotate(-14deg);
-  opacity:0;pointer-events:none;
-}
-.hero-art .tick-yellow{width:58px;height:58px}
-.hero-art .tick-pink{width:84px;height:84px}
-.hero-art .bubble.two .love-label{display:block;line-height:1.02}
-.hero-art .bubble.two .love-label small{font-size:.55em;letter-spacing:.02em}
-
-.hero-art .bubble.one.loved .tick-yellow{
-  animation:latteTickIn .55s cubic-bezier(.18,.9,.25,1.2) forwards;
-}
-@keyframes latteTickIn{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.15) rotate(-18deg)}
-  65%{opacity:1;transform:translate(-50%,-50%) scale(1.12) rotate(3deg)}
-  100%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}
-}
-.hero-art .bubble.one .check-frame{color:#2B160D}
-.hero-art .latte-hit{
-  position:absolute;
-  top:27%;left:46%;width:31%;height:27%;
-  padding:0;margin:0;border:0;background:transparent;cursor:pointer;
-  z-index:15;border-radius:50%;-webkit-tap-highlight-color:transparent;
-  appearance:none;-webkit-appearance:none;
-}
-
-.hero-art .bubble{z-index:10}
-@media(max-width:900px){
-  .hero-art .latte-hit{top:28%;left:44%;width:34%;height:28%}
-}
-@media(max-width:650px){
-  .hero-art .latte-hit{top:27%;left:43%;width:36%;height:30%}
-  .hero-art .check-frame{width:36px;height:36px;border-width:2px;border-radius:9px}
-  .hero-art .tick-yellow{width:48px;height:48px}
-  .hero-art .tick-pink{width:68px;height:68px}
-}
-
-@media(max-width:650px){
-  .cup-showcase{padding:70px 0 34px}
-  .cup-showcase .intro-grid{grid-template-columns:1fr;gap:10px}
-  .intro-copy-left{text-align:center}
-  .cup-showcase h2{font-size:clamp(44px,12vw,64px);white-space:normal}
-  .cup-showcase-right{width:100%}
-  .cup-stage{min-height:460px;height:460px;overflow:visible}
-  .cup-model-wrap{height:430px;width:320px;max-width:86%;transform:scale(.70) rotate(0deg) translateZ(0)}
-  .cup-arrow{display:none}
-  .cup-progress{margin-top:0;gap:7px}
-  .cup-progress span{width:24px;height:3px}
-  .cup-progress span.active{width:42px}
-  .cup-mobile-copy{display:none}
-  .cup-copy-mobile{display:block;text-align:center;max-width:330px;margin:-8px auto 14px;font-size:15px;line-height:1.5}
-}
-@media(prefers-reduced-motion:reduce){
-  .hero-art .bubble.two.loved .tick-pink{
-    animation:none;opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)
-  }
-}
-
-/* 3D cup showcase — isolated section */
-.cup-showcase{
-  padding:92px 0 54px;
-  background:var(--cream);
-  overflow:visible;
-}
-.cup-showcase .intro-grid{
-  grid-template-columns:.82fr 1.18fr;
-  gap:44px;
-  align-items:center;
-}
-.intro-copy-left{padding-left:2px}
-.cup-showcase h2{
-  font-family:Fraunces,serif;
-  font-size:clamp(48px,6vw,82px);
-  line-height:.92;
-  letter-spacing:-.06em;
-  margin:0;
-  white-space:nowrap;
-}
-.cup-showcase-right{min-width:0;position:relative}
-.cup-stage{
-  position:relative;
-  min-height:600px;
-  height:600px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:visible;
-  isolation:isolate;
-}
-.cup-model-wrap{
-  width:min(500px,100%);
-  height:570px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:visible;
-  will-change:transform;
-  transform:translate3d(0,0,0) rotateZ(0deg) scale(.90);
-  transform-origin:center center;
-}
-@keyframes cupIdleFloatSafe{
-  0%,100%{transform:translate3d(0,0,0) rotateZ(0deg)}
-  50%{transform:translate3d(0,-5px,0) rotateZ(.28deg)}
-}
-model-viewer#cupModel{
-  width:100%;
-  height:100%;
-  background:transparent;
-  --poster-color:transparent;
-  --progress-bar-color:transparent;
-  --progress-mask:transparent;
-  outline:none;
-  border:0;
-  -webkit-tap-highlight-color:transparent;
-  touch-action:none;
-  user-select:none;
-  animation:cupIdleFloatSafe 3.8s ease-in-out infinite;
-  will-change:transform;
-}
-.cup-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  background:var(--green);
-  color:var(--cream);
-  display:grid;
-  place-items:center;
-  font-size:24px;
-  font-weight:700;
-  z-index:3;
-  box-shadow:0 10px 26px rgba(22,77,67,.16);
-  transition:transform .22s var(--ease),background .22s;
-  -webkit-tap-highlight-color:transparent;
-  -webkit-appearance:none;
-  appearance:none;
-  outline:none!important;
-  user-select:none;
-  touch-action:manipulation;
-}
-.cup-arrow:hover{
-  transform:translateY(-50%) scale(1.08);
-  background:#0e3a32;
-}
-.cup-arrow:focus,
-.cup-arrow:focus-visible,
-.cup-arrow:active{
-  outline:none!important;
-  box-shadow:0 10px 26px rgba(22,77,67,.16);
-}
-.cup-prev{left:-4px}
-.cup-next{right:-4px}
-.cup-copy-mobile,.cup-mobile-copy{display:none}
-.cup-progress{
+  .cup-progress{
   display:flex;
   justify-content:center;
   align-items:center;
   gap:9px;
-  margin-top:4px;
+  width:100%;
+  margin:4px auto 0;
+  min-height:8px;
 }
 .cup-progress span{
   display:block;
   width:30px;
   height:3px;
   background:rgba(22,77,67,.24);
+  border-radius:999px;
+  flex:0 0 auto;
   transition:width .35s var(--ease),background .35s var(--ease),transform .35s var(--ease);
 }
 .cup-progress span.active{
@@ -326,7 +159,7 @@ if(latteHit&&latteBubble){
 }
 
 
-// 3D cup showcase interaction — isolated
+// 3D cup showcase interaction — stable V16
 const cupStage = document.getElementById('cupStage');
 const cupModel = document.getElementById('cupModel');
 const cupWrap = document.getElementById('cupModelWrap');
@@ -344,7 +177,7 @@ const cupSlides = [
   },
   {
     angle:39, polar:66, radius:23.6, fov:43, targetY:4.18,
-    title:'Bowl'la devam et.',
+    title:"Bowl'la devam et.",
     text:'Günün ortasında kısa bir durak, fincanın içinde biraz iyi his.'
   },
   {
@@ -368,11 +201,15 @@ let cupTargetY = cupSlides[0].targetY;
 let cupFov = cupSlides[0].fov;
 
 function renderCupProgress(){
-  cupProgress.innerHTML = cupSlides.map((_,i)=>`<span class="${i===cupIndex?'active':''}"></span>`).join('');
+  if(!cupProgress) return;
+  cupProgress.innerHTML = cupSlides
+    .map((_,i)=>`<span class="${i===cupIndex?'active':''}" aria-hidden="true"></span>`)
+    .join('');
 }
 
-function clamp(v,a,b){ return Math.min(b,Math.max(a,v)); }
-function normalizeDeg(a){ return ((a%360)+360)%360; }
+function normalizeDeg(a){
+  return ((a%360)+360)%360;
+}
 
 function directedDelta(from,to,direction){
   let d = normalizeDeg(to) - normalizeDeg(from);
@@ -386,148 +223,102 @@ function directedDelta(from,to,direction){
   return d;
 }
 
-// Premium ease: a little momentum in the middle, soft settle at the end.
-function cinematicEase(t){
-  if(t <= 0) return 0;
-  if(t >= 1) return 1;
+function easeCinematic(t){
+  if(t<=0) return 0;
+  if(t>=1) return 1;
+  // smoothstep + very small momentum
   const s = t*t*(3-2*t);
-  const momentum = Math.sin(Math.PI*t) * 0.035;
-  return clamp(s + momentum,0,1);
+  const momentum = Math.sin(Math.PI*t)*0.025;
+  return Math.min(1, Math.max(0, s+momentum));
 }
 
-function mix(a,b,t){ return a + (b-a)*t; }
+function mix(a,b,t){return a+(b-a)*t;}
+
+function updateCupPose(){
+  cupModel.cameraTarget = `0m ${cupTargetY.toFixed(3)}m 0m`;
+  cupModel.cameraOrbit = `${cupAngle.toFixed(3)}deg ${cupPolar.toFixed(3)}deg ${cupRadius.toFixed(3)}m`;
+  cupModel.fieldOfView = `${cupFov.toFixed(2)}deg`;
+}
 
 function animateCupTo(slide,direction){
-  if(cupAnimating)return;
-  cupAnimating=true;
+  if(cupAnimating || !slide) return;
+  cupAnimating = true;
 
   const start = performance.now();
-  const duration = 1850;
+  const duration = 1800;
 
   const startAngle = cupAngle;
   const startPolar = cupPolar;
   const startRadius = cupRadius;
   const startTargetY = cupTargetY;
   const startFov = cupFov;
-
   const deltaAngle = directedDelta(startAngle,slide.angle,direction);
   const endAngle = startAngle + deltaAngle;
 
-  // Secondary title motion: restrained, while the cup remains the hero.
-  cupCopyTitle.classList.add('is-changing');
-  setTimeout(()=>{
-    cupCopyTitle.innerHTML = slide.title;
-    cupCopyText.textContent = slide.text;
-    cupCopyTitle.classList.remove('is-changing');
-  },260);
-
-  cupIndex = (cupSlides.indexOf(slide)+cupSlides.length)%cupSlides.length;
+  const slideIndex = cupSlides.indexOf(slide);
+  cupIndex = slideIndex >= 0 ? slideIndex : cupIndex;
   renderCupProgress();
+
+  // Change title quietly before motion is half-way through.
+  cupCopyTitle.classList.add('is-changing');
+  window.setTimeout(()=>{
+    cupCopyTitle.innerHTML = slide.title;
+    if(cupCopyText) cupCopyText.textContent = slide.text;
+    cupCopyTitle.classList.remove('is-changing');
+  },220);
 
   function frame(now){
     const raw = Math.min(1,(now-start)/duration);
+    const t = easeCinematic(raw);
+    const arc = Math.sin(Math.PI*t);
+    const push = Math.sin(Math.PI*t);
 
-    // Premium ease: stronger launch, floating middle, gentle braking.
-    const e1 = raw<0.5
-      ? 4*raw*raw*raw
-      : 1-Math.pow(-2*raw+2,3)/2;
+    // Real 3D camera orbit with depth change.
+    cupAngle = startAngle + deltaAngle*t;
+    cupPolar = mix(startPolar,slide.polar,t) + arc*4.6*(direction>0?1:-1);
+    cupRadius = mix(startRadius,slide.radius,t) - push*2.3;
+    cupTargetY = mix(startTargetY,slide.targetY,t) + Math.sin(Math.PI*t*1.12)*0.18*(direction>0?1:-1);
+    cupFov = mix(startFov,slide.fov,t) - push*4.0;
 
-    // Secondary “camera language” curves.
-    const arc = Math.sin(Math.PI*raw);
-    const push = Math.sin(Math.PI*raw);
-    const settle = Math.sin(Math.PI*raw*0.92);
-
-    // Slightly different depth rhythm per transition direction.
-    const directionBias = direction > 0 ? 1 : -1;
-
-    cupAngle = startAngle + deltaAngle*e1;
-
-    // Camera climbs/falls subtly while orbiting, then returns.
-    cupPolar = mix(startPolar,slide.polar,e1)
-      + arc*5.2*directionBias;
-
-    // Controlled dolly-in, then a longer, smoother retreat.
-    const cinematicDolly =
-      (raw < 0.58)
-        ? (raw/0.58)*2.35
-        : (1-(raw-0.58)/0.42)*2.35;
-
-    cupRadius =
-      mix(startRadius,slide.radius,e1)
-      - cinematicDolly;
-
-    // Subtle vertical parallax in the camera target.
-    cupTargetY =
-      mix(startTargetY,slide.targetY,e1)
-      + Math.sin(Math.PI*raw*1.15)*0.23*directionBias;
-
-    // Wider perspective during the middle of the move for depth.
-    cupFov =
-      mix(startFov,slide.fov,e1)
-      - push*4.5;
-
-    // The model wrapper adds a very small “physical” diagonal lean and
-    // lateral drift. It never becomes a flat image-like crossfade.
-    const tilt =
-      Math.sin(Math.PI*e1)*4.8*directionBias
-      + Math.sin(Math.PI*e1*1.55)*0.9;
-    const drift =
-      Math.sin(Math.PI*e1)*9*directionBias;
-    const lift =
-      -Math.sin(Math.PI*e1)*10;
+    const tilt = Math.sin(Math.PI*t)*4.2*(direction>0?-1:1);
+    const drift = Math.sin(Math.PI*t)*7.0*(direction>0?1:-1);
+    const lift = -Math.sin(Math.PI*t)*7.0;
+    const scale = 0.90 + push*0.045;
 
     cupWrap.style.transform =
-      `translate3d(${drift.toFixed(2)}px,${lift.toFixed(2)}px,0) ` +
-      `rotateZ(${tilt.toFixed(2)}deg) scale(${(0.90+push*0.055).toFixed(4)})`;
+      `translate3d(${drift.toFixed(2)}px,${lift.toFixed(2)}px,0) `+
+      `rotateZ(${tilt.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
 
-    cupModel.cameraTarget =
-      `0m ${cupTargetY.toFixed(3)}m 0m`;
-    cupModel.cameraOrbit =
-      `${cupAngle.toFixed(3)}deg ${cupPolar.toFixed(3)}deg ${cupRadius.toFixed(3)}m`;
-    cupModel.fieldOfView =
-      `${cupFov.toFixed(2)}deg`;
+    updateCupPose();
 
     if(raw<1){
       requestAnimationFrame(frame);
-      return;
-    }
-
-    // Small commercial-style overshoot before the final rest.
-    const settleStart = performance.now();
-    function settle(now2){
-      const p = Math.min(1,(now2-settleStart)/380);
-      const e = 1-Math.pow(1-p,3);
-      const overshoot = Math.sin(Math.PI*e)*0.9;
-      const finalTilt =
-        Math.sin(Math.PI*e)*0.75*directionBias;
-
-      cupWrap.style.transform =
-        `translate3d(0,${(-overshoot*2.2).toFixed(2)}px,0) ` +
-        `rotateZ(${finalTilt.toFixed(2)}deg) scale(.90)`;
-
-      if(p<1){
-        requestAnimationFrame(settle);
-      }else{
+    }else{
+      // tiny premium settle
+      const settleStart = performance.now();
+      function settle(now2){
+        const p = Math.min(1,(now2-settleStart)/300);
+        const e = 1-Math.pow(1-p,3);
+        const overshoot = Math.sin(Math.PI*e)*0.55;
         cupWrap.style.transform =
-          'translate3d(0,0,0) rotateZ(0deg) scale(.90)';
+          `translate3d(0,${(-overshoot*1.4).toFixed(2)}px,0) `+
+          `rotateZ(${(Math.sin(Math.PI*e)*0.5*(direction>0?-1:1)).toFixed(2)}deg) scale(.90)`;
 
-        cupAngle=endAngle;
-        cupPolar=slide.polar;
-        cupRadius=slide.radius;
-        cupTargetY=slide.targetY;
-        cupFov=slide.fov;
-
-        cupModel.cameraTarget =
-          `0m ${cupTargetY.toFixed(3)}m 0m`;
-        cupModel.cameraOrbit =
-          `${cupAngle.toFixed(3)}deg ${cupPolar.toFixed(3)}deg ${cupRadius.toFixed(3)}m`;
-        cupModel.fieldOfView =
-          `${cupFov.toFixed(2)}deg`;
-
-        cupAnimating=false;
+        if(p<1){
+          requestAnimationFrame(settle);
+        }else{
+          cupWrap.style.transform='translate3d(0,0,0) rotateZ(0deg) scale(.90)';
+          cupAngle=endAngle;
+          cupPolar=slide.polar;
+          cupRadius=slide.radius;
+          cupTargetY=slide.targetY;
+          cupFov=slide.fov;
+          updateCupPose();
+          cupAnimating=false;
+        }
       }
+      requestAnimationFrame(settle);
     }
-    requestAnimationFrame(settle);
   }
 
   requestAnimationFrame(frame);
@@ -539,26 +330,40 @@ function setCupSlide(next,direction){
   animateCupTo(cupSlides[idx],direction);
 }
 
+// Initial state — do not change this camera angle.
+updateCupPose();
 renderCupProgress();
 
-if(cupPrev) cupPrev.addEventListener('click',()=>setCupSlide(cupIndex-1,-1));
-if(cupNext) cupNext.addEventListener('click',()=>setCupSlide(cupIndex+1,1));
+// Desktop arrows
+cupPrev?.addEventListener('click',()=>setCupSlide(cupIndex-1,-1));
+cupNext?.addEventListener('click',()=>setCupSlide(cupIndex+1,1));
 
-// Mobile horizontal swipe. Vertical page scrolling is preserved.
-let cupTouchX=0, cupTouchY=0, cupTouching=false;
-cupStage.addEventListener('touchstart',e=>{
+// Keyboard accessibility without browser focus flash.
+cupPrev?.addEventListener('keydown',e=>{
+  if(e.key==='Enter' || e.key===' '){e.preventDefault();setCupSlide(cupIndex-1,-1);}
+});
+cupNext?.addEventListener('keydown',e=>{
+  if(e.key==='Enter' || e.key===' '){e.preventDefault();setCupSlide(cupIndex+1,1);}
+});
+
+// Mobile horizontal swipe. Vertical scrolling remains native.
+let cupTouchX=0;
+let cupTouchY=0;
+let cupTouching=false;
+
+cupStage?.addEventListener('touchstart',e=>{
   if(!e.touches.length) return;
   cupTouching=true;
   cupTouchX=e.touches[0].clientX;
   cupTouchY=e.touches[0].clientY;
 },{passive:true});
 
-cupStage.addEventListener('touchend',e=>{
+cupStage?.addEventListener('touchend',e=>{
   if(!cupTouching || !e.changedTouches.length) return;
   cupTouching=false;
   const dx=e.changedTouches[0].clientX-cupTouchX;
   const dy=e.changedTouches[0].clientY-cupTouchY;
-  if(Math.abs(dx)>52 && Math.abs(dx)>Math.abs(dy)*1.20){
+  if(Math.abs(dx)>52 && Math.abs(dx)>Math.abs(dy)*1.2){
     setCupSlide(cupIndex+(dx<0?1:-1),dx<0?1:-1);
   }
 },{passive:true});
