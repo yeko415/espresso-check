@@ -142,7 +142,7 @@ model-viewer#cupModel{width:100%;height:100%;background:transparent;--poster-col
       <div class="cup-stage" id="cupStage" aria-live="polite">
         <button class="cup-arrow cup-prev" id="cupPrev" type="button" aria-label="Önceki bardak görünümü">←</button>
         <div class="cup-model-wrap" id="cupModelWrap">
-          <model-viewer id="cupModel" src="assets/espresso-check-coffee-cup-v10.glb" camera-controls disable-pan touch-action="pan-y" shadow-intensity="1" exposure="1" environment-image="neutral" camera-orbit="0deg 74deg 10.8m" field-of-view="52deg" alt="Espresso Check 3D kahve bardağı"></model-viewer>
+          <model-viewer id="cupModel" src="assets/espresso-check-coffee-cup-v10.glb" camera-controls disable-pan touch-action="pan-y" shadow-intensity="1" exposure="1" environment-image="neutral" camera-target="0m 4.25m 0m" camera-orbit="0deg 74deg 16m" field-of-view="50deg" alt="Espresso Check 3D kahve bardağı"></model-viewer>
         </div>
         <button class="cup-arrow cup-next" id="cupNext" type="button" aria-label="Sonraki bardak görünümü">→</button>
       </div>
@@ -198,7 +198,7 @@ let cupIndex=0;
 let cupAnimating=false;
 let cupAngle=0;
 let cupPolar=74;
-let cupRadius=9.5;
+let cupRadius=16;
 let cupFov=34;
 
 function parseOrbit(orbit){
@@ -239,7 +239,7 @@ function animateCupTo(slide,direction){
     cupPolar=startPolar+(target.polar-startPolar)*t;
     cupRadius=startRadius+(target.radius-startRadius)*t;
     cupFov=startFov+(parseFloat(slide.fov)-startFov)*t;
-    cupModel.cameraOrbit=`${cupAngle}deg ${cupPolar}deg ${cupRadius}m`;
+    cupModel.cameraTarget='0m 4.25m 0m'; cupModel.cameraOrbit=`${cupAngle}deg ${cupPolar}deg ${cupRadius}m`;
     cupModel.fieldOfView=`${cupFov}deg`;
     if(raw<1) requestAnimationFrame(frame);
     else {
