@@ -110,6 +110,23 @@
   padding:92px 0 54px;
   background:var(--cream);
   overflow:visible;
+  position:relative;
+}
+.cup-showcase:before{
+  content:"";
+  position:absolute;
+  width:700px;
+  height:700px;
+  border-radius:50%;
+  background:rgba(255,255,255,.55);
+  left:-220px;
+  top:-220px;
+  pointer-events:none;
+}
+.cup-showcase .container,
+.cup-showcase > .cup-progress{
+  position:relative;
+  z-index:1;
 }
 .cup-showcase .intro-grid{
   grid-template-columns:.82fr 1.18fr;
