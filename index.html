@@ -151,7 +151,7 @@
   justify-content:center;
   overflow:visible;
   will-change:transform;
-  transform:translate3d(0,0,0) rotateZ(0deg) scale(.90);
+  transform:translate3d(0,0,0) rotateZ(0deg) scale(.90);animation:cupIdleShake 4.2s ease-in-out infinite;will-change:transform;
   transform-origin:center center;
 }
 @keyframes cupIdleFloatSafe{
@@ -298,7 +298,7 @@ model-viewer#cupModel{
             environment-image="neutral"
             camera-target="0m 4.25m 0m"
             camera-orbit="295deg 72deg 25.5m"
-            field-of-view="40deg"
+            field-of-view="40deg" interpolation-decay="700"
             min-camera-orbit="auto auto 21m"
             max-camera-orbit="auto auto 32m"
             alt="Espresso Check 3D kahve bardağı"></model-viewer>
@@ -333,7 +333,7 @@ if(latteHit&&latteBubble){
 }
 
 
-// 3D cup showcase interaction — performance-only optimization
+// 3D cup showcase interaction — smooth native camera interpolation
 const cupStage = document.getElementById('cupStage');
 const cupModel = document.getElementById('cupModel');
 const cupWrap = document.getElementById('cupModelWrap');
@@ -350,110 +350,72 @@ const cupSlides = [
   {angle:247,polar:63,radius:23.0,fov:44,targetY:4.12,title:'Gününü güzelleştir.',text:'Bazen en iyi başlangıç sadece iyi bir kahve kokusudur.'}
 ];
 
-let cupIndex=0,cupAnimating=false;
-let cupAngle=cupSlides[0].angle,cupPolar=cupSlides[0].polar,cupRadius=cupSlides[0].radius,cupTargetY=cupSlides[0].targetY,cupFov=cupSlides[0].fov;
+let cupIndex=0;
+let cupAnimating=false;
 
 function renderCupProgress(){
   if(!cupProgress)return;
-  cupProgress.innerHTML=cupSlides.map((_,i)=>`<span class="${i===cupIndex?'active':''}" aria-hidden="true"></span>`).join('');
-}
-function normalizeDeg(a){return ((a%360)+360)%360;}
-function directedDelta(from,to,direction){
-  let d=normalizeDeg(to)-normalizeDeg(from);
-  if(direction>0){while(d<104)d+=360;while(d>160)d-=360;}
-  else{while(d>-104)d-=360;while(d<-160)d+=360;}
-  return d;
-}
-function easeCinematic(t){
-  if(t<=0)return 0;if(t>=1)return 1;
-  const s=t*t*(3-2*t);
-  return Math.min(1,Math.max(0,s+Math.sin(Math.PI*t)*0.025));
-}
-function mix(a,b,t){return a+(b-a)*t;}
-
-function writeCamera(){
-  cupModel.cameraTarget=`0m ${cupTargetY.toFixed(3)}m 0m`;
-  cupModel.cameraOrbit=`${cupAngle.toFixed(2)}deg ${cupPolar.toFixed(2)}deg ${cupRadius.toFixed(2)}m`;
-  cupModel.fieldOfView=`${cupFov.toFixed(2)}deg`;
+  cupProgress.innerHTML=cupSlides.map((_,i)=>
+    `<span class="${i===cupIndex?'active':''}" aria-hidden="true"></span>`
+  ).join('');
 }
 
 function setTitle(slide){
-  if(cupCopyTitle) cupCopyTitle.innerHTML=slide.title;
+  if(cupCopyTitle) cupCopyTitle.textContent=slide.title;
   if(cupCopyText) cupCopyText.textContent=slide.text;
 }
 
-function animateCupTo(slide,direction){
-  if(cupAnimating||!slide||!cupModel||!cupWrap)return;
-  cupAnimating=true;
+function setCamera(slide){
+  // model-viewer interpolates camera-orbit/target/FOV internally.
+  // We set each target once instead of fighting its renderer every frame.
+  cupModel.cameraOrbit=`${slide.angle}deg ${slide.polar}deg ${slide.radius}m`;
+  cupModel.cameraTarget=`0m ${slide.targetY}m 0m`;
+  cupModel.fieldOfView=`${slide.fov}deg`;
+}
 
+function animateWrapper(direction,done){
   const start=performance.now();
-  const duration=1800;
+  const duration=1200;
 
-  const startAngle=cupAngle,startPolar=cupPolar,startRadius=cupRadius,startTargetY=cupTargetY,startFov=cupFov;
-  const deltaAngle=directedDelta(startAngle,slide.angle,direction);
-  const endAngle=startAngle+deltaAngle;
-
-  cupIndex=cupSlides.indexOf(slide);
-  if(cupIndex<0)cupIndex=0;
-  renderCupProgress();
-
-  // Text is not animated per frame; it changes once.
-  if(cupCopyTitle) cupCopyTitle.classList.add('is-changing');
-  window.setTimeout(()=>{
-    setTitle(slide);
-    if(cupCopyTitle) cupCopyTitle.classList.remove('is-changing');
-  },180);
-
-  let lastCameraWrite=0;
+  function ease(t){
+    if(t<=0)return 0;
+    if(t>=1)return 1;
+    return t*t*(3-2*t);
+  }
 
   function frame(now){
-    const raw=Math.min(1,(now-start)/duration);
-    const t=easeCinematic(raw);
-    const arc=Math.sin(Math.PI*t);
-    const push=arc;
+    const p=Math.min(1,(now-start)/duration);
+    const e=ease(p);
+    const arc=Math.sin(Math.PI*e);
 
-    cupAngle=startAngle+deltaAngle*t;
-    cupPolar=mix(startPolar,slide.polar,t)+arc*4.3*(direction>0?1:-1);
-    cupRadius=mix(startRadius,slide.radius,t)-push*2.1;
-    cupTargetY=mix(startTargetY,slide.targetY,t)+Math.sin(Math.PI*t*1.12)*0.16*(direction>0?1:-1);
-    cupFov=mix(startFov,slide.fov,t)-push*3.6;
+    const tilt=arc*4*(direction>0?-1:1);
+    const drift=arc*6.5*(direction>0?1:-1);
+    const lift=-arc*6.5;
+    const scale=.90+arc*.04;
 
-    // Keep the visual wrapper motion smooth and cheap.
-    const tilt=Math.sin(Math.PI*t)*4.0*(direction>0?-1:1);
-    const drift=Math.sin(Math.PI*t)*6.5*(direction>0?1:-1);
-    const lift=-Math.sin(Math.PI*t)*6.5;
-    const scale=.90+push*.04;
     cupWrap.style.transform=
       `translate3d(${drift.toFixed(1)}px,${lift.toFixed(1)}px,0) rotateZ(${tilt.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
 
-    // model-viewer is the expensive part: cap property writes to ~30fps.
-    // The browser renders the visual wrapper at full rAF rate.
-    if(now-lastCameraWrite>=32 || raw>=1){
-      lastCameraWrite=now;
-      writeCamera();
-    }
-
-    if(raw<1){
+    if(p<1){
       requestAnimationFrame(frame);
       return;
     }
 
     const settleStart=performance.now();
     function settle(now2){
-      const p=Math.min(1,(now2-settleStart)/280);
-      const e=1-Math.pow(1-p,3);
-      const overshoot=Math.sin(Math.PI*e)*0.45;
+      const q=Math.min(1,(now2-settleStart)/220);
+      const eq=1-Math.pow(1-q,3);
+      const overshoot=Math.sin(Math.PI*eq)*.35;
 
       cupWrap.style.transform=
-        `translate3d(0,${(-overshoot*1.2).toFixed(1)}px,0) rotateZ(${(Math.sin(Math.PI*e)*0.42*(direction>0?-1:1)).toFixed(1)}deg) scale(.90)`;
+        `translate3d(0,${(-overshoot).toFixed(1)}px,0) rotateZ(${(Math.sin(Math.PI*eq)*.3*(direction>0?-1:1)).toFixed(1)}deg) scale(.90)`;
 
-      if(p<1){
+      if(q<1){
         requestAnimationFrame(settle);
       }else{
         cupWrap.style.transform='translate3d(0,0,0) rotateZ(0deg) scale(.90)';
-        cupAngle=endAngle;cupPolar=slide.polar;cupRadius=slide.radius;cupTargetY=slide.targetY;cupFov=slide.fov;
-        writeCamera();
         cupAnimating=false;
+        if(done)done();
       }
     }
     requestAnimationFrame(settle);
@@ -461,33 +423,53 @@ function animateCupTo(slide,direction){
   requestAnimationFrame(frame);
 }
 
-function setCupSlide(next,direction){
+function goToSlide(next,direction){
   if(cupAnimating)return;
+
   const idx=(next+cupSlides.length)%cupSlides.length;
-  animateCupTo(cupSlides[idx],direction);
+  const slide=cupSlides[idx];
+
+  cupAnimating=true;
+  cupIndex=idx;
+  renderCupProgress();
+
+  setCamera(slide);
+
+  if(cupCopyTitle) cupCopyTitle.classList.add('is-changing');
+  window.setTimeout(()=>{
+    setTitle(slide);
+    if(cupCopyTitle) cupCopyTitle.classList.remove('is-changing');
+  },120);
+
+  animateWrapper(direction);
 }
 
-// Initial state and controls unchanged.
-writeCamera();
+// Preserve initial state.
+setCamera(cupSlides[0]);
 renderCupProgress();
 
-if(cupPrev) cupPrev.onclick=()=>setCupSlide(cupIndex-1,-1);
-if(cupNext) cupNext.onclick=()=>setCupSlide(cupIndex+1,1);
+if(cupPrev) cupPrev.onclick=()=>goToSlide(cupIndex-1,-1);
+if(cupNext) cupNext.onclick=()=>goToSlide(cupIndex+1,1);
 
 let cupTouchX=0,cupTouchY=0,cupTouching=false;
+
 if(cupStage){
   cupStage.addEventListener('touchstart',e=>{
     if(!e.touches||e.touches.length!==1)return;
-    cupTouching=true;cupTouchX=e.touches[0].clientX;cupTouchY=e.touches[0].clientY;
+    cupTouching=true;
+    cupTouchX=e.touches[0].clientX;
+    cupTouchY=e.touches[0].clientY;
   },{passive:true});
 
   cupStage.addEventListener('touchend',e=>{
     if(!cupTouching||!e.changedTouches||!e.changedTouches.length)return;
     cupTouching=false;
+
     const dx=e.changedTouches[0].clientX-cupTouchX;
     const dy=e.changedTouches[0].clientY-cupTouchY;
+
     if(Math.abs(dx)<55||Math.abs(dx)<=Math.abs(dy)*1.25)return;
-    setCupSlide(cupIndex+(dx<0?1:-1),dx<0?1:-1);
+    goToSlide(cupIndex+(dx<0?1:-1),dx<0?1:-1);
   },{passive:true});
 }
 
