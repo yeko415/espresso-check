@@ -542,7 +542,7 @@ model-viewer#cupModel{
   background:rgba(200,155,60,.14);left:-260px;top:-300px;pointer-events:none;
 }
 .order-grid{
-  display:grid;grid-template-columns:.92fr 1.08fr;gap:60px;align-items:center;position:relative;z-index:1;
+  display:grid;grid-template-columns:.94fr 1.06fr;gap:58px;align-items:center;position:relative;z-index:1;
 }
 .order-copy{padding-left:2px}
 .order-kicker{
@@ -560,34 +560,17 @@ model-viewer#cupModel{
 .order-text{
   max-width:500px;font-size:17px;line-height:1.65;color:#46504c;margin:0 0 30px;
 }
-.order-links{display:grid;gap:12px;max-width:500px}
-.order-logo-link{
-  display:block;border-radius:18px;overflow:hidden;line-height:0;
-  box-shadow:0 10px 24px rgba(43,22,13,.08);
+.order-links{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:620px;
+}
+.order-link{
+  display:flex;align-items:center;justify-content:center;
+  min-height:150px;padding:10px;border:0;border-radius:22px;
+  background:transparent;box-shadow:none;overflow:hidden;
   transition:transform .22s var(--ease),box-shadow .22s var(--ease);
 }
-.order-logo-link:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(43,22,13,.12)}
-.order-logo-link img{width:100%;height:auto;display:block}
-.order-link{
-  display:flex;align-items:center;justify-content:space-between;gap:18px;
-  min-height:76px;padding:0 22px;border:2px solid #C89B3C;border-radius:22px;
-  background:#fffaf0;color:#2B160D;box-shadow:0 10px 24px rgba(43,22,13,.06);
-  transition:transform .22s var(--ease),box-shadow .22s var(--ease),background .22s;
-}
-.order-link:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(43,22,13,.10);background:#fffdf7}
-.order-brand{font-family:Fraunces,serif;font-size:25px;line-height:1}
-.order-sub{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#6B3046;margin-top:6px}
-.order-arrow{
-  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
-  background:#C89B3C;color:#F5F0E6;font-size:20px;font-weight:700;flex:0 0 auto;
-}
-.order-visual{
-  min-height:550px;border-radius:34px;overflow:hidden;position:relative;
-  border:2px solid #C89B3C;background:#0E7959;box-shadow:0 24px 55px rgba(43,22,13,.12);
-}
-.order-image{
-  width:100%;height:100%;min-height:550px;object-fit:cover;object-position:center;display:block;
-}
+.order-link:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(43,22,13,.12)}
+.order-link img{display:block;width:100%;height:auto;object-fit:contain;border-radius:20px}
 .order-note{
   display:inline-flex;align-items:center;gap:9px;margin-top:20px;font-size:12px;font-weight:700;
   letter-spacing:.07em;text-transform:uppercase;color:#6B3046;
@@ -596,16 +579,28 @@ model-viewer#cupModel{
   content:"✓";width:24px;height:24px;border-radius:50%;background:#C89B3C;color:#2B160D;
   display:grid;place-items:center;font-size:12px;
 }
+.order-visual{
+  min-height:550px;border-radius:34px;overflow:hidden;position:relative;
+  border:2px solid #C89B3C;background:#F5F0E6;box-shadow:0 24px 55px rgba(43,22,13,.12);
+}
+.order-image{
+  width:100%;height:100%;min-height:550px;object-fit:cover;object-position:center;display:block;
+}
 @media(max-width:900px){
   .order-section{padding:82px 0 88px}
-  .order-grid{grid-template-columns:1fr;gap:36px}
-  .order-visual{order:-1;min-height:470px}
+  .order-grid{grid-template-columns:1fr;gap:40px}
+  .order-copy{order:2}
+  .order-visual{order:1;min-height:470px}
   .order-image{min-height:470px}
+  .order-links{max-width:100%}
 }
 @media(max-width:650px){
   .order-section{padding:72px 0 78px}
   .order-title{font-size:clamp(50px,13vw,70px)}
   .order-text{font-size:15px}
+  .order-links{grid-template-columns:1fr;gap:10px}
+  .order-link{min-height:auto;padding:0}
+  .order-link img{width:100%;max-width:320px;margin:auto}
   .order-visual{min-height:370px;border-radius:26px}
   .order-image{min-height:370px}
 }
@@ -698,22 +693,22 @@ model-viewer#cupModel{
     <div class="order-copy">
       <div class="order-kicker">Espresso Check · Sipariş</div>
       <h2 class="order-title">Favorin <em>hazır.</em><br>Sen de hazır<br>mısın?</h2>
-      <p class="order-text">Menüden seçtiğin lezzetleri birkaç dokunuşla sipariş et. Espresso Check favorilerin kapına gelsin.</p>
+      <p class="order-text">Espresso Check lezzetlerine dilediğin yerden, dilediğin an ulaş. Hemen sipariş ver, keyif kapına gelsin.</p>
       <div class="order-links">
-        <a class="order-logo-link" href="https://www.yemeksepeti.com/" target="_blank" rel="noopener noreferrer" aria-label="Yemeksepeti üzerinden sipariş ver">
-          <img src="assets/yemeksepeti-order.png" alt="Yemeksepeti — Sipariş Ver">
+        <a class="order-link" href="https://www.yemeksepeti.com/" target="_blank" rel="noopener noreferrer" aria-label="Yemeksepeti üzerinden sipariş ver">
+          <img src="assets/yemeksepeti-order.png" alt="Yemeksepeti — Sipariş ver">
         </a>
-        <a class="order-logo-link" href="https://www.trendyol.com/go/" target="_blank" rel="noopener noreferrer" aria-label="Trendyol Go üzerinden sipariş ver">
-          <img src="assets/trendyolgo-order.png" alt="Trendyol Go — Sipariş Ver">
+        <a class="order-link" href="https://www.trendyol.com/go/" target="_blank" rel="noopener noreferrer" aria-label="Trendyol Go üzerinden sipariş ver">
+          <img src="assets/trendyolgo-order.png" alt="Trendyol Go — Sipariş ver">
         </a>
-        <a class="order-logo-link" href="https://www.migros.com.tr/yemek" target="_blank" rel="noopener noreferrer" aria-label="Migros Yemek üzerinden sipariş ver">
-          <img src="assets/migrosyemek-order.png" alt="Migros Yemek — Sipariş Ver">
+        <a class="order-link" href="https://www.migros.com.tr/yemek" target="_blank" rel="noopener noreferrer" aria-label="Migros Yemek üzerinden sipariş ver">
+          <img src="assets/migrosyemek-order.png" alt="Migros Yemek — Sipariş ver">
         </a>
       </div>
       <div class="order-note">İyi kahve, iyi yemek, kapında.</div>
     </div>
     <div class="order-visual">
-      <img class="order-image" src="assets/order-right.png" alt="Espresso Check sipariş paketi, bowl ve soğuk kahve">
+      <img class="order-image" src="assets/order-right-clean.png" alt="Espresso Check sipariş paketi, bowl ve soğuk kahve" loading="eager" decoding="async">
     </div>
   </div>
 </section>
