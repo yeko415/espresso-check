@@ -848,6 +848,8 @@ cupStage.addEventListener('touchend',e=>{
       {title:"Granola Bowl",desc:"Yoğurt, meyve ve çıtır dokularla hafif ama dolu dolu bir başlangıç.",img:"https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=1000"},
       {title:"Fruit Bowl",desc:"Renkli, ferah ve güne iyi gelen meyveli bir mola.",img:"https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg?auto=compress&cs=tinysrgb&w=1000"},
       {title:"Tavuklu Bowl",desc:"Tavuk, mevsim sebzeleri, özel sos, seçeceğiniz malzemeler ile servis edilir.",img:"assets/tavuklu-bowl.png"},
+      {title:"Falafel Bowl",desc:"Mevsim sebzeleri, özel sos, seçeceğiniz malzemeler ile servis edilir.",img:"assets/falafel-bowl.png"},
+      {title:"Sebzeli Bowl",desc:"Mevsim sebzeleri, özel sos, seçeceğiniz malzemeler ile servis edilir.",img:"assets/sebzeli-bowl.png"},
       {title:"Good Morning",desc:"Güne hafif ve enerjik başlamak isteyenlere.",img:"https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1000"}
     ],
     tatli:[
@@ -899,7 +901,7 @@ cupStage.addEventListener('touchend',e=>{
   const next = document.getElementById('menuNext');
   const cats = Array.from(section.querySelectorAll('[data-menu-cat]'));
 
-  let cat = 'bowl';
+  let cat = 'kahve';
   let item = 2;
 
   function render(){
