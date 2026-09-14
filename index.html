@@ -561,6 +561,13 @@ model-viewer#cupModel{
   max-width:500px;font-size:17px;line-height:1.65;color:#46504c;margin:0 0 30px;
 }
 .order-links{display:grid;gap:12px;max-width:500px}
+.order-logo-link{
+  display:block;border-radius:18px;overflow:hidden;line-height:0;
+  box-shadow:0 10px 24px rgba(43,22,13,.08);
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease);
+}
+.order-logo-link:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(43,22,13,.12)}
+.order-logo-link img{width:100%;height:auto;display:block}
 .order-link{
   display:flex;align-items:center;justify-content:space-between;gap:18px;
   min-height:76px;padding:0 22px;border:2px solid #C89B3C;border-radius:22px;
@@ -577,9 +584,6 @@ model-viewer#cupModel{
 .order-visual{
   min-height:550px;border-radius:34px;overflow:hidden;position:relative;
   border:2px solid #C89B3C;background:#0E7959;box-shadow:0 24px 55px rgba(43,22,13,.12);
-}
-.order-visual:after{
-  content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,121,89,.02),rgba(43,22,13,.08));pointer-events:none;
 }
 .order-image{
   width:100%;height:100%;min-height:550px;object-fit:cover;object-position:center;display:block;
@@ -602,8 +606,6 @@ model-viewer#cupModel{
   .order-section{padding:72px 0 78px}
   .order-title{font-size:clamp(50px,13vw,70px)}
   .order-text{font-size:15px}
-  .order-link{min-height:70px;padding:0 16px;border-radius:18px}
-  .order-brand{font-size:21px}
   .order-visual{min-height:370px;border-radius:26px}
   .order-image{min-height:370px}
 }
@@ -698,23 +700,20 @@ model-viewer#cupModel{
       <h2 class="order-title">Favorin <em>hazır.</em><br>Sen de hazır<br>mısın?</h2>
       <p class="order-text">Menüden seçtiğin lezzetleri birkaç dokunuşla sipariş et. Espresso Check favorilerin kapına gelsin.</p>
       <div class="order-links">
-        <a class="order-link" href="https://www.yemeksepeti.com/" target="_blank" rel="noopener noreferrer">
-          <span><span class="order-brand">Yemeksepeti</span><span class="order-sub">Sipariş ver →</span></span>
-          <span class="order-arrow">→</span>
+        <a class="order-logo-link" href="https://www.yemeksepeti.com/" target="_blank" rel="noopener noreferrer" aria-label="Yemeksepeti üzerinden sipariş ver">
+          <img src="assets/yemeksepeti-order.png" alt="Yemeksepeti — Sipariş Ver">
         </a>
-        <a class="order-link" href="https://www.trendyol.com/go/" target="_blank" rel="noopener noreferrer">
-          <span><span class="order-brand">Trendyol Go</span><span class="order-sub">Sipariş ver →</span></span>
-          <span class="order-arrow">→</span>
+        <a class="order-logo-link" href="https://www.trendyol.com/go/" target="_blank" rel="noopener noreferrer" aria-label="Trendyol Go üzerinden sipariş ver">
+          <img src="assets/trendyolgo-order.png" alt="Trendyol Go — Sipariş Ver">
         </a>
-        <a class="order-link" href="https://www.migros.com.tr/yemek" target="_blank" rel="noopener noreferrer">
-          <span><span class="order-brand">Migros Yemek</span><span class="order-sub">Sipariş ver →</span></span>
-          <span class="order-arrow">→</span>
+        <a class="order-logo-link" href="https://www.migros.com.tr/yemek" target="_blank" rel="noopener noreferrer" aria-label="Migros Yemek üzerinden sipariş ver">
+          <img src="assets/migrosyemek-order.png" alt="Migros Yemek — Sipariş Ver">
         </a>
       </div>
       <div class="order-note">İyi kahve, iyi yemek, kapında.</div>
     </div>
     <div class="order-visual">
-      <img class="order-image" src="assets/order-scene.png" alt="Espresso Check sipariş paketi, bowl ve soğuk kahve">
+      <img class="order-image" src="assets/order-right.png" alt="Espresso Check sipariş paketi, bowl ve soğuk kahve">
     </div>
   </div>
 </section>
