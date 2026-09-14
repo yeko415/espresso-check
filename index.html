@@ -530,6 +530,12 @@ model-viewer#cupModel{
 </style>
 
 <style id="espresso-order-section">
+/* ===== Order section separators — isolated add-on ===== */
+.order-separator{position:relative;height:42px;background:#F5F0E6;overflow:visible;z-index:2}
+.order-separator::before{content:"";position:absolute;left:0;right:0;top:18px;height:8px;background:#164D43}
+.order-separator::after{content:"";position:absolute;left:50%;top:26px;width:120px;height:60px;transform:translateX(-50%);background:#164D43;border-radius:0 0 60px 60px;box-shadow:0 -3px 0 0 #C89B3C, 0 0 0 1px rgba(200,155,60,.45);}
+.order-separator.bottom{transform:rotate(180deg);}
+
 /* ===== Espresso Check Order Section — isolated add-on ===== */
 .order-section{
   position:relative;
@@ -604,6 +610,12 @@ model-viewer#cupModel{
   .order-link img{width:100%;max-width:320px;margin:auto}
   .order-visual{min-height:370px;overflow:visible}
   .order-image{width:118%;transform:translateX(5%)}
+}
+
+@media(max-width:650px){
+  .order-separator{height:34px}
+  .order-separator::before{top:14px;height:6px}
+  .order-separator::after{top:20px;width:92px;height:46px;border-radius:0 0 46px 46px;box-shadow:0 -3px 0 0 #C89B3C, 0 0 0 1px rgba(200,155,60,.45)}
 }
 </style>
 
@@ -689,6 +701,7 @@ model-viewer#cupModel{
   </div>
 </section>
 
+<div class="order-separator" aria-hidden="true"></div>
 <section class="order-section" id="order">
   <div class="container order-grid">
     <div class="order-copy">
@@ -713,6 +726,7 @@ model-viewer#cupModel{
     </div>
   </div>
 </section>
+<div class="order-separator bottom" aria-hidden="true"></div>
 <section class="squad"<section class="squad" id="shop"><div class="container"><div class="section-head"><h2>Meet the squad.</h2><p>Four easy favorites for every mood. Pick a color, pick a flavor, crack it open.</p></div><div class="flavors"><article class="flavor"><img src="https://images.pexels.com/photos/764370/pexels-photo-764370.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Yeşil soda kutusu"><div class="flavor-content"><h3>Lime Pop</h3><p>Crisp citrus · 4g sugar</p></div></article><article class="flavor"><img src="https://images.pexels.com/photos/9203769/pexels-photo-9203769.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Pembe soda kutusu"><div class="flavor-content"><h3>Berry Bloom</h3><p>Soft berry · 4g sugar</p></div></article><article class="flavor"><img src="https://images.pexels.com/photos/15373271/pexels-photo-15373271.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Soğuk içecek fotoğrafı"><div class="flavor-content"><h3>Peach Fizz</h3><p>Juicy peach · 35 cal</p></div></article><article class="flavor"><img src="https://images.pexels.com/photos/9981943/pexels-photo-9981943.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Gazlı içecek yakın plan"><div class="flavor-content"><h3>Cola Club</h3><p>Classic cola · 9g fiber</p></div></article></div></div></section>
 <section class="story" id="story"><div class="container story-grid"><img class="story-photo" src="https://images.pexels.com/photos/15373271/pexels-photo-15373271.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Kahve ve masa üstü ürün fotoğrafı"><div class="story-copy"><div class="eyebrow">Made for real life</div><h2>Good ingredients. Great little moments.</h2><p>We don't think “better for you” should mean boring. FIZZORA is designed around bright flavors, simple choices and a little joy in the everyday.</p><a class="btn" href="#footer">Our story</a><div class="benefits"><div class="benefit"><strong>01</strong><span>Plant-powered</span></div><div class="benefit"><strong>02</strong><span>No artificial colors</span></div><div class="benefit"><strong>03</strong><span>Big on flavor</span></div></div></div></div></section>
 <section class="quote"><div class="container"><h2>Soda should feel like a little celebration.</h2><p>Grab a cold one, share it with someone, or keep it all to yourself. We won't judge.</p><a class="btn" href="#shop">Find your flavor</a></div></section>
