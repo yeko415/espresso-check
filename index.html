@@ -629,22 +629,33 @@ model-viewer#cupModel{
 .order-phone-2d{
   position:absolute;
   z-index:3;
-  width:clamp(150px,16vw,205px);
+  width:clamp(410px,40vw,550px);
   height:auto;
-  left:10%;
-  bottom:-18px;
+  left:7%;
+  bottom:-20px;
   display:block;
   pointer-events:none;
   user-select:none;
-  will-change:transform;
   transform:translate3d(0,0,0) rotate(0deg);
-  transform-origin:center center;
+  transform-origin:center 72%;
   filter:drop-shadow(0 18px 18px rgba(43,22,13,.16));
+  animation:orderPhoneNotification 4.8s ease-in-out infinite;
 }
+
+/* Soft notification vibration: brief, restrained, then a long calm pause. */
+@keyframes orderPhoneNotification{
+  0%, 74%, 100%{transform:translate3d(0,0,0) rotate(0deg)}
+  76%{transform:translate3d(-2.5px,0,0) rotate(-.45deg)}
+  77.5%{transform:translate3d(2.2px,0,0) rotate(.40deg)}
+  79%{transform:translate3d(-1.6px,0,0) rotate(-.28deg)}
+  80.5%{transform:translate3d(1px,0,0) rotate(.18deg)}
+  82%{transform:translate3d(0,0,0) rotate(0deg)}
+}
+
 @media(max-width:900px){
   .order-phone-2d{
-    width:170px;
-    left:13%;
+    width:180px;
+    left:12%;
     bottom:-12px;
   }
 }
@@ -654,6 +665,9 @@ model-viewer#cupModel{
     left:18%;
     bottom:-8px;
   }
+}
+@media(prefers-reduced-motion:reduce){
+  .order-phone-2d{animation:none!important;transform:none!important}
 }
 </style>
 
@@ -1100,50 +1114,7 @@ cupStage.addEventListener('touchend',e=>{
 
 
 <script id="espresso-order-phone-2d-js">
-/* ===== Order section — 2D phone scroll animation (isolated) ===== */
-(function(){
-  const phone = document.getElementById('orderPhone2D');
-  const section = document.querySelector('.order-section');
-  if(!phone || !section) return;
-
-  let ticking = false;
-  let lastY = 0;
-
-  function updatePhone(){
-    ticking = false;
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-      phone.style.transform = 'translate3d(0,0,0) rotate(0deg)';
-      return;
-    }
-
-    const r = section.getBoundingClientRect();
-    const viewport = window.innerHeight || document.documentElement.clientHeight;
-    const sectionCenter = r.top + r.height * 0.5;
-    const viewportCenter = viewport * 0.5;
-
-    /* At the section's centered starting pose, the phone stays exactly still.
-       As the user scrolls through the section it gently travels up/down. */
-    const progress = Math.max(-1, Math.min(1,
-      (sectionCenter - viewportCenter) / (viewport * 0.9)
-    ));
-
-    const y = progress * -34;
-    const rotate = progress * 1.2;
-    phone.style.transform =
-      'translate3d(0,' + y.toFixed(2) + 'px,0) rotate(' + rotate.toFixed(2) + 'deg)';
-  }
-
-  function requestUpdate(){
-    if(!ticking){
-      ticking = true;
-      requestAnimationFrame(updatePhone);
-    }
-  }
-
-  window.addEventListener('scroll', requestUpdate, {passive:true});
-  window.addEventListener('resize', requestUpdate, {passive:true});
-  updatePhone();
-})();
+/* Phone motion is CSS-only: fixed position + soft notification vibration. */
 </script>
 
 </body>
