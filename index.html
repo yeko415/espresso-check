@@ -599,38 +599,6 @@ model-viewer#cupModel{
   width:118%;height:auto;max-width:none;min-height:0;object-fit:contain;object-position:center;display:block;
   transform:translateX(4%);pointer-events:none;
 }
-
-/* Order phone — smaller, left-shifted, starts at a neutral position */
-.order-phone-wrap{
-  position:absolute;
-  left:32%;
-  bottom:8px;
-  width:165px;
-  height:265px;
-  transform:translateX(-50%) translate3d(0,0,0);
-  z-index:2;
-  pointer-events:none;
-  overflow:visible;
-}
-.order-phone{
-  width:100%;
-  height:100%;
-  display:block;
-  background:transparent;
-  --poster-color:transparent;
-  transform:none;
-  transform-origin:center center;
-}
-@media(max-width:900px){
-  .order-phone-wrap{
-    display:block;
-    left:22%;
-    bottom:18px;
-    width:118px;
-    height:190px;
-    transform:translateX(-50%) translate3d(0,0,0);
-  }
-}
 @media(max-width:900px){
   .order-section{padding:82px 0 88px}
   .order-grid{grid-template-columns:1fr;gap:40px}
@@ -757,23 +725,7 @@ model-viewer#cupModel{
       <div class="order-note">İyi kahve, iyi yemek, kapında.</div>
     </div>
     <div class="order-visual">
-      <img class="order-image" src="assets/order-scene-transparent.png" alt="Espresso Check sipariş paketi, bowl ve soğuk kahve" loading="eager" decoding="async">
-      <div class="order-phone-wrap" id="orderPhoneWrap" aria-hidden="true">
-        <model-viewer
-          class="order-phone"
-          id="orderPhone"
-          src="assets/iphone_x_metallic_black.glb"
-          interaction-prompt="none"
-          disable-pan
-          disable-zoom
-          camera-controls
-          shadow-intensity="1"
-          exposure="1"
-          environment-image="neutral"
-          camera-orbit="12deg 108deg 3.2m"
-          field-of-view="30deg"
-          alt="Espresso Check sipariş ekranlı telefon"></model-viewer>
-      </div>
+      <img class="order-image" src="assets/order-scene-cream.png" alt="Espresso Check sipariş paketi, bowl ve soğuk kahve" loading="eager" decoding="async">
     </div>
   </div>
 </section>
@@ -979,33 +931,6 @@ renderCupProgress();
 
 if(cupPrev) cupPrev.addEventListener('click',()=>setCupSlide(cupIndex-1,-1));
 if(cupNext) cupNext.addEventListener('click',()=>setCupSlide(cupIndex+1,1));
-
-// Order phone — starts at zero and moves gently up/down as the page scrolls.
-const orderPhoneWrap=document.getElementById('orderPhoneWrap');
-if(orderPhoneWrap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-  const section=orderPhoneWrap.closest('.order-section');
-  let baseScroll=null;
-  let ticking=false;
-  const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
-  const updateOrderPhone=()=>{
-    ticking=false;
-    if(!section) return;
-    const r=section.getBoundingClientRect();
-    const visible=r.bottom>0 && r.top<innerHeight;
-    if(baseScroll===null && visible) baseScroll=window.scrollY;
-    if(baseScroll===null) return;
-    const y=clamp((window.scrollY-baseScroll)*0.10,-48,48);
-    orderPhoneWrap.style.transform=`translateX(-50%) translate3d(0,${y.toFixed(1)}px,0)`;
-  };
-  const requestOrderPhoneUpdate=()=>{
-    if(ticking) return;
-    ticking=true;
-    requestAnimationFrame(updateOrderPhone);
-  };
-  window.addEventListener('scroll',requestOrderPhoneUpdate,{passive:true});
-  window.addEventListener('resize',requestOrderPhoneUpdate,{passive:true});
-  updateOrderPhone();
-}
 
 // Mobile horizontal swipe. Vertical page scrolling is preserved.
 let cupTouchX=0, cupTouchY=0, cupTouching=false;
