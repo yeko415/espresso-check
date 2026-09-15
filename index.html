@@ -753,7 +753,7 @@ model-viewer#cupModel{
 /* ===== Espresso Check Contact / Closing Section ===== */
 .contact-section{position:relative;overflow:hidden;background:#F5F0E6;border-top:5px solid #164D43;padding:0}
 .contact-inner{position:relative;min-height:720px;display:grid;grid-template-columns:1.02fr .98fr;align-items:stretch}
-.contact-backdrop{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(245,240,230,.96) 0%,rgba(245,240,230,.88) 38%,rgba(245,240,230,.22) 68%,rgba(245,240,230,.05) 100%),url('assets/contact-latte-bg.png');background-size:cover;background-position:center right;z-index:0}
+.contact-backdrop{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(245,240,230,.88) 0%,rgba(245,240,230,.70) 34%,rgba(245,240,230,.18) 68%,rgba(245,240,230,.02) 100%),url('assets/contact-latte-bg.png');background-size:100% 100%,100% 100%;background-position:center;background-repeat:no-repeat;z-index:0}
 .contact-copy{position:relative;z-index:2;padding:90px 0 80px;max-width:610px}
 .contact-kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6B3046;margin-bottom:14px}
 .contact-title{font-family:Fraunces,serif;font-size:clamp(64px,7vw,104px);line-height:.83;letter-spacing:-.075em;color:#2B160D;margin:0 0 24px}
@@ -768,7 +768,7 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
 .contact-card-wide{grid-column:1/-1}
 .contact-socials{display:flex;align-items:center;gap:10px;margin-top:20px}
 .contact-social-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B3046;margin-right:5px}
-.contact-social{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#164D43;color:#fff;font-weight:700;font-size:17px;transition:transform .2s var(--ease),background .2s}
+.contact-social{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#164D43;color:#fff;font-weight:700;font-size:17px;transition:transform .2s var(--ease),background .2s}.contact-social svg,.contact-icon svg{display:block;width:18px;height:18px;stroke:currentColor}.contact-icon svg{width:19px;height:19px;stroke-width:2}
 .contact-social:hover{transform:translateY(-3px);background:#0E7959}
 .contact-note{margin-top:24px;font-family:"Comic Sans MS","Segoe Print","Bradley Hand",cursive;font-size:19px;color:#164D43;transform:rotate(-2deg);display:inline-block}
 .contact-map-wrap{position:relative;z-index:2;display:flex;align-items:center;justify-content:flex-end;padding:80px 0 70px 40px}
@@ -780,7 +780,7 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
 .contact-map-caption strong{color:#173D37}
 @media(max-width:900px){
   .contact-inner{grid-template-columns:1fr;min-height:0}
-  .contact-backdrop{background-image:linear-gradient(180deg,rgba(245,240,230,.97) 0%,rgba(245,240,230,.9) 48%,rgba(245,240,230,.18) 78%,rgba(245,240,230,.02) 100%),url('assets/contact-latte-bg.png');background-position:center bottom;background-size:auto 100%,cover}
+  .contact-backdrop{background-image:linear-gradient(180deg,rgba(245,240,230,.82) 0%,rgba(245,240,230,.48) 44%,rgba(245,240,230,.12) 76%,rgba(245,240,230,.02) 100%),url('assets/contact-latte-bg.png');background-position:center;background-size:100% 100%,100% 100%;background-repeat:no-repeat}
   .contact-copy{padding:75px 0 25px;max-width:none}
   .contact-map-wrap{padding:20px 0 75px;justify-content:center}
   .contact-map-card{width:min(620px,100%);transform:rotate(0)}
@@ -933,13 +933,13 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
           <span class="contact-icon">☎</span><span><strong>Telefon</strong><span>+90 507 368 58 37</span></span>
         </a>
         <a class="contact-card" href="https://www.instagram.com/espressocheck/" target="_blank" rel="noopener noreferrer">
-          <span class="contact-icon">◎</span><span><strong>Instagram</strong><span>@espressocheck</span></span>
+          <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none"></rect><circle cx="12" cy="12" r="4" fill="none"></circle><circle cx="17.6" cy="6.7" r="1.2" fill="currentColor" stroke="none"></circle></svg></span><span><strong>Instagram</strong><span>@espressocheck</span></span>
         </a>
         <div class="contact-card">
           <span class="contact-icon">◷</span><span><strong>Çalışma Saatleri</strong><span>Her gün 08:00 – 01:00</span></span>
         </div>
       </div>
-      <div class="contact-socials"><span class="contact-social-label">Bizi takip et</span><a class="contact-social" href="https://www.instagram.com/espressocheck/" target="_blank" rel="noopener noreferrer" aria-label="Espresso Check Instagram">◎</a></div>
+      <div class="contact-socials"><span class="contact-social-label">Bizi takip et</span><a class="contact-social" href="https://www.instagram.com/espressocheck/" target="_blank" rel="noopener noreferrer" aria-label="Espresso Check Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none"></rect><circle cx="12" cy="12" r="4" fill="none"></circle><circle cx="17.6" cy="6.7" r="1.2" fill="currentColor" stroke="none"></circle></svg></a></div>
       <div class="contact-note">Good coffee. Bigger stories. ♡</div>
     </div>
     <div class="contact-map-wrap">
