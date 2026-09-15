@@ -599,31 +599,6 @@ model-viewer#cupModel{
   width:118%;height:auto;max-width:none;min-height:0;object-fit:contain;object-position:center;display:block;
   transform:translateX(4%);pointer-events:none;
 }
-
-/* Desktop order phone — placed in the lower-right open area */
-.order-phone-wrap{
-  position:absolute;
-  left:50%;
-  bottom:-10px;
-  width:210px;
-  height:330px;
-  transform:translateX(-10%);
-  z-index:2;
-  pointer-events:none;
-  overflow:visible;
-}
-.order-phone{
-  width:100%;
-  height:100%;
-  display:block;
-  background:transparent;
-  --poster-color:transparent;
-  transform:rotate(180deg);
-  transform-origin:center center;
-}
-@media(max-width:900px){
-  .order-phone-wrap{display:none}
-}
 @media(max-width:900px){
   .order-section{padding:82px 0 88px}
   .order-grid{grid-template-columns:1fr;gap:40px}
@@ -750,23 +725,7 @@ model-viewer#cupModel{
       <div class="order-note">İyi kahve, iyi yemek, kapında.</div>
     </div>
     <div class="order-visual">
-      <img class="order-image" src="assets/order-scene-transparent.png" alt="Espresso Check sipariş paketi, bowl ve soğuk kahve" loading="eager" decoding="async">
-      <div class="order-phone-wrap" id="orderPhoneWrap" aria-hidden="true">
-        <model-viewer
-          class="order-phone"
-          id="orderPhone"
-          src="assets/iphone_x_metallic_black.glb"
-          interaction-prompt="none"
-          disable-pan
-          disable-zoom
-          camera-controls
-          shadow-intensity="1"
-          exposure="1"
-          environment-image="neutral"
-          camera-orbit="auto auto 3.2m"
-          field-of-view="30deg"
-          alt="Espresso Check sipariş ekranlı telefon"></model-viewer>
-      </div>
+      <img class="order-image" src="assets/order-scene-cream.png" alt="Espresso Check sipariş paketi, bowl ve soğuk kahve" loading="eager" decoding="async">
     </div>
   </div>
 </section>
@@ -972,22 +931,6 @@ renderCupProgress();
 
 if(cupPrev) cupPrev.addEventListener('click',()=>setCupSlide(cupIndex-1,-1));
 if(cupNext) cupNext.addEventListener('click',()=>setCupSlide(cupIndex+1,1));
-
-// Desktop order phone — gentle vertical movement tied to page scroll.
-const orderPhoneWrap=document.getElementById('orderPhoneWrap');
-if(orderPhoneWrap && window.matchMedia('(min-width:901px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-  const moveOrderPhone=()=>{
-    const section=orderPhoneWrap.closest('.order-section');
-    if(!section) return;
-    const r=section.getBoundingClientRect();
-    const center=((innerHeight/2)-(r.top+r.height/2))/(innerHeight+r.height);
-    const y=Math.max(-34,Math.min(34,center*110));
-    orderPhoneWrap.style.transform=`translateX(-10%) translate3d(0,${y.toFixed(1)}px,0)`;
-  };
-  window.addEventListener('scroll',moveOrderPhone,{passive:true});
-  window.addEventListener('resize',moveOrderPhone,{passive:true});
-  moveOrderPhone();
-}
 
 // Mobile horizontal swipe. Vertical page scrolling is preserved.
 let cupTouchX=0, cupTouchY=0, cupTouching=false;
