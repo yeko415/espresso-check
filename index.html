@@ -827,14 +827,14 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
 .contact-grid{grid-template-columns:1.15fr .85fr;gap:11px;max-width:590px}
 .contact-card{background:rgba(255,248,233,.08);border:1px solid rgba(255,248,233,.15);box-shadow:0 14px 28px rgba(0,0,0,.12);backdrop-filter:blur(8px);color:#FFF8E9;border-radius:20px;padding:16px 17px}
 .contact-card:hover{background:rgba(255,248,233,.12);box-shadow:0 16px 32px rgba(0,0,0,.16)}
-.contact-icon{background:#F4E6CA;color:#0E5A47}
+.contact-icon{background:#C89B3C;color:#173D37;box-shadow:0 6px 14px rgba(200,155,60,.18)}
 .contact-card strong{color:#DCC39A}
 .contact-card span,.contact-card a{color:#FFF8E9}
 .contact-card-wide{grid-column:1/-1}
 .contact-socials{margin-top:18px}
 .contact-social-label{color:#DCC39A}
-.contact-social{background:#0A4A3A;border:1px solid rgba(255,248,233,.16)}
-.contact-social:hover{background:#164D43}
+.contact-social{background:#C89B3C;color:#173D37;border:1px solid rgba(200,155,60,.35);box-shadow:0 8px 18px rgba(0,0,0,.12)}
+.contact-social:hover{background:#D6AA4A;color:#173D37;transform:translateY(-2px)}
 .contact-note{color:#DCC39A;margin-top:20px}
 .contact-map-wrap{padding:0;display:flex;align-items:center;justify-content:flex-end}
 .contact-map-card{width:min(560px,100%);background:#FFF8E9;border:none;border-radius:30px;padding:12px;box-shadow:0 28px 65px rgba(0,0,0,.22);transform:rotate(1deg)}
@@ -863,6 +863,16 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
  .contact-blob-a{width:170px;height:100px;left:-100px;bottom:-20px}
  .contact-blob-b{width:140px;height:90px;right:-65px;top:-30px}
 }
+</style>
+
+
+<style id="espresso-footer-final">
+.footer{background:#FFF8E9;color:#173D37;border-top:1px solid rgba(23,61,55,.12);padding:70px 0 24px;overflow:hidden}
+.footer-top{display:grid;grid-template-columns:1.25fr .95fr;gap:70px;align-items:start}
+.footer-brand{max-width:440px}.footer-logo-image{display:block;width:190px;height:auto;margin:0 0 18px}.footer-tagline{font-family:"Comic Sans MS","Segoe Print","Bradley Hand",cursive;font-size:21px;color:#0E5A47;margin-bottom:16px}.footer-brand p{font-size:14px;line-height:1.7;color:#53625D;margin:0}
+.footer-links{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.footer-links>div{display:flex;flex-direction:column;gap:10px}.footer-links strong{font-size:10px;letter-spacing:.16em;color:#173D37;margin-bottom:5px}.footer-links a{font-size:13px;color:#53625D;text-decoration:none;transition:color .2s ease,transform .2s ease}.footer-links a:hover{color:#0E5A47;transform:translateX(2px)}
+.footer .copyright{display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(23,61,55,.14);margin-top:52px;padding-top:18px;font-size:10px;color:#66756E}
+@media(max-width:650px){.footer{padding:48px 0 20px}.footer-top{grid-template-columns:1fr;gap:34px}.footer-logo-image{width:165px}.footer-tagline{font-size:17px;margin-bottom:10px}.footer-brand p{font-size:12px}.footer-links{grid-template-columns:repeat(3,1fr);gap:18px}.footer-links strong{font-size:8px}.footer-links a{font-size:10px}.footer .copyright{display:block;margin-top:34px;padding-top:14px}.footer .copyright span{display:block;margin-top:7px}}
 </style>
 
 </head>
@@ -1011,7 +1021,7 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
 
 
 
-<footer class="footer" id="footer"><div class="container"><div class="footer-top"><div class="footer-logo">FIZZORA</div><div class="footer-links"><div><strong>Explore</strong><a href="#menu">Menü</a><a href="#footer">Hikâyemiz</a><a href="#menu">Latte'nin seçtikleri</a></div><div><strong>Help</strong><a href="#footer">FAQ</a><a href="#footer">Contact</a><a href="#footer">Shipping</a></div><div><strong>Follow</strong><a href="#footer">Instagram</a><a href="#footer">TikTok</a><a href="#footer">Pinterest</a></div></div></div><div class="copyright"><span>© 2026 FIZZORA. Demo brand.</span><span>Made as a reusable site-system concept.</span></div></div></footer>
+<footer class="footer" id="footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img class="footer-logo-image" src="assets/logo.png" alt="Espresso Check"><div class="footer-tagline">Good coffee. Bigger stories. ♡</div><p>Kahve, iyi yemek ve güzel hikâyeler.<br>Espresso Check, her gün biraz daha fazlası için.</p></div><div class="footer-links"><div><strong>KEŞFET</strong><a href="#menu">Menü</a><a href="#footer">Hikâyemiz</a><a href="#menu">Latte'nin seçtikleri</a><a href="#contact">İletişim</a></div><div><strong>YARDIM</strong><a href="#footer">SSS</a><a href="#contact">İletişim</a><a href="#footer">KVKK</a></div><div><strong>TAKİP ET</strong><a href="https://www.instagram.com/espressocheck/" target="_blank" rel="noopener noreferrer">Instagram</a></div></div></div><div class="copyright"><span>© 2026 Espresso Check. Tüm hakları saklıdır.</span><span>Made with good coffee. ♡</span></div></div></footer>
 <script>
 const nav=document.getElementById('nav');
 const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>20);window.addEventListener('scroll',onScroll,{passive:true});onScroll();
