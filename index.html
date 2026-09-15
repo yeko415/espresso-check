@@ -608,12 +608,13 @@ model-viewer#cupModel{
   .order-links{max-width:100%}
 }
 @media(max-width:650px){
+  .order-section:before{display:none!important}
   .order-section{padding:72px 0 78px}
   .order-title{font-size:clamp(50px,13vw,70px)}
   .order-text{font-size:15px}
-  .order-links{grid-template-columns:1fr;gap:10px}
-  .order-link{min-height:auto;padding:0}
-  .order-link img{width:100%;max-width:320px;margin:auto}
+  .order-links{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .order-link{min-height:auto;padding:0;border-radius:12px}
+  .order-link img{width:100%;max-width:none;margin:auto;border-radius:12px}
   .order-visual{min-height:370px;overflow:visible}
   .order-image{width:118%;transform:translateX(5%)}
   .order-separator{display:none}
@@ -699,7 +700,7 @@ model-viewer#cupModel{
   .quote{padding:55px 0}
   .quote h2{font-size:52px}
 
-  .menu-section{padding:48px 0 58px;background:linear-gradient(180deg,#0E7959 0%,#0E7959 60%,#F5F0E6 60%,#F5F0E6 100%)}
+  .menu-section{padding:48px 0 58px;background:linear-gradient(180deg,#0E7959 0%,#0E7959 76%,#F5F0E6 76%,#F5F0E6 100%)}
   .menu-heading{font-size:clamp(44px,11vw,58px)}
   .menu-visual{min-height:310px;border-radius:22px}
   .menu-visual:before{width:300px;height:300px}
@@ -715,10 +716,31 @@ model-viewer#cupModel{
   .order-image{width:105%;transform:translateX(3%)}
   .order-title{font-size:clamp(44px,11vw,58px);margin-bottom:18px}
   .order-text{font-size:14px;line-height:1.5;margin-bottom:22px}
-  .order-link img{max-width:270px}
+  .order-link img{max-width:none}
   .order-note{margin-top:14px;font-size:10px}
 
   .order-phone-2d{width:225px;left:-12%;bottom:22px}
+}
+</style>
+
+
+<style id="espresso-mobile-fix-v11">
+@media(max-width:650px){
+  /* 1) Menu feature: keep the product title/content fully inside the viewport. */
+  .menu-feature{gap:12px;min-height:0}
+  .menu-copy{padding-right:0;min-width:0;overflow:visible}
+  .menu-index{font-size:16px;margin-bottom:8px}
+  .menu-title{font-size:clamp(38px,10.5vw,46px);line-height:.92;letter-spacing:-.055em;white-space:normal;overflow-wrap:normal}
+  .menu-description{font-size:14px;line-height:1.5;max-width:100%}
+  .menu-note{font-size:10px;margin-top:14px}
+
+  /* 2) The decorative quarter-circle in the order section stays hidden on mobile. */
+  .order-section:before{display:none!important}
+
+  /* 3) Order buttons: three compact cards side-by-side, like desktop. */
+  .order-links{display:flex!important;flex-direction:row!important;align-items:stretch;gap:8px;width:100%;max-width:none}
+  .order-link{flex:1 1 0!important;width:0!important;min-width:0!important;min-height:0!important;padding:0!important;border-radius:12px!important}
+  .order-link img{display:block;width:100%!important;height:auto!important;max-width:none!important;margin:0!important;border-radius:12px!important}
 }
 </style>
 
@@ -1170,3 +1192,51 @@ cupStage.addEventListener('touchend',e=>{
 
 </body>
 </html>
+
+<style id="espresso-mobile-final-v12">
+@media(max-width:650px){
+  /* MENU: keep the green field behind the full feature copy so the title is not clipped by the background transition. */
+  .menu-section{
+    background:linear-gradient(180deg,#0E7959 0%,#0E7959 82%,#F5F0E6 82%,#F5F0E6 100%) !important;
+    overflow:hidden;
+  }
+  .menu-section:after{display:none!important}
+  .menu-feature{grid-template-columns:1fr!important;min-height:0!important;gap:14px!important}
+  .menu-copy{padding-right:0!important;min-width:0!important;overflow:visible!important}
+  .menu-title{font-size:clamp(42px,11vw,56px)!important;line-height:.92!important;white-space:normal!important;overflow:visible!important}
+
+  /* ORDER: remove decorative quarter-circle and keep the section compact. */
+  .order-section:before{display:none!important}
+  .order-visual:before{display:none!important}
+
+  /* ORDER BUTTONS: three small cards in one row on mobile. */
+  .order-links{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;
+    width:100%!important;
+    max-width:none!important;
+  }
+  .order-link{
+    display:block!important;
+    width:auto!important;
+    min-width:0!important;
+    min-height:0!important;
+    padding:0!important;
+    margin:0!important;
+    border-radius:12px!important;
+    overflow:hidden!important;
+  }
+  .order-link img{
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    height:auto!important;
+    margin:0!important;
+    border-radius:12px!important;
+  }
+
+  /* Do not let the order visual itself create extra vertical space. */
+  .order-visual{min-height:285px!important}
+}
+</style>
