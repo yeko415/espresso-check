@@ -809,6 +809,62 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
 }
 </style>
 
+
+<style id="espresso-contact-green-final">
+/* ===== FINAL CONTACT: deep green editorial close ===== */
+.contact-section{background:#0E5A47;border-top:5px solid #0E5A47;color:#FFF8E9;min-height:0;isolation:isolate}
+.contact-inner{min-height:760px;grid-template-columns:1fr 1fr;align-items:center;gap:68px;padding:58px 0 62px;position:relative}
+.contact-backdrop{display:none}
+.contact-blob{position:absolute;z-index:0;pointer-events:none;border-radius:999px;filter:blur(.2px);opacity:.9}
+.contact-blob-a{width:310px;height:170px;left:-150px;bottom:-40px;background:#1B6F59;transform:rotate(-18deg)}
+.contact-blob-b{width:250px;height:160px;right:-90px;top:-65px;background:#F2E5C8;transform:rotate(16deg)}
+.contact-copy,.contact-map-wrap{z-index:2}
+.contact-copy{padding:0;max-width:610px}
+.contact-kicker{color:#DCC39A;margin-bottom:13px}
+.contact-title{font-size:clamp(62px,6.4vw,96px);line-height:.84;color:#FFF8E9;margin:0 0 24px;letter-spacing:-.07em}
+.contact-title em{color:#C9DDC6}
+.contact-lead{color:rgba(255,248,233,.86);font-size:16px;max-width:500px;margin-bottom:30px}
+.contact-grid{grid-template-columns:1.15fr .85fr;gap:11px;max-width:590px}
+.contact-card{background:rgba(255,248,233,.08);border:1px solid rgba(255,248,233,.15);box-shadow:0 14px 28px rgba(0,0,0,.12);backdrop-filter:blur(8px);color:#FFF8E9;border-radius:20px;padding:16px 17px}
+.contact-card:hover{background:rgba(255,248,233,.12);box-shadow:0 16px 32px rgba(0,0,0,.16)}
+.contact-icon{background:#F4E6CA;color:#0E5A47}
+.contact-card strong{color:#DCC39A}
+.contact-card span,.contact-card a{color:#FFF8E9}
+.contact-card-wide{grid-column:1/-1}
+.contact-socials{margin-top:18px}
+.contact-social-label{color:#DCC39A}
+.contact-social{background:#0A4A3A;border:1px solid rgba(255,248,233,.16)}
+.contact-social:hover{background:#164D43}
+.contact-note{color:#DCC39A;margin-top:20px}
+.contact-map-wrap{padding:0;display:flex;align-items:center;justify-content:flex-end}
+.contact-map-card{width:min(560px,100%);background:#FFF8E9;border:none;border-radius:30px;padding:12px;box-shadow:0 28px 65px rgba(0,0,0,.22);transform:rotate(1deg)}
+.contact-map-card img{border-radius:21px;display:block}
+.contact-map-action{background:#0E5A47;border-radius:17px;margin-top:10px;padding:16px 18px}
+.contact-map-caption{color:#66756E}
+.contact-map-caption strong{color:#0E5A47}
+@media(max-width:900px){
+ .contact-inner{grid-template-columns:1fr;gap:26px;min-height:0;padding:58px 0 68px}
+ .contact-copy{max-width:none}
+ .contact-map-wrap{justify-content:center}
+ .contact-map-card{width:min(620px,100%);transform:none}
+}
+@media(max-width:650px){
+ .contact-section{border-top-width:4px}
+ .contact-inner{gap:24px;padding:54px 0 58px}
+ .contact-title{font-size:clamp(52px,14vw,72px);line-height:.86;margin-bottom:18px}
+ .contact-lead{font-size:14px;max-width:330px;margin-bottom:22px}
+ .contact-grid{grid-template-columns:1fr;gap:9px}
+ .contact-card{padding:13px 14px;border-radius:16px}
+ .contact-socials{margin-top:14px}
+ .contact-map-card{padding:8px;border-radius:22px}
+ .contact-map-card img{border-radius:16px}
+ .contact-map-action{padding:13px 15px;border-radius:14px;font-size:13px}
+ .contact-map-caption{font-size:9px}
+ .contact-blob-a{width:170px;height:100px;left:-100px;bottom:-20px}
+ .contact-blob-b{width:140px;height:90px;right:-65px;top:-30px}
+}
+</style>
+
 </head>
 <body>
 <div class="announce">APPROVED BY LATTE✓ </div>
@@ -920,7 +976,7 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
 
 <section class="contact-section" id="contact">
   <div class="container contact-inner">
-    <div class="contact-backdrop" aria-hidden="true"></div>
+    <div class="contact-backdrop" aria-hidden="true"></div><div class="contact-blob contact-blob-a" aria-hidden="true"></div><div class="contact-blob contact-blob-b" aria-hidden="true"></div>
     <div class="contact-copy">
       <div class="contact-kicker">Espresso Check · Bize Ulaş</div>
       <h2 class="contact-title">Bir kahve<br><em>molası?</em><br>Buradayız.</h2>
