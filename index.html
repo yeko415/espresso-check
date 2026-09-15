@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#dff4ed">
-<meta name="description" content="FIZZORA — canlı, modern ve ürün odaklı soda markası demo sitesi.">
-<title>FIZZORA — Feel Good Fizz</title>
+<meta name="description" content="Espresso Check — iyi kahve, iyi yemek ve güzel hikâyeler için. Ankara Bahçelievler.">
+<title>Espresso Check — Good Coffee Bigger Stories</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap');
 :root{--cream:#fff8e9;--mint:#c9f1e7;--green:#164d43;--pink:#ff7cae;--yellow:#ffd96a;--orange:#ff9a55;--ink:#173d37;--white:#fffdf7;--line:rgba(22,77,67,.16);--ease:cubic-bezier(.2,.8,.2,1);--container:min(1320px,calc(100vw - 48px))}
@@ -188,7 +188,7 @@ model-viewer#cupModel{
   outline:none;
   border:0;
   -webkit-tap-highlight-color:transparent;
-  touch-action:none;
+  touch-action:pan-y;
   user-select:none;
   animation:cupIdleFloatSafe 3.8s ease-in-out infinite;
   will-change:transform;
@@ -307,7 +307,7 @@ model-viewer#cupModel{
 /* ===== Espresso Check Menu — isolated add-on ===== */
 .menu-section{
   position:relative;
-  background:linear-gradient(180deg,#0E7959 0%,#0E7959 78%,#F5F0E6 78%,#F5F0E6 100%);
+  background:#0E7959;
   padding:105px 0 115px;
   overflow:hidden;
   color:#F5F0E6;
@@ -490,7 +490,7 @@ model-viewer#cupModel{
   text-transform:uppercase;color:#0E7959;margin-top:12px;
 }
 @media(max-width:900px){
-  .menu-section{padding:86px 0 95px;background:linear-gradient(180deg,#0E7959 0%,#0E7959 72%,#F5F0E6 72%,#F5F0E6 100%)}
+  .menu-section{padding:86px 0 95px;background:#0E7959}
   .menu-feature{grid-template-columns:1fr;gap:30px}
   .menu-copy{order:2;padding-right:0}
   .menu-visual{order:1;min-height:490px}
@@ -500,7 +500,7 @@ model-viewer#cupModel{
 @media(max-width:650px){
   .menu-section{
     padding:72px 0 82px;
-    background:linear-gradient(180deg,#0E7959 0%,#0E7959 66%,#F5F0E6 66%,#F5F0E6 100%);
+    background:#0E7959;
   }
   .menu-heading{font-size:clamp(48px,13vw,68px)}
   .menu-cats{
@@ -704,7 +704,7 @@ model-viewer#cupModel{
   .quote{padding:55px 0}
   .quote h2{font-size:52px}
 
-  .menu-section{padding:48px 0 58px;background:linear-gradient(180deg,#0E7959 0%,#0E7959 76%,#F5F0E6 76%,#F5F0E6 100%)}
+  .menu-section{padding:48px 0 58px;background:#0E7959}
   .menu-heading{font-size:clamp(44px,11vw,58px)}
   .menu-visual{min-height:310px;border-radius:22px}
   .menu-visual:before{width:300px;height:300px}
@@ -880,6 +880,12 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
 .nav .order-nav-link{white-space:nowrap}
 .footer-links{display:flex;gap:55px}
 @media(max-width:650px){.footer-links{display:grid;grid-template-columns:1fr 1fr;gap:28px;width:100%}.footer-links div{min-width:0}.footer-links div:first-child{grid-column:span 1}.footer-links div:last-child{justify-items:start}}
+<style id="espresso-menu-green-final">
+/* Menu stays green through its bottom edge; secondary list labels are cream/white. */
+.menu-section{background:#0E7959 !important;}
+.menu-list-title,.menu-list-hint{color:#FFF8E9 !important;}
+@media(max-width:650px){.menu-list-title,.menu-list-hint{color:#FFF8E9 !important;}}
+</style>
 </style>
 </head>
 <body>
@@ -902,7 +908,7 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
             src="assets/espresso-check-coffee-cup-v10.glb"
             disable-pan
             interaction-prompt="none"
-            touch-action="none"
+            touch-action="pan-y"
             shadow-intensity="1"
             exposure="1"
             environment-image="neutral"
@@ -1383,7 +1389,7 @@ cupStage.addEventListener('touchend',e=>{
 @media(max-width:650px){
   /* MENU: keep the green field behind the full feature copy so the title is not clipped by the background transition. */
   .menu-section{
-    background:linear-gradient(180deg,#0E7959 0%,#0E7959 82%,#F5F0E6 82%,#F5F0E6 100%) !important;
+    background:#0E7959 !important;
     overflow:hidden;
   }
   .menu-section:after{display:none!important}
