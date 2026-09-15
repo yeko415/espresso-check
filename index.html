@@ -631,7 +631,7 @@ model-viewer#cupModel{
   z-index:3;
   width:clamp(410px,40vw,550px);
   height:auto;
-  left:-1%;
+  left:-3%;
   bottom:-20px;
   display:block;
   pointer-events:none;
@@ -639,19 +639,19 @@ model-viewer#cupModel{
   transform:translate3d(0,0,0) rotate(0deg);
   transform-origin:center 72%;
   filter:drop-shadow(0 18px 18px rgba(43,22,13,.16));
-  animation:orderPhoneNotification 4.8s ease-in-out infinite;
+  animation:orderPhoneNotification 4.2s ease-in-out infinite;
 }
 
 /* Soft notification vibration: brief, restrained, then a long calm pause. */
 @keyframes orderPhoneNotification{
   0%, 70%, 100%{transform:translate3d(0,0,0) rotate(0deg)}
-  72%{transform:translate3d(-5px,0,0) rotate(-.9deg)}
-  73.2%{transform:translate3d(6px,0,0) rotate(.85deg)}
-  74.4%{transform:translate3d(-5px,0,0) rotate(-.72deg)}
-  75.6%{transform:translate3d(4px,0,0) rotate(.58deg)}
-  76.8%{transform:translate3d(-2.8px,0,0) rotate(-.38deg)}
-  78%{transform:translate3d(1.5px,0,0) rotate(.20deg)}
-  79.2%{transform:translate3d(0,0,0) rotate(0deg)}
+  72%{transform:translate3d(-5px,0,0) rotate(-1deg)}
+  73.2%{transform:translate3d(5px,0,0) rotate(1deg)}
+  74.4%{transform:translate3d(-4px,0,0) rotate(-.8deg)}
+  75.6%{transform:translate3d(4px,0,0) rotate(.72deg)}
+  76.8%{transform:translate3d(-2.5px,0,0) rotate(-.45deg)}
+  78%{transform:translate3d(2px,0,0) rotate(.3deg)}
+  79.5%{transform:translate3d(0,0,0) rotate(0deg)}
 }
 
 @media(max-width:900px){
