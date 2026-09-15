@@ -748,10 +748,71 @@ model-viewer#cupModel{
 }
 </style>
 
+
+<style id="espresso-contact-section">
+/* ===== Espresso Check Contact / Closing Section ===== */
+.contact-section{position:relative;overflow:hidden;background:#F5F0E6;border-top:5px solid #164D43;padding:0}
+.contact-inner{position:relative;min-height:720px;display:grid;grid-template-columns:1.02fr .98fr;align-items:stretch}
+.contact-backdrop{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(245,240,230,.96) 0%,rgba(245,240,230,.88) 38%,rgba(245,240,230,.22) 68%,rgba(245,240,230,.05) 100%),url('assets/contact-latte-bg.png');background-size:cover;background-position:center right;z-index:0}
+.contact-copy{position:relative;z-index:2;padding:90px 0 80px;max-width:610px}
+.contact-kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6B3046;margin-bottom:14px}
+.contact-title{font-family:Fraunces,serif;font-size:clamp(64px,7vw,104px);line-height:.83;letter-spacing:-.075em;color:#2B160D;margin:0 0 24px}
+.contact-title em{font-family:"Comic Sans MS","Segoe Print","Bradley Hand",cursive;color:#164D43;font-style:normal}
+.contact-lead{font-size:17px;line-height:1.55;max-width:470px;color:#46504c;margin:0 0 34px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:570px}
+.contact-card{display:flex;align-items:flex-start;gap:13px;padding:17px 18px;border:1px solid rgba(22,77,67,.14);background:rgba(255,253,247,.82);border-radius:18px;box-shadow:0 10px 28px rgba(43,22,13,.05);backdrop-filter:blur(7px);transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,22,13,.1)}
+.contact-icon{width:38px;height:38px;flex:0 0 38px;border-radius:50%;display:grid;place-items:center;background:#DCE8D9;color:#164D43;font-size:18px;font-weight:700}
+.contact-card strong{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;color:#6B3046}
+.contact-card span,.contact-card a{font-size:14px;line-height:1.45;color:#173D37}
+.contact-card-wide{grid-column:1/-1}
+.contact-socials{display:flex;align-items:center;gap:10px;margin-top:20px}
+.contact-social-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B3046;margin-right:5px}
+.contact-social{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#164D43;color:#fff;font-weight:700;font-size:17px;transition:transform .2s var(--ease),background .2s}
+.contact-social:hover{transform:translateY(-3px);background:#0E7959}
+.contact-note{margin-top:24px;font-family:"Comic Sans MS","Segoe Print","Bradley Hand",cursive;font-size:19px;color:#164D43;transform:rotate(-2deg);display:inline-block}
+.contact-map-wrap{position:relative;z-index:2;display:flex;align-items:center;justify-content:flex-end;padding:80px 0 70px 40px}
+.contact-map-card{width:min(560px,100%);background:#fffdf7;border:1px solid rgba(22,77,67,.13);border-radius:28px;padding:12px;box-shadow:0 25px 55px rgba(43,22,13,.13);transform:rotate(1deg)}
+.contact-map-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:20px}
+.contact-map-action{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:10px;padding:15px 18px;border-radius:17px;background:#164D43;color:#fff;font-size:14px;font-weight:700}
+.contact-map-action span:last-child{font-size:22px;line-height:1}
+.contact-map-caption{display:flex;justify-content:space-between;gap:15px;padding:12px 5px 2px;font-size:11px;color:#53625d;line-height:1.45}
+.contact-map-caption strong{color:#173D37}
+@media(max-width:900px){
+  .contact-inner{grid-template-columns:1fr;min-height:0}
+  .contact-backdrop{background-image:linear-gradient(180deg,rgba(245,240,230,.97) 0%,rgba(245,240,230,.9) 48%,rgba(245,240,230,.18) 78%,rgba(245,240,230,.02) 100%),url('assets/contact-latte-bg.png');background-position:center bottom;background-size:auto 100%,cover}
+  .contact-copy{padding:75px 0 25px;max-width:none}
+  .contact-map-wrap{padding:20px 0 75px;justify-content:center}
+  .contact-map-card{width:min(620px,100%);transform:rotate(0)}
+}
+@media(max-width:650px){
+  .contact-section{border-top-width:4px}
+  .contact-copy{padding:55px 0 18px}
+  .contact-kicker{font-size:10px;margin-bottom:10px}
+  .contact-title{font-size:clamp(52px,14vw,72px);line-height:.86;margin-bottom:18px}
+  .contact-lead{font-size:14px;line-height:1.5;margin-bottom:22px;max-width:330px}
+  .contact-grid{grid-template-columns:1fr;gap:9px}
+  .contact-card{padding:13px 14px;border-radius:15px;gap:11px}
+  .contact-icon{width:34px;height:34px;flex-basis:34px;font-size:16px}
+  .contact-card strong{font-size:10px;margin-bottom:3px}
+  .contact-card span,.contact-card a{font-size:13px}
+  .contact-card-wide{grid-column:auto}
+  .contact-socials{margin-top:15px;gap:8px}
+  .contact-social-label{font-size:9px;margin-right:2px}
+  .contact-social{width:38px;height:38px;font-size:15px}
+  .contact-note{font-size:16px;margin-top:17px}
+  .contact-map-wrap{padding:15px 0 52px}
+  .contact-map-card{padding:8px;border-radius:22px;box-shadow:0 18px 35px rgba(43,22,13,.11)}
+  .contact-map-card img{border-radius:16px}
+  .contact-map-action{padding:13px 15px;border-radius:14px;font-size:13px}
+  .contact-map-caption{font-size:9px;padding:9px 3px 1px}
+}
+</style>
+
 </head>
 <body>
 <div class="announce">APPROVED BY LATTE✓ </div>
-<header class="nav" id="nav"><div class="container nav-inner"><nav class="links"><a href="#menu">MENÜ</a><a href="#footer">HİKÂYEMİZ</a></nav><a class="logo" href="#top" aria-label="Espresso Check ana sayfa"><img src="assets/logo.png" alt="Espresso Check"></a><nav class="links right"><a href="#footer">ŞUBELER</a><a href="#menu">LATTE'NİN SEÇTİKLERİ</a></nav><button class="menu" id="mobileMenuToggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobileMenu">☰</button></div><div class="mobile-menu-panel" id="mobileMenu" aria-hidden="true"><a href="#menu">MENÜ</a><a href="#footer">HİKÂYEMİZ</a><a href="#footer">ŞUBELER</a><a href="#menu">LATTE'NİN SEÇTİKLERİ</a></div></header>
+<header class="nav" id="nav"><div class="container nav-inner"><nav class="links"><a href="#menu">MENÜ</a><a href="#footer">HİKÂYEMİZ</a></nav><a class="logo" href="#top" aria-label="Espresso Check ana sayfa"><img src="assets/logo.png" alt="Espresso Check"></a><nav class="links right"><a href="#contact">İLETİŞİM</a><a href="#menu">LATTE'NİN SEÇTİKLERİ</a></nav><button class="menu" id="mobileMenuToggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobileMenu">☰</button></div><div class="mobile-menu-panel" id="mobileMenu" aria-hidden="true"><a href="#menu">MENÜ</a><a href="#footer">HİKÂYEMİZ</a><a href="#contact">İLETİŞİM</a><a href="#menu">LATTE'NİN SEÇTİKLERİ</a></div></header>
 <main id="top">
 <section class="hero"><div class="container hero-inner"><div class="hero-copy"><div class="eyebrow">İYİ KAHVE, İYİ GÜNLER™</div><h1>Her Gün <span class="handwritten-green">Espresso</span> Molanı <span class="handwritten-green">Check</span> Et</h1><p>Espresso Check’te kahve molası biraz daha fazlası. Kahveden tatlıya, bowl’lardan soğuk içeceklere kadar günün keyfini yerine getirecek ne varsa burada. Bir de Latte var tabii; bazı şeylerin onun onayından geçmesi gerekiyor.</p><a class="btn" href="#menu">Menüyü Keşfet</a></div><div class="hero-art"><img class="can-photo" src="assets/espresso-check-dog.png" alt="Renkli gazlı içecek kutusu, ürün fotoğrafı"><div class="bubble one" aria-hidden="true"><span class="check-frame"></span><img class="tick tick-yellow" src="assets/tick.png" alt=""></div><div class="bubble two" aria-label="Latteyi sev"><span class="love-label">LATTEYİ SEV<br><small>(Başına dokun)</small></span><img class="tick tick-pink" src="assets/tick.png" alt=""></div><button class="latte-hit" type="button" aria-label="Latteyi sev"></button></div><div class="hero-note">Keep scrolling</div></div></section>
 <div class="ticker"><div class="ticker-track"><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span></div></div>
@@ -856,6 +917,40 @@ model-viewer#cupModel{
   </div>
 </section>
 <div class="order-separator bottom" aria-hidden="true"></div>
+
+<section class="contact-section" id="contact">
+  <div class="container contact-inner">
+    <div class="contact-backdrop" aria-hidden="true"></div>
+    <div class="contact-copy">
+      <div class="contact-kicker">Espresso Check · Bize Ulaş</div>
+      <h2 class="contact-title">Bir kahve<br><em>molası?</em><br>Buradayız.</h2>
+      <p class="contact-lead">Kahve, iyi yemek ve güzel hikâyeler için yolun Bahçelievler'e düşerse uğra. Latte de burada.</p>
+      <div class="contact-grid">
+        <a class="contact-card contact-card-wide" href="https://www.google.com/maps/search/?api=1&query=Bah%C3%A7elievler%20Mah.%20Prof.%20Dr.%20Muammer%20Aksoy%20Cad.%20No%3A37%2FA%20%C3%87ankaya%20Ankara" target="_blank" rel="noopener noreferrer" aria-label="Espresso Check konumunu haritada aç">
+          <span class="contact-icon">⌖</span><span><strong>Konum</strong><span>Bahçelievler Mah. Prof. Dr. Muammer Aksoy Cad. No:37/A, Çankaya / Ankara</span></span>
+        </a>
+        <a class="contact-card" href="tel:+905073685837">
+          <span class="contact-icon">☎</span><span><strong>Telefon</strong><span>+90 507 368 58 37</span></span>
+        </a>
+        <a class="contact-card" href="https://www.instagram.com/espressocheck/" target="_blank" rel="noopener noreferrer">
+          <span class="contact-icon">◎</span><span><strong>Instagram</strong><span>@espressocheck</span></span>
+        </a>
+        <div class="contact-card">
+          <span class="contact-icon">◷</span><span><strong>Çalışma Saatleri</strong><span>Her gün 08:00 – 01:00</span></span>
+        </div>
+      </div>
+      <div class="contact-socials"><span class="contact-social-label">Bizi takip et</span><a class="contact-social" href="https://www.instagram.com/espressocheck/" target="_blank" rel="noopener noreferrer" aria-label="Espresso Check Instagram">◎</a></div>
+      <div class="contact-note">Good coffee. Bigger stories. ♡</div>
+    </div>
+    <div class="contact-map-wrap">
+      <div class="contact-map-card">
+        <img src="assets/contact-map.png" alt="Espresso Check Bahçelievler konumunu gösteren stilize harita" loading="lazy" decoding="async">
+        <a class="contact-map-action" href="https://www.google.com/maps/search/?api=1&query=Bah%C3%A7elievler%20Mah.%20Prof.%20Dr.%20Muammer%20Aksoy%20Cad.%20No%3A37%2FA%20%C3%87ankaya%20Ankara" target="_blank" rel="noopener noreferrer"><span>Gerçek konumu haritada aç</span><span>↗</span></a>
+        <div class="contact-map-caption"><strong>Bahçelievler · Ankara</strong><span>Harita görseli tasarım materyalidir.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 </main>
 
 
