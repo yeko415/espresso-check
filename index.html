@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#dff4ed">
+<link rel="preload" as="image" href="assets/espresso-check-dog.png" fetchpriority="high">
+<link rel="preload" as="image" href="assets/tavuklu-bowl.png" fetchpriority="high">
+<link rel="preload" as="image" href="assets/order-scene-cream.png" fetchpriority="high">
 <meta name="description" content="Espresso Check — iyi kahve, iyi yemek ve güzel hikâyeler için Ankara Bahçelievler.">
 <title>Espresso Check — Good Coffee Bigger Stories</title>
 <link rel="icon" href="assets/logo.png" type="image/png">
@@ -1090,15 +1093,15 @@ img[width][height]{height:auto;}
     <div class="menu-feature">
       <div class="menu-copy">
         <div class="menu-index" id="menuIndex">01 / 04</div>
-        <h3 class="menu-title" id="menuTitle">Latte</h3>
-        <p class="menu-description" id="menuDescription">Yumuşak içimi ve dengeli aromasıyla günün her anına eşlik eden, sade ama karakterli bir kahve molası.</p>
-        <div class="menu-note" id="menuNote">Latte'nin seçtiklerinden</div>
+        <h3 class="menu-title" id="menuTitle">Tavuklu Bowl</h3>
+        <p class="menu-description" id="menuDescription">Tavuk, mevsim sebzeleri, özel sos, seçeceğiniz malzemeler ile servis edilir.</p>
+        <div class="menu-note" id="menuNote">Günün bowl seçimi</div>
       </div>
 
       <div class="menu-visual">
         <img class="menu-product" id="menuProduct"
              src="assets/tavuklu-bowl.png"
-             alt="Tavuklu Bowl" loading="lazy" decoding="async">
+             alt="Tavuklu Bowl" loading="eager" decoding="async" fetchpriority="high">
         <div class="menu-arrows">
           <button class="menu-arrow" id="menuPrev" type="button" aria-label="Önceki ürün">←</button>
           <button class="menu-arrow" id="menuNext" type="button" aria-label="Sonraki ürün">→</button>
@@ -1107,7 +1110,7 @@ img[width][height]{height:auto;}
     </div>
 
     <div class="menu-list-head">
-      <h4 class="menu-list-title" id="menuListTitle">Diğer Kahveler</h4>
+      <h4 class="menu-list-title" id="menuListTitle">Diğer Bowl'lar</h4>
       <p class="menu-list-hint">Daha fazla lezzet keşfet →</p>
     </div>
     <div class="menu-list" id="menuList"></div>
@@ -1601,6 +1604,214 @@ cupStage.addEventListener('touchend',e=>{
 })();
 </script>
 
+
+
+<style id="espresso-pro-max-plus-ultra-v3">
+/* =========================================================
+   PRO MAX PLUS ULTRA — VISUAL SYSTEM / MOTION / RESPONSIVE
+   Existing 3D interaction system remains untouched.
+   ========================================================= */
+
+:root{
+  --pmu-cream:#FFF8E9;
+  --pmu-paper:#FFFDF7;
+  --pmu-green:#0E7959;
+  --pmu-green-deep:#0E5A47;
+  --pmu-ink:#173D37;
+  --pmu-mustard:#C89B3C;
+  --pmu-mustard-light:#E1C477;
+  --pmu-burgundy:#6B3046;
+  --pmu-line:rgba(23,61,55,.14);
+  --pmu-shadow:0 18px 44px rgba(23,61,55,.10);
+  --pmu-shadow-deep:0 28px 70px rgba(23,61,55,.16);
+}
+
+/* GLOBAL */
+html{scroll-behavior:smooth}
+body{background:var(--pmu-cream);text-rendering:optimizeLegibility}
+img{image-rendering:auto}
+::selection{background:rgba(200,155,60,.38)}
+
+/* HEADER */
+.nav-inner{padding-inline:4px}
+.links{align-items:center}
+.links a{letter-spacing:.055em;font-size:12px}
+.links a::after{height:1.5px;bottom:-8px}
+.nav.scrolled{background:rgba(255,248,233,.92);backdrop-filter:blur(16px);box-shadow:0 12px 34px rgba(23,61,55,.11)}
+.logo img{filter:drop-shadow(0 1px 0 rgba(255,255,255,.25))}
+.menu{transition:transform .25s var(--ease-premium),opacity .2s ease}
+.menu:active{transform:scale(.92)}
+
+/* HERO */
+.hero{background:linear-gradient(118deg,#C89B3C 0%,#CFA243 55%,#D8B05E 100%)}
+.hero:before{background:rgba(255,248,233,.18);filter:blur(.2px)}
+.hero-inner{min-height:clamp(650px,72vh,780px)}
+.hero-copy{max-width:650px;position:relative}
+.hero h1{max-width:640px}
+.hero p{max-width:510px;color:rgba(43,22,13,.82)}
+.hero-copy .eyebrow{color:rgba(43,22,13,.80)}
+.hero-art{transform-origin:center;transition:transform .35s var(--ease-premium)}
+.can-photo{box-shadow:28px 34px 0 #8A651B,0 24px 54px rgba(43,22,13,.13);filter:saturate(1.02) contrast(1.01)}
+.hero-note{letter-spacing:.11em;opacity:.78}
+
+/* ticker */
+.ticker{border-color:rgba(22,77,67,.18)}
+.ticker span{letter-spacing:.02em}
+
+/* 3D SHOWCASE */
+.cup-showcase{background:linear-gradient(180deg,#FFF8E9 0%,#FFF9EE 55%,#FFF8E9 100%)}
+.cup-showcase .container{position:relative}
+.cup-showcase .intro-copy-left{position:relative;z-index:2}
+.cup-title-animated{max-width:7ch}
+.cup-stage{position:relative;z-index:1}
+.cup-showcase-right:after{content:"";position:absolute;inset:10% 12% 8% 10%;border:1px solid rgba(23,61,55,.06);border-radius:50% 50% 46% 54% / 44% 52% 48% 56%;pointer-events:none;transform:rotate(-7deg)}
+.cup-arrow{transition:transform .25s var(--ease-premium),box-shadow .25s var(--ease-premium)}
+.cup-arrow:hover{transform:translateY(-2px) scale(1.04)}
+.cup-progress span{transition:transform .35s var(--ease-premium),width .35s var(--ease-premium),opacity .25s ease}
+
+/* MENU */
+.menu-section{position:relative;background:#0E7959!important;isolation:isolate;overflow:hidden}
+.menu-section:before{opacity:.95}
+.menu-section .container{position:relative;z-index:2}
+.menu-kicker{letter-spacing:.14em;color:rgba(255,248,233,.78)}
+.menu-heading{max-width:720px;text-wrap:balance}
+.menu-intro{max-width:620px;color:rgba(255,248,233,.84)}
+.menu-cats{gap:9px}
+.menu-cat{border-color:rgba(255,248,233,.24);color:#FFF8E9;transition:transform .25s var(--ease-premium),background .25s ease,border-color .25s ease}
+.menu-cat:hover{transform:translateY(-2px);border-color:rgba(255,248,233,.55)}
+.menu-cat.is-active{background:var(--pmu-mustard);border-color:var(--pmu-mustard);color:var(--pmu-ink);box-shadow:0 8px 20px rgba(200,155,60,.18)}
+.menu-feature{position:relative}
+.menu-copy{align-self:center}
+.menu-index{color:rgba(255,248,233,.70);letter-spacing:.09em}
+.menu-title{color:#FFF8E9}
+.menu-description{color:rgba(255,248,233,.80);max-width:520px}
+.menu-note{color:var(--pmu-mustard-light)}
+.menu-visual{background:rgba(255,248,233,.05);border:1px solid rgba(255,248,233,.22);box-shadow:0 24px 60px rgba(7,45,34,.15);}
+.menu-visual:before{opacity:.86}
+.menu-arrow{background:var(--pmu-mustard);color:var(--pmu-ink);box-shadow:0 10px 24px rgba(200,155,60,.22)}
+.menu-arrow:hover{transform:translateY(-2px) scale(1.05)}
+.menu-list-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px}
+.menu-list-title{color:#FFF8E9!important}
+.menu-list-hint{letter-spacing:.04em}
+.menu-mini{background:rgba(255,248,233,.98);border-color:rgba(200,155,60,.62);box-shadow:0 12px 26px rgba(7,45,34,.08)}
+.menu-mini:hover{box-shadow:0 20px 42px rgba(7,45,34,.18)}
+.menu-mini.is-active{box-shadow:0 22px 42px rgba(7,45,34,.18);transform:translateY(-4px);border-color:var(--pmu-mustard)}
+.menu-mini-body{background:rgba(255,248,233,.98)}
+.menu-label{color:var(--pmu-green-deep)}
+
+/* ORDER */
+.order-section{background:linear-gradient(180deg,#FFF8E9 0%,#FFF7E5 100%)}
+.order-section:after{background:radial-gradient(circle at 82% 42%,rgba(200,155,60,.10),transparent 25%),radial-gradient(circle at 8% 84%,rgba(14,121,89,.05),transparent 22%)}
+.order-kicker{color:var(--pmu-green-deep)}
+.order-title em{color:var(--pmu-mustard)}
+.order-link{position:relative}
+.order-link:after{content:"";position:absolute;inset:10px;border:1px solid rgba(23,61,55,.08);border-radius:18px;pointer-events:none;opacity:0;transform:scale(.97);transition:opacity .25s ease,transform .25s var(--ease-premium)}
+.order-link:hover:after{opacity:1;transform:scale(1)}
+.order-note{color:var(--pmu-green-deep)}
+
+/* CONTACT */
+.contact-section{background:linear-gradient(145deg,#0E5A47 0%,#0E7959 56%,#0B634E 100%)!important}
+.contact-section:before{content:"";position:absolute;width:520px;height:520px;right:-300px;bottom:-310px;border-radius:50%;background:rgba(200,155,60,.10);pointer-events:none}
+.contact-title{max-width:7ch}
+.contact-card{backdrop-filter:blur(10px);}
+.contact-map-card{transform:rotate(.7deg);}
+.contact-map-card:hover{transform:rotate(0) translateY(-5px) scale(1.005)}
+.contact-map-action{box-shadow:0 10px 22px rgba(14,90,71,.20)}
+.contact-social{color:var(--pmu-ink)}
+
+/* FOOTER */
+.footer{background:#FFF8E9;padding-top:74px}
+.footer-top{align-items:end}
+.footer-brand{max-width:500px}
+.footer-logo-image{width:190px}
+.footer-tagline{font-size:22px;color:var(--pmu-green-deep)}
+.footer-links{align-self:end}
+.footer-links strong{color:var(--pmu-green-deep)}
+.footer-links a{position:relative;width:max-content}
+.footer-links a:after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:var(--pmu-mustard);transform:scaleX(0);transform-origin:right;transition:transform .24s var(--ease-premium)}
+.footer-links a:hover:after{transform:scaleX(1);transform-origin:left}
+.copyright{letter-spacing:.02em}
+
+/* REVEAL / MOTION */
+.motion-ready [data-reveal]{transform:translate3d(0,24px,0);filter:blur(2px);transition:opacity .72s var(--ease-premium),transform .72s var(--ease-premium),filter .72s var(--ease-premium)}
+.motion-ready [data-reveal].is-visible{transform:none;filter:none}
+.motion-ready .menu-mini[data-reveal].is-visible{transition-delay:var(--reveal-delay,0ms)}
+
+/* keep decoration behind content */
+.contact-section>.container,.order-section>.container,.menu-section>.container{position:relative;z-index:2}
+
+@media (max-width:900px){
+  .hero-inner{min-height:640px}
+  .order-grid{gap:34px}
+  .contact-inner{gap:32px}
+  .footer-top{align-items:start}
+}
+
+@media (max-width:650px){
+  .nav{backdrop-filter:blur(10px)}
+  .nav-inner{padding-inline:0}
+  .mobile-menu-panel{backdrop-filter:blur(16px);box-shadow:0 22px 55px rgba(23,61,55,.20)}
+  .hero-inner{min-height:0}
+  .hero-copy{max-width:100%}
+  .hero h1{max-width:7.5ch}
+  .hero-art{margin-top:2px}
+  .ticker span{letter-spacing:0}
+
+  .cup-showcase{padding-bottom:48px}
+  .cup-showcase-right:after{display:none}
+
+  .menu-section{padding-top:58px!important;padding-bottom:62px!important}
+  .menu-heading{max-width:8ch}
+  .menu-intro{max-width:340px}
+  .menu-list-head{align-items:center}
+  .menu-list-title{font-size:26px!important}
+  .menu-list-hint{font-size:9px!important}
+  .menu-mini.is-active{transform:translateY(-3px)}
+
+  .order-link:after{inset:5px;border-radius:11px}
+
+  .contact-section{padding-bottom:18px}
+  .contact-title{max-width:7ch}
+  .contact-map-card{transform:none}
+  .contact-map-card:hover{transform:translateY(-2px)}
+
+  .footer{padding-top:54px}
+  .footer-top{gap:28px}
+  .footer-brand{max-width:330px}
+  .footer-logo-image{width:162px}
+  .footer-tagline{font-size:17px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-art,.can-photo,.cup-arrow,.menu-mini,.menu-cat,.order-link,.order-image,.contact-card,.contact-map-card,.contact-social,.footer-links a,.logo img{transition:none!important}
+  .footer-links a:after{transition:none!important}
+  .motion-ready [data-reveal]{filter:none!important;transform:none!important;transition:none!important}
+}
+</style>
+
+<script id="espresso-pro-max-image-warmup">
+(function(){
+  const urls=[
+    'assets/ton-baligi-bowl.png','assets/falafel-bowl.png','assets/sebzeli-bowl.png',
+    'assets/kovada-waffle.png','assets/acai-bowl.png',
+    'assets/lemonade.png','assets/strawberry-lemonade.png','assets/cool-lime.png',
+    'assets/berry-hibiscus.png','assets/orange-juice.png','assets/pink-pitaya.png','assets/green-tea-lime.png'
+  ];
+  function warm(){
+    urls.forEach(function(url){
+      const img=new Image();
+      img.decoding='async';
+      img.src=url;
+      if(img.decode) img.decode().catch(function(){});
+    });
+  }
+  if('requestIdleCallback' in window){
+    requestIdleCallback(warm,{timeout:1800});
+  }else{
+    setTimeout(warm,900);
+  }
+})();
+</script>
 </body>
 
 <style id="espresso-mobile-menu-compact-v2">
