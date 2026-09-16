@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#dff4ed">
-<meta name="description" content="Espresso Check — iyi kahve, iyi yemek ve güzel hikâyeler için. Ankara Bahçelievler.">
-<title>Espresso Check — Good Coffee Bigger Stories</title>
+<meta name="description" content="FIZZORA — canlı, modern ve ürün odaklı soda markası demo sitesi.">
+<title>FIZZORA — Feel Good Fizz</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap');
 :root{--cream:#fff8e9;--mint:#c9f1e7;--green:#164d43;--pink:#ff7cae;--yellow:#ffd96a;--orange:#ff9a55;--ink:#173d37;--white:#fffdf7;--line:rgba(22,77,67,.16);--ease:cubic-bezier(.2,.8,.2,1);--container:min(1320px,calc(100vw - 48px))}
@@ -188,7 +188,7 @@ model-viewer#cupModel{
   outline:none;
   border:0;
   -webkit-tap-highlight-color:transparent;
-  touch-action:pan-y;
+  touch-action:none;
   user-select:none;
   animation:cupIdleFloatSafe 3.8s ease-in-out infinite;
   will-change:transform;
@@ -307,7 +307,7 @@ model-viewer#cupModel{
 /* ===== Espresso Check Menu — isolated add-on ===== */
 .menu-section{
   position:relative;
-  background:#0E7959;
+  background:linear-gradient(180deg,#0E7959 0%,#0E7959 78%,#F5F0E6 78%,#F5F0E6 100%);
   padding:105px 0 115px;
   overflow:hidden;
   color:#F5F0E6;
@@ -490,7 +490,7 @@ model-viewer#cupModel{
   text-transform:uppercase;color:#0E7959;margin-top:12px;
 }
 @media(max-width:900px){
-  .menu-section{padding:86px 0 95px;background:#0E7959}
+  .menu-section{padding:86px 0 95px;background:linear-gradient(180deg,#0E7959 0%,#0E7959 72%,#F5F0E6 72%,#F5F0E6 100%)}
   .menu-feature{grid-template-columns:1fr;gap:30px}
   .menu-copy{order:2;padding-right:0}
   .menu-visual{order:1;min-height:490px}
@@ -500,7 +500,7 @@ model-viewer#cupModel{
 @media(max-width:650px){
   .menu-section{
     padding:72px 0 82px;
-    background:#0E7959;
+    background:linear-gradient(180deg,#0E7959 0%,#0E7959 66%,#F5F0E6 66%,#F5F0E6 100%);
   }
   .menu-heading{font-size:clamp(48px,13vw,68px)}
   .menu-cats{
@@ -704,7 +704,7 @@ model-viewer#cupModel{
   .quote{padding:55px 0}
   .quote h2{font-size:52px}
 
-  .menu-section{padding:48px 0 58px;background:#0E7959}
+  .menu-section{padding:48px 0 58px;background:linear-gradient(180deg,#0E7959 0%,#0E7959 76%,#F5F0E6 76%,#F5F0E6 100%)}
   .menu-heading{font-size:clamp(44px,11vw,58px)}
   .menu-visual{min-height:310px;border-radius:22px}
   .menu-visual:before{width:300px;height:300px}
@@ -880,19 +880,150 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
 .nav .order-nav-link{white-space:nowrap}
 .footer-links{display:flex;gap:55px}
 @media(max-width:650px){.footer-links{display:grid;grid-template-columns:1fr 1fr;gap:28px;width:100%}.footer-links div{min-width:0}.footer-links div:first-child{grid-column:span 1}.footer-links div:last-child{justify-items:start}}
-<style id="espresso-menu-green-final">
-/* Menu stays green through its bottom edge; secondary list labels are cream/white. */
-.menu-section{background:#0E7959 !important;}
-.menu-list-title,.menu-list-hint{color:#FFF8E9 !important;}
-@media(max-width:650px){.menu-list-title,.menu-list-hint{color:#FFF8E9 !important;}}
 </style>
+
+<style id="espresso-premium-v1-polish">
+:root{
+  --green-deep:#0E5A47;
+  --green:#0E7959;
+  --green-ink:#173D37;
+  --cream:#FFF8E9;
+  --paper:#FFFDF7;
+  --mustard:#C89B3C;
+  --mustard-soft:#D9B45C;
+  --burgundy:#6B3046;
+  --ease-premium:cubic-bezier(.2,.8,.2,1);
+}
+html{scroll-padding-top:92px}
+body{background:var(--cream)}
+::selection{background:rgba(200,155,60,.35);color:#173D37}
+a,button{outline-offset:4px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--mustard);outline-offset:4px}
+
+/* HEADER */
+.nav{transition:height .35s var(--ease-premium),background .35s var(--ease-premium),box-shadow .35s var(--ease-premium),border-color .35s var(--ease-premium)}
+.nav.scrolled{background:rgba(255,248,233,.88);box-shadow:0 10px 34px rgba(23,61,55,.09)}
+.links a{position:relative;transition:color .2s ease,transform .2s ease}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:2px;border-radius:999px;background:var(--mustard);transform:scaleX(0);transform-origin:right;transition:transform .25s var(--ease-premium)}
+.links a:hover{color:var(--green)}
+.links a:hover::after{transform:scaleX(1);transform-origin:left}
+.logo img{transition:transform .35s var(--ease-premium)}
+.logo:hover img{transform:scale(1.025)}
+.mobile-menu-panel a{transition:transform .2s var(--ease-premium),background .2s ease}
+.mobile-menu-panel a:hover{transform:translateX(3px)}
+
+/* HERO */
+.hero{isolation:isolate}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 68% 40%,rgba(255,255,255,.11),transparent 30%),radial-gradient(circle at 16% 86%,rgba(22,77,67,.06),transparent 25%);z-index:0}
+.hero-inner{z-index:1}
+.hero-copy .eyebrow,.hero-copy h1,.hero-copy p,.hero-copy .btn{will-change:transform,opacity}
+.hero-copy .btn{box-shadow:0 12px 24px rgba(22,77,67,.18)}
+.btn{transition:transform .25s var(--ease-premium),box-shadow .25s var(--ease-premium),background .25s ease}
+.btn:hover{box-shadow:0 17px 30px rgba(22,77,67,.21)}
+.hero-art .bubble{box-shadow:0 14px 30px rgba(43,22,13,.10);transition:transform .3s var(--ease-premium),box-shadow .3s var(--ease-premium)}
+.hero-art .bubble:hover{box-shadow:0 18px 34px rgba(43,22,13,.14)}
+
+/* TICKER */
+.ticker{position:relative}
+.ticker::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0,transparent 9px,rgba(255,255,255,.025) 10px,transparent 11px);mix-blend-mode:soft-light}
+.ticker-track{will-change:transform}
+
+/* 3D SECTION — DO NOT ALTER GESTURE/CAMERA LOGIC */
+.cup-showcase{position:relative}
+.cup-showcase-right::before{content:"";position:absolute;width:360px;height:180px;border-radius:50%;background:radial-gradient(ellipse,rgba(14,90,71,.10),transparent 72%);left:50%;bottom:44px;transform:translateX(-50%);pointer-events:none;filter:blur(4px)}
+.cup-progress span{transform:scaleX(1);transform-origin:center}
+.cup-progress span.active{box-shadow:0 4px 12px rgba(14,90,71,.18)}
+.cup-arrow{box-shadow:0 10px 24px rgba(22,77,67,.14)}
+.cup-arrow:hover{box-shadow:0 15px 30px rgba(22,77,67,.18)}
+
+/* MENU — full green field, white list heading */
+.menu-section{background:#0E7959!important}
+.menu-list-title{color:#FFF8E9!important}
+.menu-list-hint{color:rgba(255,248,233,.72)!important}
+.menu-mini{transition:transform .3s var(--ease-premium),box-shadow .3s var(--ease-premium),border-color .3s ease}
+.menu-mini:hover{transform:translateY(-6px);box-shadow:0 18px 34px rgba(22,31,25,.18);border-color:#DDB65F}
+.menu-mini img{transition:transform .45s var(--ease-premium),filter .3s ease}
+.menu-mini:hover img{transform:scale(1.035)}
+.menu-cat{position:relative;overflow:hidden}
+.menu-cat::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.10);transform:translateY(100%);transition:transform .3s var(--ease-premium)}
+.menu-cat:hover::before{transform:translateY(0)}
+.menu-cat>*{position:relative;z-index:1}
+.menu-visual{transition:box-shadow .35s var(--ease-premium),transform .35s var(--ease-premium)}
+.menu-visual:hover{box-shadow:0 28px 52px rgba(0,0,0,.13);transform:translateY(-2px)}
+.menu-product{filter:saturate(1.02)}
+
+/* ORDER */
+.order-section{position:relative}
+.order-section::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 82% 48%,rgba(200,155,60,.08),transparent 24%)}
+.order-grid{z-index:2}
+.order-link{transition:transform .25s var(--ease-premium),filter .25s ease}
+.order-link:hover{filter:saturate(1.04)}
+.order-image{transition:transform .55s var(--ease-premium)}
+.order-visual:hover .order-image{transform:translateY(-4px) scale(1.008)}
+
+/* CONTACT */
+.contact-section{background:linear-gradient(145deg,#0E5A47 0%,#0E7959 58%,#0C654F 100%)!important}
+.contact-section::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 74% 28%,rgba(255,248,233,.07),transparent 25%),radial-gradient(circle at 16% 84%,rgba(200,155,60,.10),transparent 24%);z-index:0}
+.contact-inner{z-index:1}
+.contact-card{transition:transform .25s var(--ease-premium),box-shadow .25s var(--ease-premium),background .25s ease}
+.contact-card:hover{transform:translateY(-4px);box-shadow:0 19px 35px rgba(0,0,0,.17)!important}
+.contact-icon{transition:transform .25s var(--ease-premium)}
+.contact-card:hover .contact-icon{transform:scale(1.05) rotate(-3deg)}
+.contact-social{transition:transform .25s var(--ease-premium),box-shadow .25s ease,background .25s ease}
+.contact-social:hover{box-shadow:0 12px 24px rgba(0,0,0,.17)}
+.contact-map-card{transition:transform .45s var(--ease-premium),box-shadow .35s var(--ease-premium)}
+.contact-map-card:hover{transform:rotate(0deg) translateY(-4px);box-shadow:0 34px 72px rgba(0,0,0,.25)}
+.contact-map-action{position:relative;overflow:hidden;transition:transform .25s var(--ease-premium),background .25s ease}
+.contact-map-action::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.12) 50%,transparent 80%);transform:translateX(-120%);transition:transform .55s var(--ease-premium)}
+.contact-map-action:hover::after{transform:translateX(120%)}
+
+/* FOOTER */
+.footer{position:relative}
+.footer::before{content:"";display:block;position:absolute;left:0;right:0;top:-13px;height:26px;background:var(--cream);clip-path:polygon(0 100%,7% 58%,14% 84%,22% 42%,31% 78%,40% 49%,50% 82%,59% 48%,69% 78%,78% 40%,88% 76%,100% 46%,100% 100%)}
+.footer-brand,.footer-links{position:relative;z-index:1}
+.footer-logo-image{transition:transform .3s var(--ease-premium)}
+.footer-logo-image:hover{transform:translateY(-2px)}
+.footer-links a{transition:color .22s ease,transform .22s var(--ease-premium)}
+
+/* SCROLL REVEAL */
+.motion-ready [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .75s var(--ease-premium),transform .75s var(--ease-premium)}
+.motion-ready [data-reveal].is-visible{opacity:1;transform:none}
+.motion-ready [data-reveal="soft-scale"]{transform:translateY(16px) scale(.975)}
+.motion-ready [data-reveal="soft-scale"].is-visible{transform:none}
+.motion-ready [data-reveal="stagger"]{transition-delay:var(--reveal-delay,0ms)}
+
+/* subtle section separators */
+.order-separator{height:4px;background:#164D43;position:relative;overflow:hidden}
+.order-separator::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(200,155,60,.65),transparent);transform:translateX(-100%);animation:separatorSweep 5s ease-in-out infinite}
+@keyframes separatorSweep{0%,55%{transform:translateX(-100%)}80%,100%{transform:translateX(100%)}}
+
+@media(max-width:900px){
+  .cup-showcase-right::before{width:260px;height:140px;bottom:38px}
+  .footer::before{top:-9px;height:18px}
+}
+@media(max-width:650px){
+  html{scroll-padding-top:80px}
+  .links a::after{display:none}
+  .hero::after{background:radial-gradient(circle at 75% 32%,rgba(255,255,255,.10),transparent 28%)}
+  .cup-showcase-right::before{bottom:30px}
+  .menu-section{background:#0E7959!important}
+  .menu-list-title{color:#FFF8E9!important}
+  .contact-section::after{background:radial-gradient(circle at 75% 20%,rgba(255,248,233,.06),transparent 28%),radial-gradient(circle at 8% 90%,rgba(200,155,60,.08),transparent 28%)}
+  .order-separator::after{animation-duration:7s}
+}
+@media(prefers-reduced-motion:reduce){
+  .order-separator::after{animation:none!important}
+  .motion-ready [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
+  .logo img,.menu-mini img,.order-image,.contact-card,.contact-map-card{transition:none!important}
+}
 </style>
+
 </head>
 <body>
 <div class="announce">APPROVED BY LATTE✓ </div>
 <header class="nav" id="nav"><div class="container nav-inner"><nav class="links"><a href="#menu">MENÜ</a><a href="#order" class="order-nav-link">SİPARİŞ VER</a></nav><a class="logo" href="#top" aria-label="Espresso Check ana sayfa"><img src="assets/logo.png" alt="Espresso Check"></a><nav class="links right"><a href="#contact">İLETİŞİM</a><a href="#menu">LATTE'NİN SEÇTİKLERİ</a></nav><button class="menu" id="mobileMenuToggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobileMenu">☰</button></div><div class="mobile-menu-panel" id="mobileMenu" aria-hidden="true"><a href="#menu">MENÜ</a><a href="#order" class="order-nav-link">SİPARİŞ VER</a><a href="#contact">İLETİŞİM</a><a href="#menu">LATTE'NİN SEÇTİKLERİ</a></div></header>
 <main id="top">
-<section class="hero"><div class="container hero-inner"><div class="hero-copy"><div class="eyebrow">İYİ KAHVE, İYİ GÜNLER™</div><h1>Her Gün <span class="handwritten-green">Espresso</span> Molanı <span class="handwritten-green">Check</span> Et</h1><p>Espresso Check’te kahve molası biraz daha fazlası. Kahveden tatlıya, bowl’lardan soğuk içeceklere kadar günün keyfini yerine getirecek ne varsa burada. Bir de Latte var tabii; bazı şeylerin onun onayından geçmesi gerekiyor.</p><a class="btn" href="#menu">Menüyü Keşfet</a></div><div class="hero-art"><img class="can-photo" src="assets/espresso-check-dog.png" alt="Renkli gazlı içecek kutusu, ürün fotoğrafı"><div class="bubble one" aria-hidden="true"><span class="check-frame"></span><img class="tick tick-yellow" src="assets/tick.png" alt=""></div><div class="bubble two" aria-label="Latteyi sev"><span class="love-label">LATTEYİ SEV<br><small>(Başına dokun)</small></span><img class="tick tick-pink" src="assets/tick.png" alt=""></div><button class="latte-hit" type="button" aria-label="Latteyi sev"></button></div><div class="hero-note">Keep scrolling</div></div></section>
+<section class="hero"><div class="container hero-inner"><div class="hero-copy"><div class="eyebrow" data-reveal>İYİ KAHVE, İYİ GÜNLER™</div><h1 data-reveal style="--reveal-delay:80ms">Her Gün <span class="handwritten-green">Espresso</span> Molanı <span class="handwritten-green">Check</span> Et</h1><p data-reveal style="--reveal-delay:150ms">Espresso Check’te kahve molası biraz daha fazlası. Kahveden tatlıya, bowl’lardan soğuk içeceklere kadar günün keyfini yerine getirecek ne varsa burada. Bir de Latte var tabii; bazı şeylerin onun onayından geçmesi gerekiyor.</p><a class="btn" data-reveal="soft-scale" style="--reveal-delay:230ms" href="#menu">Menüyü Keşfet</a></div><div class="hero-art"><img class="can-photo" src="assets/espresso-check-dog.png" alt="Renkli gazlı içecek kutusu, ürün fotoğrafı"><div class="bubble one" aria-hidden="true"><span class="check-frame"></span><img class="tick tick-yellow" src="assets/tick.png" alt=""></div><div class="bubble two" aria-label="Latteyi sev"><span class="love-label">LATTEYİ SEV<br><small>(Başına dokun)</small></span><img class="tick tick-pink" src="assets/tick.png" alt=""></div><button class="latte-hit" type="button" aria-label="Latteyi sev"></button></div><div class="hero-note">Keep scrolling</div></div></section>
 <div class="ticker"><div class="ticker-track"><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span></div></div>
 <section class="intro cup-showcase" id="benefits">
   <div class="container intro-grid">
@@ -908,7 +1039,7 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
             src="assets/espresso-check-coffee-cup-v10.glb"
             disable-pan
             interaction-prompt="none"
-            touch-action="pan-y"
+            touch-action="none"
             shadow-intensity="1"
             exposure="1"
             environment-image="neutral"
@@ -929,7 +1060,7 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
   <div class="cup-progress" id="cupProgress" aria-label="Bardak görünüm sayacı"></div>
 </section>
 <div class="ticker"><div class="ticker-track"><span>KAHVE MOLASI ✓ BOWL MOLASI ✓ TATLI MOLASI ✓</span><span>KAHVE MOLASI ✓ BOWL MOLASI ✓ TATLI MOLASI ✓</span><span>KAHVE MOLASI ✓ BOWL MOLASI ✓ TATLI MOLASI ✓</span></div></div>
-<section class="menu-section" id="menu">
+<section class="menu-section" id="menu" data-section="menu">
   <div class="container">
     <div class="menu-kicker">Espresso Check · Menü</div>
     <h2 class="menu-heading">Ne Yiyeceğini,<br><em>Ne İçeceğini</em><br>Check Et.</h2>
@@ -969,7 +1100,7 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
 </section>
 
 <div class="order-separator" aria-hidden="true"></div>
-<section class="order-section" id="order">
+<section class="order-section" id="order" data-section="order">
   <div class="container order-grid">
     <div class="order-copy">
       <div class="order-kicker">Espresso Check · Sipariş</div>
@@ -996,7 +1127,7 @@ a.contact-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,2
 </section>
 <div class="order-separator bottom" aria-hidden="true"></div>
 
-<section class="contact-section" id="contact">
+<section class="contact-section" id="contact" data-section="contact">
   <div class="container contact-inner">
     <div class="contact-backdrop" aria-hidden="true"></div><div class="contact-blob contact-blob-a" aria-hidden="true"></div><div class="contact-blob contact-blob-b" aria-hidden="true"></div>
     <div class="contact-copy">
@@ -1382,6 +1513,78 @@ cupStage.addEventListener('touchend',e=>{
 /* Phone motion is CSS-only: fixed position + soft notification vibration. */
 </script>
 
+
+<script id="espresso-premium-v1-motion">
+(function(){
+  const root=document.documentElement;
+  root.classList.add('motion-ready');
+
+  const revealTargets=[
+    ...document.querySelectorAll('.menu-kicker,.menu-heading,.menu-intro,.menu-cats,.menu-feature,.menu-list-head,.menu-mini'),
+    ...document.querySelectorAll('.order-kicker,.order-title,.order-text,.order-links,.order-note,.order-visual'),
+    ...document.querySelectorAll('.contact-kicker,.contact-title,.contact-lead,.contact-grid,.contact-socials,.contact-note,.contact-map-wrap'),
+    ...document.querySelectorAll('.footer-brand,.footer-links,.copyright')
+  ];
+  revealTargets.forEach((el,i)=>{
+    if(!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal','1');
+    if(el.classList.contains('menu-mini')) el.setAttribute('data-reveal','stagger');
+    el.style.setProperty('--reveal-delay',`${Math.min(i%8,7)*55}ms`);
+  });
+
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  revealTargets.forEach(el=>io.observe(el));
+
+  // Very light desktop parallax: decorative motion only, never touch the 3D system.
+  const finePointer=window.matchMedia('(pointer:fine)').matches;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(finePointer && !reduced){
+    const heroArt=document.querySelector('.hero-art');
+    const orderVisual=document.querySelector('.order-visual');
+    const blobs=document.querySelectorAll('.contact-blob');
+    let raf=0,lastX=0,lastY=0;
+    function apply(){
+      raf=0;
+      const x=(lastX-innerWidth/2)/innerWidth;
+      const y=(lastY-innerHeight/2)/innerHeight;
+      if(heroArt) heroArt.style.transform=`translate3d(${(x*5).toFixed(2)}px,${(y*3).toFixed(2)}px,0)`;
+      if(orderVisual) orderVisual.style.transform=`translate3d(${(x*-3).toFixed(2)}px,${(y*-2).toFixed(2)}px,0)`;
+      blobs.forEach((b,i)=>b.style.transform=`translate3d(${(x*(i? -6:4)).toFixed(2)}px,${(y*(i? 4:-3)).toFixed(2)}px,0) rotate(${i?16:-18}deg)`);
+    }
+    window.addEventListener('pointermove',(e)=>{
+      lastX=e.clientX;lastY=e.clientY;
+      if(!raf) raf=requestAnimationFrame(apply);
+    },{passive:true});
+    window.addEventListener('mouseleave',()=>{
+      if(heroArt) heroArt.style.transform='';
+      if(orderVisual) orderVisual.style.transform='';
+      blobs.forEach((b,i)=>b.style.transform=i?'rotate(16deg)':'rotate(-18deg)');
+    });
+  }
+
+  // Keep navigation feedback aligned with the section currently in view.
+  const navLinks=[...document.querySelectorAll('.links a,[data-role="mobile-link"]')];
+  const sections=[...document.querySelectorAll('#menu,#order,#contact')];
+  if('IntersectionObserver' in window){
+    const spy=new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          navLinks.forEach(a=>a.removeAttribute('aria-current'));
+          navLinks.filter(a=>a.getAttribute('href')===`#${entry.target.id}`).forEach(a=>a.setAttribute('aria-current','page'));
+        }
+      });
+    },{threshold:.55});
+    sections.forEach(s=>spy.observe(s));
+  }
+})();
+</script>
+
 </body>
 </html>
 
@@ -1389,7 +1592,7 @@ cupStage.addEventListener('touchend',e=>{
 @media(max-width:650px){
   /* MENU: keep the green field behind the full feature copy so the title is not clipped by the background transition. */
   .menu-section{
-    background:#0E7959 !important;
+    background:linear-gradient(180deg,#0E7959 0%,#0E7959 82%,#F5F0E6 82%,#F5F0E6 100%) !important;
     overflow:hidden;
   }
   .menu-section:after{display:none!important}
