@@ -1084,7 +1084,7 @@ img[width][height]{height:auto;}
 <div class="announce">APPROVED BY LATTE✓ </div>
 <header class="nav" id="nav"><div class="container nav-inner"><nav class="links"><a href="#menu">MENÜ</a><a href="#order" class="order-nav-link">SİPARİŞ VER</a></nav><a class="logo" href="#top" aria-label="Espresso Check ana sayfa"><img src="assets/logo.png" alt="Espresso Check" fetchpriority="high"></a><nav class="links right"><a href="#contact">İLETİŞİM</a><a href="#menu">LATTE'NİN SEÇTİKLERİ</a></nav><button class="menu" id="mobileMenuToggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobileMenu">☰</button></div><div class="mobile-menu-panel" id="mobileMenu" aria-hidden="true"><a href="#menu">MENÜ</a><a href="#order" class="order-nav-link">SİPARİŞ VER</a><a href="#contact">İLETİŞİM</a><a href="#menu">LATTE'NİN SEÇTİKLERİ</a></div></header>
 <main id="top">
-<section class="hero"><div class="container hero-inner"><div class="hero-copy"><div class="eyebrow" data-reveal>İYİ KAHVE, İYİ GÜNLER™</div><h1 data-reveal style="--reveal-delay:80ms">Her Gün<span class="hero-mobile-break"></span> <span class="handwritten-green">Espresso</span> Molanı<span class="hero-mobile-break"></span> <span class="handwritten-green">Check</span> Et</h1><p data-reveal style="--reveal-delay:150ms">Espresso Check’te kahve molası biraz daha fazlası. Kahveden tatlıya, bowl’lardan soğuk içeceklere kadar günün keyfini yerine getirecek ne varsa burada. Bir de Latte var tabii; bazı şeylerin onun onayından geçmesi gerekiyor.</p><a class="btn" data-reveal="soft-scale" style="--reveal-delay:230ms" href="#menu">Menüyü Keşfet</a></div><div class="hero-art"><img class="can-photo" src="assets/espresso-check-dog.png" fetchpriority="high" loading="eager" decoding="async" alt="Espresso Check Latte ve marka görseli"><div class="bubble one" aria-hidden="true"><span class="check-frame"></span><img class="tick tick-yellow" src="assets/tick.png" alt=""></div><div class="bubble two" aria-label="Latteyi sev"><span class="love-label">LATTEYİ SEV<br><small>(Başına dokun)</small></span><img class="tick tick-pink" src="assets/tick.png" alt=""></div><button class="latte-hit" type="button" aria-label="Latteyi sev"></button></div><div class="hero-note">Keep scrolling</div></div></section>
+<section class="hero"><div class="container hero-inner"><div class="hero-copy"><div class="eyebrow" data-reveal>İYİ KAHVE, İYİ GÜNLER™</div><h1 data-reveal style="--reveal-delay:80ms"><span class="hero-title-line">Her Gün</span><span class="hero-title-line"> <span class="handwritten-green word-espresso">Espresso</span> Molanı</span><span class="hero-title-line"> <span class="handwritten-green word-check">Check</span> Et</span></h1><p data-reveal style="--reveal-delay:150ms">Espresso Check’te kahve molası biraz daha fazlası. Kahveden tatlıya, bowl’lardan soğuk içeceklere kadar günün keyfini yerine getirecek ne varsa burada. Bir de Latte var tabii; bazı şeylerin onun onayından geçmesi gerekiyor.</p><a class="btn" data-reveal="soft-scale" style="--reveal-delay:230ms" href="#menu">Menüyü Keşfet</a></div><div class="hero-art"><img class="can-photo" src="assets/espresso-check-dog.png" fetchpriority="high" loading="eager" decoding="async" alt="Espresso Check Latte ve marka görseli"><div class="bubble one" aria-hidden="true"><span class="check-frame"></span><img class="tick tick-yellow" src="assets/tick.png" alt=""></div><div class="bubble two" aria-label="Latteyi sev"><span class="love-label">LATTEYİ SEV<br><small>(Başına dokun)</small></span><img class="tick tick-pink" src="assets/tick.png" alt=""></div><button class="latte-hit" type="button" aria-label="Latteyi sev"></button></div><div class="hero-note">Keep scrolling</div></div></section>
 <div class="ticker"><div class="ticker-track"><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span></div></div>
 <section class="intro cup-showcase" id="benefits">
   <div class="container intro-grid">
@@ -2123,16 +2123,20 @@ img{image-rendering:auto}
 </style>
 
 <style id="espresso-hero-title-mobile-wrap-fix">
-.hero-mobile-break{display:none}
+/* Hero title: keep the exact text order; logo-style weights are explicit. */
+.hero h1 .word-espresso{font-weight:700!important}
+.hero h1 .word-check{font-weight:400!important}
+.hero-title-line{display:inline}
 @media(max-width:650px){
+  .hero-copy{text-align:left}
   .hero h1{
     max-width:none!important;
     width:100%!important;
-    font-size:clamp(39px,11.2vw,45px)!important;
-    line-height:.94!important;
+    font-size:clamp(36px,10vw,41px)!important;
+    line-height:.98!important;
     letter-spacing:-.06em!important;
     text-wrap:normal;
   }
-  .hero-mobile-break{display:block;height:0}
+  .hero-title-line{display:block;white-space:nowrap}
 }
 </style>
