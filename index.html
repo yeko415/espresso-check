@@ -2149,15 +2149,16 @@ img{image-rendering:auto}
   .hero h1.hero-title-final{
     max-width:none!important;
     width:100%!important;
-    font-size:clamp(29px,8.25vw,37px)!important;
-    line-height:.96!important;
+    font-size:clamp(40px,10.5vw,46px)!important;
+    line-height:.95!important;
     letter-spacing:-.055em!important;
+    text-align:center!important;
     text-wrap:normal;
-    margin-bottom:16px!important;
+    margin-bottom:18px!important;
   }
-  /* Four deliberate visual lines on a narrow screen; "Check Et" stays together. */
-  .hero h1.hero-title-final .title-espresso-molani{flex-direction:column;align-items:flex-start;gap:0;}
-  .hero h1.hero-title-final .hero-title-line{width:max-content;max-width:100%;}
-  .hero h1.hero-title-final .title-check-et{flex-direction:row;gap:.22em;}
+  /* Keep the four-line mobile headline larger and centered; "Check Et" stays together. */
+  .hero h1.hero-title-final .title-espresso-molani{flex-direction:column;align-items:center;gap:0;}
+  .hero h1.hero-title-final .hero-title-line{width:max-content;max-width:100%;margin-inline:auto!important;}
+  .hero h1.hero-title-final .title-check-et{flex-direction:row;justify-content:center;gap:.22em;}
 }
 </style>
