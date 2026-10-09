@@ -1081,11 +1081,11 @@ img[width][height]{height:auto;}
 
 </head>
 <body>
-<div class="announce">İYİ KAHVE, GÜZEL BİR MOLA ✓</div>
-<header class="nav" id="nav"><div class="container nav-inner"><nav class="links"><a href="#menu">MENÜ</a><a href="#order" class="order-nav-link">SİPARİŞ VER</a></nav><a class="logo" href="#top" aria-label="Espresso Check ana sayfa"><img src="assets/logo.png" alt="Espresso Check" fetchpriority="high"></a><nav class="links right"><a href="#contact">İLETİŞİM</a><a href="#menu">LATTE'NİN SEÇTİKLERİ</a></nav><button class="menu" id="mobileMenuToggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobileMenu">☰</button></div><div class="mobile-menu-panel" id="mobileMenu" aria-hidden="true"><a href="#menu">MENÜ</a><a href="#order" class="order-nav-link">SİPARİŞ VER</a><a href="#contact">İLETİŞİM</a><a href="#menu">LATTE'NİN SEÇTİKLERİ</a></div></header>
+<div class="announce">APPROVED BY LATTE✓ </div>
+<header class="nav" id="nav"><div class="container nav-inner"><nav class="links"><a href="#menu">MENÜ</a><a href="#order" class="order-nav-link">SİPARİŞ VER</a></nav><a class="logo" href="#top" aria-label="Espresso Check ana sayfa"><img src="assets/logo.png" alt="Espresso Check" fetchpriority="high"></a><nav class="links right"><a href="#contact" data-contact-nav="0">BAHÇELİEVLER</a><a href="#contact" data-contact-nav="1">CEBECİ</a></nav><button class="menu" id="mobileMenuToggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobileMenu">☰</button></div><div class="mobile-menu-panel" id="mobileMenu" aria-hidden="true"><a href="#menu">MENÜ</a><a href="#order" class="order-nav-link">SİPARİŞ VER</a><a href="#contact" data-contact-nav="0">BAHÇELİEVLER</a><a href="#contact" data-contact-nav="1">CEBECİ</a></div></header>
 <main id="top">
 <section class="hero"><div class="container hero-inner"><div class="hero-copy"><div class="eyebrow" data-reveal>İYİ KAHVE, İYİ GÜNLER™</div><h1 class="hero-title-final" data-reveal style="--reveal-delay:80ms"><span class="hero-title-line title-green">Her Gün</span><span class="hero-title-line title-espresso-molani"><span class="title-espresso">Espresso</span><span class="title-molani">Molanı</span></span><span class="hero-title-line title-check-et"><span class="title-check">Check</span><span class="title-et">Et</span></span></h1><p data-reveal style="--reveal-delay:150ms">Espresso Check’te kahve molası biraz daha fazlası. Kahveden tatlıya, bowl’lardan soğuk içeceklere kadar gününe keyif katacak ne varsa burada. Bir de Latte var tabii! Geldiğinizde ona sevgi göstermeyi unutmayın. Çünkü sevilmeyi çok seviyor.</p><a class="btn" data-reveal="soft-scale" style="--reveal-delay:230ms" href="#menu">Menüyü Keşfet</a></div><div class="hero-art"><img class="can-photo" src="assets/espresso-check-dog.png" fetchpriority="high" loading="eager" decoding="async" alt="Espresso Check Latte ve marka görseli"><div class="bubble one" aria-hidden="true"><span class="check-frame"></span><img class="tick tick-yellow" src="assets/tick.png" alt=""></div><div class="bubble two" aria-label="Latteyi sev"><span class="love-label">LATTEYİ SEV<br><small>(Başına dokun)</small></span><img class="tick tick-pink" src="assets/tick.png" alt=""></div><button class="latte-hit" type="button" aria-label="Latteyi sev"></button></div><div class="hero-note">Keep scrolling</div></div></section>
-<div class="ticker"><div class="ticker-track"><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span></div></div>
+<div class="ticker"><div class="ticker-track"><span>İYİ KAHVE, GÜZEL BİR MOLA ✓</span><span>İYİ KAHVE, GÜZEL BİR MOLA ✓</span><span>İYİ KAHVE, GÜZEL BİR MOLA ✓</span></div></div>
 <section class="intro cup-showcase" id="benefits">
   <div class="container intro-grid">
     <div class="intro-copy-left">
@@ -1365,6 +1365,19 @@ if(mobileMenuToggle&&mobileMenu){
   mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMobileMenu));
   window.addEventListener('resize',()=>{if(window.innerWidth>650) closeMobileMenu();},{passive:true});
 }
+
+// Branch navigation: choose the matching contact-carousel card before scrolling.
+document.querySelectorAll('[data-contact-nav]').forEach(link=>{
+  link.addEventListener('click',event=>{
+    event.preventDefault();
+    const slideIndex=link.getAttribute('data-contact-nav');
+    const branchDot=document.querySelector(`[data-contact-to="${slideIndex}"]`);
+    if(branchDot) branchDot.click();
+    const contact=document.getElementById('contact');
+    if(contact) contact.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+    if(typeof closeMobileMenu==='function') closeMobileMenu();
+  });
+});
 
 const hero=document.querySelector('.hero');const can=document.querySelector('.can-photo');
 window.addEventListener('scroll',()=>{if(!hero||!can||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const r=hero.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight-r.top)/(innerHeight+r.height)));can.style.transform=`rotate(${6-p*7}deg) translateY(${-p*22}px) scale(${1+p*.025})`},{passive:true});
@@ -2149,15 +2162,16 @@ img{image-rendering:auto}
   .hero h1.hero-title-final{
     max-width:none!important;
     width:100%!important;
-    font-size:clamp(29px,8.25vw,37px)!important;
-    line-height:.96!important;
+    font-size:clamp(40px,10.5vw,46px)!important;
+    line-height:.95!important;
     letter-spacing:-.055em!important;
+    text-align:center!important;
     text-wrap:normal;
-    margin-bottom:16px!important;
+    margin-bottom:18px!important;
   }
-  /* Four deliberate visual lines on a narrow screen; "Check Et" stays together. */
-  .hero h1.hero-title-final .title-espresso-molani{flex-direction:column;align-items:flex-start;gap:0;}
-  .hero h1.hero-title-final .hero-title-line{width:max-content;max-width:100%;}
-  .hero h1.hero-title-final .title-check-et{flex-direction:row;gap:.22em;}
+  /* Keep the four-line mobile headline larger and centered; "Check Et" stays together. */
+  .hero h1.hero-title-final .title-espresso-molani{flex-direction:column;align-items:center;gap:0;}
+  .hero h1.hero-title-final .hero-title-line{width:max-content;max-width:100%;margin-inline:auto!important;}
+  .hero h1.hero-title-final .title-check-et{flex-direction:row;justify-content:center;gap:.22em;}
 }
 </style>
