@@ -57,8 +57,7 @@
   .cup-copy-mobile{display:block;text-align:center;max-width:330px;margin:-8px auto 14px;font-size:15px;line-height:1.5}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker-track{animation:none}.hero:hover .can-photo,.flavor:hover img{transform:none}}
-.hero h1 .handwritten-green{font-family:"DM Sans",sans-serif;font-style:normal;color:#0E7959;font-weight:700;letter-spacing:-.055em}
-.hero h1 .handwritten-green:nth-of-type(2){font-weight:400}
+.hero h1 .handwritten-green{font-family:"Comic Sans MS","Segoe Print","Bradley Hand",cursive;color:#0E7959;font-weight:800}
 /* Latte interaction — only for the hero bubbles */
 .hero-art .bubble{overflow:visible}
 .hero-art .bubble.one{border-radius:50%}
@@ -1084,7 +1083,7 @@ img[width][height]{height:auto;}
 <div class="announce">APPROVED BY LATTE✓ </div>
 <header class="nav" id="nav"><div class="container nav-inner"><nav class="links"><a href="#menu">MENÜ</a><a href="#order" class="order-nav-link">SİPARİŞ VER</a></nav><a class="logo" href="#top" aria-label="Espresso Check ana sayfa"><img src="assets/logo.png" alt="Espresso Check" fetchpriority="high"></a><nav class="links right"><a href="#contact">İLETİŞİM</a><a href="#menu">LATTE'NİN SEÇTİKLERİ</a></nav><button class="menu" id="mobileMenuToggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobileMenu">☰</button></div><div class="mobile-menu-panel" id="mobileMenu" aria-hidden="true"><a href="#menu">MENÜ</a><a href="#order" class="order-nav-link">SİPARİŞ VER</a><a href="#contact">İLETİŞİM</a><a href="#menu">LATTE'NİN SEÇTİKLERİ</a></div></header>
 <main id="top">
-<section class="hero"><div class="container hero-inner"><div class="hero-copy"><div class="eyebrow" data-reveal>İYİ KAHVE, İYİ GÜNLER™</div><h1 class="hero-title-final" data-reveal style="--reveal-delay:80ms"><span class="hero-title-line title-green">Her Gün</span><span class="hero-title-line title-espresso-molani"><span class="title-espresso">Espresso</span><span class="title-molani">Molanı</span></span><span class="hero-title-line title-check-et"><span class="title-check">Check</span><span class="title-et">Et</span></span></h1><p data-reveal style="--reveal-delay:150ms">Espresso Check’te kahve molası biraz daha fazlası. Kahveden tatlıya, bowl’lardan soğuk içeceklere kadar günün keyfini yerine getirecek ne varsa burada. Bir de Latte var tabii; bazı şeylerin onun onayından geçmesi gerekiyor.</p><a class="btn" data-reveal="soft-scale" style="--reveal-delay:230ms" href="#menu">Menüyü Keşfet</a></div><div class="hero-art"><img class="can-photo" src="assets/espresso-check-dog.png" fetchpriority="high" loading="eager" decoding="async" alt="Espresso Check Latte ve marka görseli"><div class="bubble one" aria-hidden="true"><span class="check-frame"></span><img class="tick tick-yellow" src="assets/tick.png" alt=""></div><div class="bubble two" aria-label="Latteyi sev"><span class="love-label">LATTEYİ SEV<br><small>(Başına dokun)</small></span><img class="tick tick-pink" src="assets/tick.png" alt=""></div><button class="latte-hit" type="button" aria-label="Latteyi sev"></button></div><div class="hero-note">Keep scrolling</div></div></section>
+<section class="hero"><div class="container hero-inner"><div class="hero-copy"><div class="eyebrow" data-reveal>İYİ KAHVE, İYİ GÜNLER™</div><h1 data-reveal style="--reveal-delay:80ms">Her Gün <span class="handwritten-green">Espresso</span> Molanı <span class="handwritten-green">Check</span> Et</h1><p data-reveal style="--reveal-delay:150ms">Espresso Check’te kahve molası biraz daha fazlası. Kahveden tatlıya, bowl’lardan soğuk içeceklere kadar günün keyfini yerine getirecek ne varsa burada. Bir de Latte var tabii; bazı şeylerin onun onayından geçmesi gerekiyor.</p><a class="btn" data-reveal="soft-scale" style="--reveal-delay:230ms" href="#menu">Menüyü Keşfet</a></div><div class="hero-art"><img class="can-photo" src="assets/espresso-check-dog.png" fetchpriority="high" loading="eager" decoding="async" alt="Espresso Check Latte ve marka görseli"><div class="bubble one" aria-hidden="true"><span class="check-frame"></span><img class="tick tick-yellow" src="assets/tick.png" alt=""></div><div class="bubble two" aria-label="Latteyi sev"><span class="love-label">LATTEYİ SEV<br><small>(Başına dokun)</small></span><img class="tick tick-pink" src="assets/tick.png" alt=""></div><button class="latte-hit" type="button" aria-label="Latteyi sev"></button></div><div class="hero-note">Keep scrolling</div></div></section>
 <div class="ticker"><div class="ticker-track"><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span><span>İYİ KAHVE ✓ LATTE ONAYLI ✓ İYİ GÜNLER ✓</span></div></div>
 <section class="intro cup-showcase" id="benefits">
   <div class="container intro-grid">
@@ -2117,47 +2116,5 @@ img{image-rendering:auto}
 
   /* Do not let the order visual itself create extra vertical space. */
   .order-visual{min-height:285px!important}
-}
-  /* FINAL TICKER COLOR OVERRIDE — change only the scrolling text bands. */
-  .ticker{background:#0E7959!important;color:#F5F0E6!important}
-</style>
-
-<style id="espresso-hero-title-mobile-wrap-fix">
-/* Hero title only: requested brand colors and logo-style Espresso/Check weights. */
-.hero h1.hero-title-final{color:#0E7959!important;}
-.hero h1.hero-title-final .hero-title-line{display:block;white-space:nowrap;}
-.hero h1.hero-title-final .title-green,
-.hero h1.hero-title-final .title-molani,
-.hero h1.hero-title-final .title-et{
-  color:#0E7959!important;
-  font-family:Fraunces,serif!important;
-  font-style:normal!important;
-  font-weight:700!important;
-}
-.hero h1.hero-title-final .title-espresso,
-.hero h1.hero-title-final .title-check{
-  color:#2B160D!important;
-  font-family:"DM Sans",sans-serif!important;
-  font-style:normal!important;
-}
-.hero h1.hero-title-final .title-espresso{font-weight:700!important;letter-spacing:-.055em!important;}
-.hero h1.hero-title-final .title-check{font-weight:400!important;letter-spacing:-.055em!important;}
-.hero h1.hero-title-final .title-espresso-molani{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.22em;row-gap:0;}
-.hero h1.hero-title-final .title-check-et{display:flex;flex-wrap:nowrap;align-items:baseline;column-gap:.22em;}
-@media(max-width:650px){
-  .hero-copy{text-align:left;}
-  .hero h1.hero-title-final{
-    max-width:none!important;
-    width:100%!important;
-    font-size:clamp(29px,8.25vw,37px)!important;
-    line-height:.96!important;
-    letter-spacing:-.055em!important;
-    text-wrap:normal;
-    margin-bottom:16px!important;
-  }
-  /* Four deliberate visual lines on a narrow screen; "Check Et" stays together. */
-  .hero h1.hero-title-final .title-espresso-molani{flex-direction:column;align-items:flex-start;gap:0;}
-  .hero h1.hero-title-final .hero-title-line{width:max-content;max-width:100%;}
-  .hero h1.hero-title-final .title-check-et{flex-direction:row;gap:.22em;}
 }
 </style>
