@@ -1460,7 +1460,7 @@ const cupSlides = [
     id:'bowl',
     src:'assets/espresso-check-bowl.glb',
     alt:'Espresso Check 3D atıştırmalık kasesi',
-    angle:90, polar:74, radius:5.2, fov:40, targetY:0,
+    angle:270, polar:74, radius:5.2, fov:40, targetY:0,
     minRadius:3.8, maxRadius:8.2,
     title:"Bowl'la<br>devam et.",
     text:'Renkli, doyurucu, sana göre. Bowl molası başlasın.'
@@ -1510,7 +1510,7 @@ function animateCupSpin(slide){
   return new Promise(resolve=>{
     if(reduceCupMotion || !cupModel.loaded){ resolve(); return; }
     const start = performance.now();
-    const duration = 1180;
+    const duration = 2360;
     const startAngle = cupAngle;
     const startRadius = cupRadius;
     function frame(now){
