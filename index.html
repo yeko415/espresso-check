@@ -1108,11 +1108,14 @@ body{width:100%;max-width:100%;overflow-x:clip;background:var(--cream)}
   .cup-model-wrap{width:min(440px,100%);max-width:100%;height:440px;transform:scale(.80)}
   .cup-showcase{overflow-x:clip}
 }
+/* Shift only the coffee cup slightly left; bowl and dessert keep their own center. */
+.cup-stage[data-product="coffee"] .cup-model-wrap{position:relative;left:-10px}
 @media(max-width:650px){
   .cup-showcase .intro-grid{gap:6px!important}
   .cup-showcase h2{font-size:clamp(42px,11vw,58px)}
   .cup-stage{min-height:410px;height:410px;overflow:clip}
   .cup-model-wrap{width:min(360px,100%);height:390px;max-width:100%;transform:scale(.72)}
+  .cup-stage[data-product="coffee"] .cup-model-wrap{left:-16px}
   .cup-arrow{z-index:6}
 }
 </style>
@@ -1130,7 +1133,7 @@ body{width:100%;max-width:100%;overflow-x:clip;background:var(--cream)}
       <h2 id="cupCopyTitle" class="cup-title-animated">Kahveyle<br>başla.</h2>
     </div>
     <div class="cup-showcase-right">
-      <div class="cup-stage" id="cupStage" aria-live="polite">
+      <div class="cup-stage" id="cupStage" data-product="coffee" aria-live="polite">
         <button class="cup-arrow cup-prev" id="cupPrev" type="button" aria-label="Önceki ürün">→</button>
         <div class="cup-model-wrap" id="cupModelWrap">
           <model-viewer
@@ -1143,7 +1146,7 @@ body{width:100%;max-width:100%;overflow-x:clip;background:var(--cream)}
             exposure="1"
             environment-image="neutral"
             camera-target="0m 4.25m 0m"
-            camera-orbit="325deg 72deg 25.5m"
+            camera-orbit="0deg 72deg 25.5m"
             field-of-view="40deg"
             min-camera-orbit="auto auto 21m"
             max-camera-orbit="auto auto 32m"
@@ -1448,7 +1451,7 @@ const cupSlides = [
     id:'coffee',
     src:'assets/espresso-check-coffee-cup-v10.glb',
     alt:'Espresso Check 3D kahve bardağı',
-    angle:325, polar:72, radius:25.5, fov:40, targetY:4.25,
+    angle:0, polar:72, radius:25.5, fov:40, targetY:4.25,
     minRadius:21, maxRadius:32,
     title:'Kahveyle<br>başla.',
     text:"Latte'nin onayından geçen küçük bir kahve ritüeli."
@@ -1457,7 +1460,7 @@ const cupSlides = [
     id:'bowl',
     src:'assets/espresso-check-bowl.glb',
     alt:'Espresso Check 3D atıştırmalık kasesi',
-    angle:340, polar:74, radius:5.2, fov:40, targetY:0,
+    angle:90, polar:74, radius:5.2, fov:40, targetY:0,
     minRadius:3.8, maxRadius:8.2,
     title:"Bowl'la<br>devam et.",
     text:'Renkli, doyurucu, sana göre. Bowl molası başlasın.'
@@ -1466,7 +1469,7 @@ const cupSlides = [
     id:'dessert',
     src:'assets/espresso-check-dessert.glb',
     alt:'Espresso Check 3D çikolatalı tatlı',
-    angle:320, polar:73, radius:3.75, fov:40, targetY:0,
+    angle:295, polar:73, radius:3.75, fov:40, targetY:0,
     minRadius:2.4, maxRadius:6.8,
     title:'Tatlıyla<br>tamamla.',
     text:'Bir dilim çikolata, biraz huzur. Tatlı molası tamam.'
@@ -1507,7 +1510,7 @@ function animateCupSpin(slide){
   return new Promise(resolve=>{
     if(reduceCupMotion || !cupModel.loaded){ resolve(); return; }
     const start = performance.now();
-    const duration = 2360;
+    const duration = 1180;
     const startAngle = cupAngle;
     const startRadius = cupRadius;
     function frame(now){
@@ -1613,6 +1616,7 @@ async function setCupSlide(next,direction=1){
     cupModel.setAttribute('alt',nextSlide.alt);
     setCupCamera(nextSlide);
     cupIndex=nextIndex;
+    if(cupStage) cupStage.dataset.product=nextSlide.id;
     renderCupProgress();
     updateCupCopy(nextSlide);
     if(cupLoadingStatus) cupLoadingStatus.hidden=true;
@@ -1634,6 +1638,7 @@ async function setCupSlide(next,direction=1){
     const restored=await waitForCupModelLoad(previousSlide.src);
     if(restored){
       cupIndex=previousIndex;
+      if(cupStage) cupStage.dataset.product=previousSlide.id;
       setCupCamera(previousSlide);
       updateCupCopy(previousSlide);
       renderCupProgress();
