@@ -1079,9 +1079,24 @@ img[width][height]{height:auto;}
 
 </style>
 
+
+<style id="espresso-three-product-carousel-final">
+.cup-arrow:disabled{opacity:.45;pointer-events:none;cursor:wait}
+.cup-loading-status{position:absolute;left:50%;top:72%;transform:translate(-50%,-50%);z-index:5;max-width:min(82%,320px);padding:10px 15px;border-radius:999px;background:rgba(255,248,233,.95);border:1px solid rgba(14,90,71,.12);box-shadow:0 8px 24px rgba(23,61,55,.10);color:#173D37;font:600 13px/1.35 "DM Sans",sans-serif;text-align:center;pointer-events:none}
+.cup-loading-status[hidden]{display:none!important}
+.cup-copy-mobile{display:none}
+@media(max-width:650px){
+  .cup-copy-mobile{display:block;text-align:center;max-width:330px;margin:-8px auto 14px;font-size:15px;line-height:1.5}
+  .cup-arrow{display:flex!important;width:40px;height:40px;font-size:22px;top:56%;}
+  .cup-prev{left:2px;right:auto}
+  .cup-next{right:2px;left:auto}
+  .cup-loading-status{top:76%;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){.cup-arrow,.cup-loading-status{transition:none!important}}
+</style>
 </head>
 <body>
-<div class="announce">İYİ KAHVE, GÜZEL BİR MOLA ✓ </div>
+<div class="announce">APPROVED BY LATTE✓ </div>
 <header class="nav" id="nav"><div class="container nav-inner"><nav class="links"><a href="#menu">MENÜ</a><a href="#order" class="order-nav-link">SİPARİŞ VER</a></nav><a class="logo" href="#top" aria-label="Espresso Check ana sayfa"><img src="assets/logo.png" alt="Espresso Check" fetchpriority="high"></a><nav class="links right"><a href="#contact" data-contact-nav="0">BAHÇELİEVLER</a><a href="#contact" data-contact-nav="1">CEBECİ</a></nav><button class="menu" id="mobileMenuToggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobileMenu">☰</button></div><div class="mobile-menu-panel" id="mobileMenu" aria-hidden="true"><a href="#menu">MENÜ</a><a href="#order" class="order-nav-link">SİPARİŞ VER</a><a href="#contact" data-contact-nav="0">BAHÇELİEVLER</a><a href="#contact" data-contact-nav="1">CEBECİ</a></div></header>
 <main id="top">
 <section class="hero"><div class="container hero-inner"><div class="hero-copy"><div class="eyebrow" data-reveal>İYİ KAHVE, İYİ GÜNLER™</div><h1 class="hero-title-final" data-reveal style="--reveal-delay:80ms"><span class="hero-title-line title-green">Her Gün</span><span class="hero-title-line title-espresso-molani"><span class="title-espresso">Espresso</span><span class="title-molani">Molanı</span></span><span class="hero-title-line title-check-et"><span class="title-check">Check</span><span class="title-et">Et</span></span></h1><p data-reveal style="--reveal-delay:150ms">Espresso Check’te kahve molası biraz daha fazlası. Kahveden tatlıya, bowl’lardan soğuk içeceklere kadar gününe keyif katacak ne varsa burada. Bir de Latte var tabii! Geldiğinizde ona sevgi göstermeyi unutmayın. Çünkü sevilmeyi çok seviyor.</p><a class="btn" data-reveal="soft-scale" style="--reveal-delay:230ms" href="#menu">Menüyü Keşfet</a></div><div class="hero-art"><img class="can-photo" src="assets/espresso-check-dog.png" fetchpriority="high" loading="eager" decoding="async" alt="Espresso Check Latte ve marka görseli"><div class="bubble one" aria-hidden="true"><span class="check-frame"></span><img class="tick tick-yellow" src="assets/tick.png" alt=""></div><div class="bubble two" aria-label="Latteyi sev"><span class="love-label">LATTEYİ SEV<br><small>(Başına dokun)</small></span><img class="tick tick-pink" src="assets/tick.png" alt=""></div><button class="latte-hit" type="button" aria-label="Latteyi sev"></button></div><div class="hero-note">Keep scrolling</div></div></section>
@@ -1093,7 +1108,7 @@ img[width][height]{height:auto;}
     </div>
     <div class="cup-showcase-right">
       <div class="cup-stage" id="cupStage" aria-live="polite">
-        <button class="cup-arrow cup-prev" id="cupPrev" type="button" aria-label="Önceki bardak görünümü">→</button>
+        <button class="cup-arrow cup-prev" id="cupPrev" type="button" aria-label="Önceki ürün">→</button>
         <div class="cup-model-wrap" id="cupModelWrap">
           <model-viewer
             id="cupModel"
@@ -1105,20 +1120,21 @@ img[width][height]{height:auto;}
             exposure="1"
             environment-image="neutral"
             camera-target="0m 4.25m 0m"
-            camera-orbit="0deg 72deg 25.5m"
+            camera-orbit="295deg 72deg 25.5m"
             field-of-view="40deg"
             min-camera-orbit="auto auto 21m"
             max-camera-orbit="auto auto 32m"
             alt="Espresso Check 3D kahve bardağı"></model-viewer>
         </div>
-        <button class="cup-arrow cup-next" id="cupNext" type="button" aria-label="Sonraki bardak görünümü">→</button>
+        <div class="cup-loading-status" id="cupLoadingStatus" role="status" aria-live="polite" hidden></div>
+        <button class="cup-arrow cup-next" id="cupNext" type="button" aria-label="Sonraki ürün">→</button>
       </div>
       <div class="cup-copy-mobile">
         <p id="cupCopyText">Latte'nin onayından geçen küçük bir kahve ritüeli.</p>
       </div>
     </div>
   </div>
-  <div class="cup-progress" id="cupProgress" aria-label="Bardak görünüm sayacı"></div>
+  <div class="cup-progress" id="cupProgress" aria-label="Ürün aşamaları"></div>
 </section>
 <div class="ticker"><div class="ticker-track"><span>KAHVE MOLASI ✓ BOWL MOLASI ✓ TATLI MOLASI ✓</span><span>KAHVE MOLASI ✓ BOWL MOLASI ✓ TATLI MOLASI ✓</span><span>KAHVE MOLASI ✓ BOWL MOLASI ✓ TATLI MOLASI ✓</span></div></div>
 <section class="menu-section" id="menu" data-section="menu">
@@ -1392,7 +1408,7 @@ if(latteHit&&latteBubble){
 }
 
 
-// 3D cup showcase interaction — isolated
+// Espresso Check 3D product carousel: Coffee → Bowl → Dessert → Coffee
 const cupStage = document.getElementById('cupStage');
 const cupModel = document.getElementById('cupModel');
 const cupWrap = document.getElementById('cupModelWrap');
@@ -1401,27 +1417,36 @@ const cupNext = document.getElementById('cupNext');
 const cupProgress = document.getElementById('cupProgress');
 const cupCopyTitle = document.getElementById('cupCopyTitle');
 const cupCopyText = document.getElementById('cupCopyText');
+const cupLoadingStatus = document.getElementById('cupLoadingStatus');
+const reduceCupMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const cupSlides = [
   {
+    id:'coffee',
+    src:'assets/espresso-check-coffee-cup-v10.glb',
+    alt:'Espresso Check 3D kahve bardağı',
     angle:295, polar:72, radius:25.5, fov:40, targetY:4.25,
+    minRadius:21, maxRadius:32,
     title:'Kahveyle<br>başla.',
     text:"Latte'nin onayından geçen küçük bir kahve ritüeli."
   },
   {
-    angle:39, polar:66, radius:23.6, fov:43, targetY:4.18,
-    title:'Bowl\'la<br>devam et.',
-    text:'Günün ortasında kısa bir durak, fincanın içinde biraz iyi his.'
+    id:'bowl',
+    src:'assets/espresso-check-bowl.glb',
+    alt:'Espresso Check 3D atıştırmalık kasesi',
+    angle:295, polar:74, radius:3.8, fov:40, targetY:0,
+    minRadius:2.4, maxRadius:6.8,
+    title:"Bowl'la<br>devam et.",
+    text:'Renkli, doyurucu, sana göre. Bowl molası başlasın.'
   },
   {
-    angle:155, polar:80, radius:26.6, fov:38, targetY:4.30,
+    id:'dessert',
+    src:'assets/espresso-check-dessert.glb',
+    alt:'Espresso Check 3D çikolatalı tatlı',
+    angle:295, polar:73, radius:3.75, fov:40, targetY:0,
+    minRadius:2.4, maxRadius:6.8,
     title:'Tatlıyla<br>tamamla.',
-    text:'Espresso Check sadece kahve değil; molanın da küçük bir işareti.'
-  },
-  {
-    angle:247, polar:63, radius:23.0, fov:44, targetY:4.12,
-    title:'Gününü<br>güzelleştir.',
-    text:'Bazen en iyi başlangıç sadece iyi bir kahve kokusudur.'
+    text:'Bir dilim çikolata, biraz huzur. Tatlı molası tamam.'
   }
 ];
 
@@ -1434,160 +1459,201 @@ let cupTargetY = cupSlides[0].targetY;
 let cupFov = cupSlides[0].fov;
 
 function renderCupProgress(){
-  cupProgress.innerHTML = cupSlides.map((_,i)=>`<span class="${i===cupIndex?'active':''}"></span>`).join('');
+  if(!cupProgress) return;
+  cupProgress.innerHTML = cupSlides.map((slide,i)=>`<span class="${i===cupIndex?'active':''}" aria-label="${slide.id}"></span>`).join('');
+  cupProgress.setAttribute('aria-label', `Ürün ${cupIndex+1} / ${cupSlides.length}`);
 }
 
-function clamp(v,a,b){ return Math.min(b,Math.max(a,v)); }
-function normalizeDeg(a){ return ((a%360)+360)%360; }
+function mixCup(a,b,t){ return a+(b-a)*t; }
+function smoothCup(t){ return t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; }
 
-function directedDelta(from,to,direction){
-  let d = normalizeDeg(to) - normalizeDeg(from);
-  if(direction > 0){
-    while(d < 104) d += 360;
-    while(d > 160) d -= 360;
-  }else{
-    while(d > -104) d -= 360;
-    while(d < -160) d += 360;
-  }
-  return d;
+function setCupCamera(slide, angle=slide.angle){
+  cupModel.setAttribute('min-camera-orbit', `auto auto ${slide.minRadius}m`);
+  cupModel.setAttribute('max-camera-orbit', `auto auto ${slide.maxRadius}m`);
+  cupModel.cameraTarget = `0m ${slide.targetY.toFixed(3)}m 0m`;
+  cupModel.cameraOrbit = `${angle.toFixed(3)}deg ${slide.polar.toFixed(3)}deg ${slide.radius.toFixed(3)}m`;
+  cupModel.fieldOfView = `${slide.fov.toFixed(2)}deg`;
+  cupAngle = angle;
+  cupPolar = slide.polar;
+  cupRadius = slide.radius;
+  cupTargetY = slide.targetY;
+  cupFov = slide.fov;
 }
 
-// Premium ease: a little momentum in the middle, soft settle at the end.
-function cinematicEase(t){
-  if(t <= 0) return 0;
-  if(t >= 1) return 1;
-  const s = t*t*(3-2*t);
-  const momentum = Math.sin(Math.PI*t) * 0.035;
-  return clamp(s + momentum,0,1);
-}
-
-function mix(a,b,t){ return a + (b-a)*t; }
-
-function animateCupTo(slide,direction){
-  if(cupAnimating) return;
-  cupAnimating = true;
-
-  const start = performance.now();
-  const duration = 1650;
-
-  const startAngle = cupAngle;
-  const startPolar = cupPolar;
-  const startRadius = cupRadius;
-  const startTargetY = cupTargetY;
-  const startFov = cupFov;
-
-  const deltaAngle = directedDelta(startAngle,slide.angle,direction);
-  const endAngle = startAngle + deltaAngle;
-
-  // Visual tilt of the transparent viewer canvas, so the object reads as a
-  // physical 3D product rather than a flat image. Small and restrained.
-  const baseZ = direction > 0 ? 0 : 0;
-  const targetTilt = direction > 0 ? -4.6 : 4.6;
-  const startTilt = 0;
-
-  // Subtle title transition — secondary to the cup motion.
-  cupCopyTitle.classList.add('is-changing');
-  requestAnimationFrame(()=> {
-    cupCopyTitle.innerHTML = slide.title;
-    cupCopyText.textContent = slide.text;
-    cupCopyTitle.classList.remove('is-changing');
+function animateCupSpin(slide){
+  return new Promise(resolve=>{
+    if(reduceCupMotion || !cupModel.loaded){ resolve(); return; }
+    const start = performance.now();
+    const duration = 1180;
+    const startAngle = cupAngle;
+    const startRadius = cupRadius;
+    function frame(now){
+      const raw = Math.min(1,(now-start)/duration);
+      const t = smoothCup(raw);
+      const angle = startAngle + 360*t;
+      const radius = startRadius - Math.sin(Math.PI*t)*Math.max(.08,startRadius*.045);
+      cupModel.cameraOrbit = `${angle.toFixed(3)}deg ${slide.polar.toFixed(3)}deg ${radius.toFixed(3)}m`;
+      if(raw<1){ requestAnimationFrame(frame); return; }
+      // A full revolution returns to the same view; normalize back to the product's starting angle.
+      setCupCamera(slide);
+      resolve();
+    }
+    requestAnimationFrame(frame);
   });
-  cupIndex = (cupSlides.indexOf(slide)+cupSlides.length)%cupSlides.length;
-  renderCupProgress();
-
-  function frame(now){
-    const raw = Math.min(1,(now-start)/duration);
-    const t = cinematicEase(raw);
-
-    // Strongest camera action around the middle: push in, widen perspective,
-    // then recover to the hero pose.
-    const push = Math.sin(Math.PI*t);
-    const latePush = Math.sin(Math.PI*t) * (1-t);
-    const arc = Math.sin(Math.PI*t);
-
-    cupAngle = startAngle + deltaAngle*t;
-    cupPolar = mix(startPolar,slide.polar,t) + Math.sin(Math.PI*t)*4.0*(direction>0?1:-1);
-    cupRadius = mix(startRadius,slide.radius,t) - push*2.5;
-    cupTargetY = mix(startTargetY,slide.targetY,t) + Math.sin(Math.PI*t*1.15)*0.20*(direction>0?1:-1);
-    cupFov = mix(startFov,slide.fov,t) - latePush*4.0;
-
-    // Slight physical tilt / lateral drift of the rendered 3D stage.
-    const tilt = mix(startTilt,targetTilt, t) + Math.sin(Math.PI*t)*1.2*(direction>0?-1:1);
-    const lift = Math.sin(Math.PI*t) * -8;
-    const drift = Math.sin(Math.PI*t) * 7 * (direction>0?1:-1);
-    const scale = .90 + Math.sin(Math.PI*t)*.045;
-
-    cupWrap.style.transform =
-      `translate3d(${drift.toFixed(2)}px,${lift.toFixed(2)}px,0) rotateZ(${tilt.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
-
-    cupModel.cameraTarget = `0m ${cupTargetY.toFixed(3)}m 0m`;
-    cupModel.cameraOrbit = `${cupAngle.toFixed(3)}deg ${cupPolar.toFixed(3)}deg ${cupRadius.toFixed(3)}m`;
-    cupModel.fieldOfView = `${cupFov.toFixed(2)}deg`;
-
-    if(raw < 1){
-      requestAnimationFrame(frame);
-      return;
-    }
-
-    cupAngle = endAngle;
-    cupPolar = slide.polar;
-    cupRadius = slide.radius;
-    cupTargetY = slide.targetY;
-    cupFov = slide.fov;
-
-    // Natural micro-overshoot on the rendered stage, then settle.
-    const settleStart = performance.now();
-    function settle(now2){
-      const p = Math.min(1,(now2-settleStart)/320);
-      const e = 1-Math.pow(1-p,3);
-      const overshoot = Math.sin(Math.PI*e) * 0.7;
-      cupWrap.style.transform =
-        `translate3d(0,${(overshoot*-2).toFixed(2)}px,0) rotateZ(${(targetTilt*(1-e)+Math.sin(Math.PI*e)*.8*(direction>0?-1:1)).toFixed(2)}deg) scale(.90)`;
-      if(p<1){
-        requestAnimationFrame(settle);
-      }else{
-        cupWrap.style.transform='translate3d(0,0,0) rotateZ(0deg) scale(.90)';
-        cupModel.cameraTarget = `0m ${cupTargetY.toFixed(3)}m 0m`;
-        cupModel.cameraOrbit = `${cupAngle.toFixed(3)}deg ${cupPolar.toFixed(3)}deg ${cupRadius.toFixed(3)}m`;
-        cupModel.fieldOfView = `${cupFov.toFixed(2)}deg`;
-        cupAnimating = false;
-      }
-    }
-    requestAnimationFrame(settle);
-  }
-
-  requestAnimationFrame(frame);
 }
 
-function setCupSlide(next,direction){
-  if(cupAnimating) return;
-  const idx = (next+cupSlides.length)%cupSlides.length;
-  animateCupTo(cupSlides[idx],direction);
+function animateCupWrap(keyframes, duration, easing='cubic-bezier(.2,.8,.2,1)'){
+  return new Promise(resolve=>{
+    if(reduceCupMotion || !cupWrap.animate){
+      const end=keyframes[keyframes.length-1];
+      if(end.opacity !== undefined) cupWrap.style.opacity=end.opacity;
+      if(end.transform) cupWrap.style.transform=end.transform;
+      resolve(); return;
+    }
+    const animation=cupWrap.animate(keyframes,{duration,easing,fill:'forwards'});
+    animation.finished.then(()=>{
+      const end=keyframes[keyframes.length-1];
+      if(end.opacity !== undefined) cupWrap.style.opacity=end.opacity;
+      if(end.transform) cupWrap.style.transform=end.transform;
+      animation.cancel();
+      resolve();
+    }).catch(resolve);
+  });
+}
+
+function waitForCupModelLoad(src){
+  return new Promise(resolve=>{
+    let settled=false;
+    const finish=ok=>{
+      if(settled) return;
+      settled=true;
+      clearTimeout(timeout);
+      cupModel.removeEventListener('load', onLoad);
+      cupModel.removeEventListener('error', onError);
+      resolve(ok);
+    };
+    const onLoad=()=>finish(true);
+    const onError=()=>finish(false);
+    const timeout=setTimeout(()=>finish(false),30000);
+    cupModel.addEventListener('load',onLoad);
+    cupModel.addEventListener('error',onError);
+    cupModel.setAttribute('src',src);
+  });
+}
+
+function updateCupCopy(slide){
+  if(cupCopyTitle){
+    cupCopyTitle.classList.add('is-changing');
+    cupCopyTitle.innerHTML=slide.title;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>cupCopyTitle.classList.remove('is-changing')));
+  }
+  if(cupCopyText) cupCopyText.textContent=slide.text;
+}
+
+function setCupButtonsDisabled(disabled){
+  if(cupPrev) cupPrev.disabled=disabled;
+  if(cupNext) cupNext.disabled=disabled;
+}
+
+async function setCupSlide(next,direction=1){
+  if(cupAnimating || !cupModel || !cupWrap) return;
+  const nextIndex=(next+cupSlides.length)%cupSlides.length;
+  if(nextIndex===cupIndex) return;
+  cupAnimating=true;
+  setCupButtonsDisabled(true);
+  const previousIndex=cupIndex;
+  const previousSlide=cupSlides[previousIndex];
+  const nextSlide=cupSlides[nextIndex];
+  const exitX=direction>0?-112:112;
+  const enterX=direction>0?112:-112;
+
+  try{
+    // 1. Rotate the current product a full 360 degrees.
+    await animateCupSpin(previousSlide);
+
+    // 2. Send the old product out of the stage.
+    await animateCupWrap([
+      {opacity:1,transform:'translate3d(0,0,0) scale(.90)'},
+      {opacity:0,transform:`translate3d(${exitX}px,-7px,0) scale(.82)`}
+    ], reduceCupMotion?180:360);
+    cupWrap.style.opacity='0';
+    cupWrap.style.transform=`translate3d(${enterX}px,0,0) scale(.82)`;
+
+    if(cupLoadingStatus){
+      cupLoadingStatus.textContent = nextSlide.id==='bowl' ? 'Bowl molası hazırlanıyor…' : nextSlide.id==='dessert' ? 'Tatlı molası hazırlanıyor…' : 'Kahveye dönüyoruz…';
+      cupLoadingStatus.hidden=false;
+    }
+
+    // 3. Load the next GLB only when needed, then set camera values for its own scale.
+    const loaded=await waitForCupModelLoad(nextSlide.src);
+    if(!loaded) throw new Error(`Model yüklenemedi: ${nextSlide.src}`);
+    cupModel.setAttribute('alt',nextSlide.alt);
+    setCupCamera(nextSlide);
+    cupIndex=nextIndex;
+    renderCupProgress();
+    updateCupCopy(nextSlide);
+    if(cupLoadingStatus) cupLoadingStatus.hidden=true;
+
+    // 4. Bring the new product into view from the opposite side.
+    await animateCupWrap([
+      {opacity:0,transform:`translate3d(${enterX}px,7px,0) scale(.82)`},
+      {opacity:1,transform:'translate3d(0,0,0) scale(.90)'}
+    ], reduceCupMotion?220:520);
+    cupWrap.style.opacity='1';
+    cupWrap.style.transform='translate3d(0,0,0) scale(.90)';
+  }catch(error){
+    console.error('Espresso Check 3D product transition failed:',error);
+    if(cupLoadingStatus){
+      cupLoadingStatus.textContent='Model yüklenemedi. Önceki ürüne dönülüyor…';
+      cupLoadingStatus.hidden=false;
+    }
+    // Restore the last known-good model if the destination file fails to load.
+    const restored=await waitForCupModelLoad(previousSlide.src);
+    if(restored){
+      cupIndex=previousIndex;
+      setCupCamera(previousSlide);
+      updateCupCopy(previousSlide);
+      renderCupProgress();
+      if(cupLoadingStatus) cupLoadingStatus.hidden=true;
+      await animateCupWrap([
+        {opacity:0,transform:`translate3d(${enterX}px,0,0) scale(.82)`},
+        {opacity:1,transform:'translate3d(0,0,0) scale(.90)'}
+      ], reduceCupMotion?180:420);
+      cupWrap.style.opacity='1';
+      cupWrap.style.transform='translate3d(0,0,0) scale(.90)';
+    }else if(cupLoadingStatus){
+      cupLoadingStatus.textContent='3D ürün yüklenemedi. Sayfayı yenileyip tekrar deneyin.';
+      cupLoadingStatus.hidden=false;
+    }
+  }finally{
+    cupAnimating=false;
+    setCupButtonsDisabled(false);
+  }
 }
 
 renderCupProgress();
-
 if(cupPrev) cupPrev.addEventListener('click',()=>setCupSlide(cupIndex-1,-1));
 if(cupNext) cupNext.addEventListener('click',()=>setCupSlide(cupIndex+1,1));
 
-// Mobile horizontal swipe. Vertical page scrolling is preserved.
-let cupTouchX=0, cupTouchY=0, cupTouching=false;
-cupStage.addEventListener('touchstart',e=>{
-  if(!e.touches.length) return;
-  cupTouching=true;
-  cupTouchX=e.touches[0].clientX;
-  cupTouchY=e.touches[0].clientY;
-},{passive:true});
-
-cupStage.addEventListener('touchend',e=>{
-  if(!cupTouching || !e.changedTouches.length) return;
-  cupTouching=false;
-  const dx=e.changedTouches[0].clientX-cupTouchX;
-  const dy=e.changedTouches[0].clientY-cupTouchY;
-  if(Math.abs(dx)>52 && Math.abs(dx)>Math.abs(dy)*1.20){
-    setCupSlide(cupIndex+(dx<0?1:-1),dx<0?1:-1);
-  }
-},{passive:true});
+// Mobile horizontal swipe. Vertical page scrolling remains available.
+let cupTouchX=0,cupTouchY=0,cupTouching=false;
+if(cupStage){
+  cupStage.addEventListener('touchstart',e=>{
+    if(!e.touches.length || cupAnimating) return;
+    cupTouching=true;
+    cupTouchX=e.touches[0].clientX;
+    cupTouchY=e.touches[0].clientY;
+  },{passive:true});
+  cupStage.addEventListener('touchend',e=>{
+    if(!cupTouching || !e.changedTouches.length) return;
+    cupTouching=false;
+    const dx=e.changedTouches[0].clientX-cupTouchX;
+    const dy=e.changedTouches[0].clientY-cupTouchY;
+    if(Math.abs(dx)>52 && Math.abs(dx)>Math.abs(dy)*1.20){
+      setCupSlide(cupIndex+(dx<0?1:-1),dx<0?1:-1);
+    }
+  },{passive:true});
+}
 
 </script>
 
