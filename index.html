@@ -1143,7 +1143,7 @@ body{width:100%;max-width:100%;overflow-x:clip;background:var(--cream)}
             exposure="1"
             environment-image="neutral"
             camera-target="0m 4.25m 0m"
-            camera-orbit="295deg 72deg 25.5m"
+            camera-orbit="325deg 72deg 25.5m"
             field-of-view="40deg"
             min-camera-orbit="auto auto 21m"
             max-camera-orbit="auto auto 32m"
@@ -1448,7 +1448,7 @@ const cupSlides = [
     id:'coffee',
     src:'assets/espresso-check-coffee-cup-v10.glb',
     alt:'Espresso Check 3D kahve bardağı',
-    angle:295, polar:72, radius:25.5, fov:40, targetY:4.25,
+    angle:325, polar:72, radius:25.5, fov:40, targetY:4.25,
     minRadius:21, maxRadius:32,
     title:'Kahveyle<br>başla.',
     text:"Latte'nin onayından geçen küçük bir kahve ritüeli."
@@ -1457,7 +1457,7 @@ const cupSlides = [
     id:'bowl',
     src:'assets/espresso-check-bowl.glb',
     alt:'Espresso Check 3D atıştırmalık kasesi',
-    angle:295, polar:74, radius:5.2, fov:40, targetY:0,
+    angle:340, polar:74, radius:5.2, fov:40, targetY:0,
     minRadius:3.8, maxRadius:8.2,
     title:"Bowl'la<br>devam et.",
     text:'Renkli, doyurucu, sana göre. Bowl molası başlasın.'
@@ -1466,7 +1466,7 @@ const cupSlides = [
     id:'dessert',
     src:'assets/espresso-check-dessert.glb',
     alt:'Espresso Check 3D çikolatalı tatlı',
-    angle:295, polar:73, radius:3.75, fov:40, targetY:0,
+    angle:320, polar:73, radius:3.75, fov:40, targetY:0,
     minRadius:2.4, maxRadius:6.8,
     title:'Tatlıyla<br>tamamla.',
     text:'Bir dilim çikolata, biraz huzur. Tatlı molası tamam.'
@@ -1507,7 +1507,7 @@ function animateCupSpin(slide){
   return new Promise(resolve=>{
     if(reduceCupMotion || !cupModel.loaded){ resolve(); return; }
     const start = performance.now();
-    const duration = 1180;
+    const duration = 2360;
     const startAngle = cupAngle;
     const startRadius = cupRadius;
     function frame(now){
